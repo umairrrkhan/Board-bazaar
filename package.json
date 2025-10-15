@@ -1,0 +1,23 @@
+{
+  "name": "board-bazaar",
+  "version": "1.0.0",
+  "description": "Board Bazaar - Professional Signboard Manufacturing Website",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Build completed - Ready for deployment'",
+    "deploy": "firebase deploy",
+    "serve": "firebase serve",
+    "start": "firebase serve --port 5000"
+  },
+  "keywords": [
+    "signboard",
+    "manufacturing",
+    "website",
+    "firebase",
+    "static"
+  ],
+  "author": "Board Bazaar",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

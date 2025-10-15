@@ -6,6 +6,9 @@
     <title>Board Bazaar - Advertising Excellence</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
 </head>
 <body>
     <!-- Main Header -->
@@ -28,7 +31,11 @@
                     </div>
                     <div class="phone-number">
                         <i class="fas fa-phone"></i>
-                        <a href="tel:+919876543210">+91 98765 43210</a>
+                        <a href="tel:+917800808870">+91 78008 08870</a>
+                    </div>
+                    <div class="phone-number">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+918652737065">+91 86527 37065</a>
                     </div>
                     <div class="social-links">
                         <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="facebook"><i class="fab fa-facebook-f"></i></a>
@@ -355,6 +362,32 @@
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/917800808870?text=Hi%20Board%20Bazaar,%20I'm%20interested%20in%20your%20signboard%20services" 
+       class="whatsapp-float" 
+       target="_blank" 
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Firebase Initialization -->
+    <script>
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDQ-GgKmuI1Poo9Eogvv-_cnqpkuOYIqc8",
+        authDomain: "board-bazaar.firebaseapp.com",
+        projectId: "board-bazaar",
+        storageBucket: "board-bazaar.firebasestorage.app",
+        messagingSenderId: "627478213427",
+        appId: "1:627478213427:web:866b467eaf520700ff8446",
+        measurementId: "G-SCYYD46HMR"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const analytics = firebase.analytics();
+    </script>
 
     <script src="js/script.js"></script>
 </body>

@@ -40,9 +40,11 @@ body {
 .main-header {
     background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
     color: var(--white);
-    padding: 15px 0;
+    padding: 8px 0;
     box-shadow: none;
     border-bottom: 2px solid var(--primary-blue);
+    position: relative;
+    z-index: 1001;
 }
 
 .header-top {
@@ -57,7 +59,7 @@ body {
 }
 
 .logo-text h1 {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 600;
     margin: 0;
     letter-spacing: -0.5px;
@@ -71,8 +73,8 @@ body {
 }
 
 .logo-text .tagline {
-    font-size: 13px;
-    margin: 3px 0 0 0;
+    font-size: 11px;
+    margin: 2px 0 0 0;
     opacity: 0.95;
     font-style: normal;
     letter-spacing: 0.3px;
@@ -81,7 +83,7 @@ body {
 .quick-contact {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 15px;
 }
 
 .quick-links {
@@ -92,9 +94,9 @@ body {
 .quick-links a {
     color: var(--white);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
-    padding: 6px 12px;
+    padding: 4px 8px;
     border-radius: 4px;
     background: rgba(255,255,255,0.08);
     transition: all 0.3s ease;
@@ -110,12 +112,12 @@ body {
 .phone-number {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: rgba(255,255,255,0.12);
-    padding: 8px 16px;
+    padding: 4px 10px;
     border-radius: 6px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 11px;
 }
 
 .phone-number i {
@@ -134,15 +136,15 @@ body {
 
 .social-links {
     display: flex;
-    gap: 8px;
+    gap: 5px;
 }
 
 .social-links a {
     color: var(--white);
     text-decoration: none;
-    font-size: 14px;
-    width: 32px;
-    height: 32px;
+    font-size: 12px;
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -213,7 +215,7 @@ nav ul {
     justify-content: center;
     align-items: center;
     gap: 1px;
-    padding: 12px 0;
+    padding: 8px 0;
 }
 
 nav > ul > li {
@@ -224,15 +226,15 @@ nav > ul > li {
     color: var(--white);
     text-decoration: none;
     font-weight: 500;
-    font-size: 12px;
-    padding: 8px 14px;
+    font-size: 10px;
+    padding: 6px 10px;
     border-radius: 4px;
     transition: all 0.3s ease;
     text-transform: capitalize;
     letter-spacing: 0.3px;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
 }
 
 .nav-link:hover,
@@ -255,7 +257,7 @@ nav > ul > li {
     top: 100%;
     left: 0;
     background: var(--primary-blue);
-    min-width: 180px;
+    min-width: 160px;
     border-radius: 6px;
     box-shadow: none;
     opacity: 0;
@@ -284,9 +286,9 @@ nav > ul > li {
 .dropdown-menu a {
     color: var(--white);
     text-decoration: none;
-    padding: 10px 16px;
+    padding: 8px 12px;
     display: block;
-    font-size: 12px;
+    font-size: 10px;
     transition: all 0.3s ease;
     text-transform: capitalize;
     letter-spacing: 0.2px;
@@ -320,7 +322,7 @@ nav > ul > li {
 
 /* Chevron icon animation */
 .dropdown-toggle i {
-    font-size: 10px;
+    font-size: 8px;
     transition: transform 0.3s ease;
 }
 
@@ -1665,8 +1667,58 @@ footer {
     opacity: 0.8;
 }
 
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    background: #128c7e;
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+    }
+    
     .header-top {
         flex-direction: column;
         gap: 20px;
