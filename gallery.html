@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Board Bazaar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Gallery Specific Styles */
+        .gallery-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: var(--white);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .gallery-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
+        }
+
+        .gallery-hero p {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            line-height: 1.5;
+        }
+
+        .gallery-main {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 25px;
+            border: 2px solid var(--primary-orange);
+            background: var(--white);
+            color: var(--primary-orange);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: capitalize;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            background: var(--white);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            height: 280px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: var(--white);
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-size: 16px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery-hero {
+                padding: 80px 0 60px;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 32px;
+            }
+            
+            .gallery-hero p {
+                font-size: 16px;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .gallery-item {
+                height: 220px;
+            }
+            
+            .lightbox-nav {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+            
+            .lightbox-prev {
+                left: 15px;
+            }
+            
+            .lightbox-next {
+                right: 15px;
+            }
+            
+            .lightbox-close {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                top: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Hide items with animation */
+        .gallery-item {
+            display: block;
+        }
+
+        .gallery-item.hide {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        .gallery-item.show {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-text">
+                        <h1>Board <span class="highlight">Bazaar</span></h1>
+                        <p class="tagline">Illuminating Your Brand's Future</p>
+                    </div>
+                </div>
+                <div class="quick-contact">
+                    <div class="quick-links">
+                        <a href="index.html">About Us</a>
+                        <a href="gallery.html" class="active">Signage</a>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="index.html">Blog</a>
+                        <a href="contact.html">Contact Us</a>
+                    </div>
+                    <div class="phone-number">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+919876543210">+91 98765 43210</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="youtube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Header -->
+    <header class="nav-header">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="store.html" class="nav-link">Store</a></li>
+                    <li><a href="signage.html" class="nav-link">Signage</a></li>
+                    <li><a href="fabric-backlit.html" class="nav-link">Fabric Backlit Board</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Sign Category <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="medical-hospital.html">Hospital Medical</a></li>
+                            <li><a href="cafe-restaurant.html">Cafe Restaurant</a></li>
+                            <li><a href="co-operative-office.html">Corporate Office</a></li>
+                            <li><a href="store-signboard.html">Retail Store</a></li>
+                            <li><a href="building-infra.html">Infrastructure</a></li>
+                            <li><a href="sign-category.html#education">Education</a></li>
+                            <li><a href="sign-category.html#hospitality">Hospitality</a></li>
+                            <li><a href="sign-category.html#healthcare">Healthcare</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Stainless Sign <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="stainless-sign.html#brushed">Brushed Stainless</a></li>
+                            <li><a href="stainless-sign.html#mirror">Mirror Polish</a></li>
+                            <li><a href="stainless-sign.html#etched">Etched Signs</a></li>
+                            <li><a href="stainless-sign.html#cutout">Cut Out Letters</a></li>
+                            <li><a href="stainless-sign.html#fabricated">Fabricated Signs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="acrylic-sign.html" class="nav-link">Acrylic Sign</a></li>
+                    <li><a href="video-wall.html" class="nav-link">Video Wall</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Gallery Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1>Project Gallery</h1>
+            <p>Explore our extensive collection of signboard projects across various categories and industries</p>
+        </div>
+    </section>
+
+    <!-- Gallery Main Section -->
+    <section class="gallery-main">
+        <div class="container">
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="store">Store Signboards</button>
+                <button class="filter-btn" data-filter="medical">Medical & Hospital</button>
+                <button class="filter-btn" data-filter="hotels">Hotels & Restaurant</button>
+                <button class="filter-btn" data-filter="office">Co-operative Office</button>
+                <button class="filter-btn" data-filter="building">Building & Infrastructure</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-container" id="galleryGrid">
+                <!-- Store Signboards -->
+                <div class="gallery-item" data-category="store" data-title="Store Signage Project" data-description="Professional retail store signage">
+                    <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="Store Signage">
+                    <div class="gallery-overlay">
+                        <h4>Store Signage</h4>
+                        <p>Professional retail store signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Retail Display Board" data-description="Eye-catching retail display">
+                    <img src="assets/store signboard/IMG-20251014-WA0038.jpg" alt="Retail Display">
+                    <div class="gallery-overlay">
+                        <h4>Retail Display Board</h4>
+                        <p>Eye-catching retail display</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Shop Front Signage" data-description="Modern shop front design">
+                    <img src="assets/store signboard/IMG-20251014-WA0039.jpg" alt="Shop Front Signage">
+                    <div class="gallery-overlay">
+                        <h4>Shop Front Signage</h4>
+                        <p>Modern shop front design</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Commercial Signboard" data-description="Professional commercial signage">
+                    <img src="assets/store signboard/IMG-20251014-WA0040.jpg" alt="Commercial Signboard">
+                    <div class="gallery-overlay">
+                        <h4>Commercial Signboard</h4>
+                        <p>Professional commercial signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Retail Store Front" data-description="Attractive retail store front">
+                    <img src="assets/store signboard/IMG-20251014-WA0041.jpg" alt="Retail Store Front">
+                    <div class="gallery-overlay">
+                        <h4>Retail Store Front</h4>
+                        <p>Attractive retail store front</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Business Signage" data-description="Custom business signage">
+                    <img src="assets/store signboard/IMG-20251014-WA0042.jpg" alt="Business Signage">
+                    <div class="gallery-overlay">
+                        <h4>Business Signage</h4>
+                        <p>Custom business signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Store Display Board" data-description="Modern store display">
+                    <img src="assets/store signboard/IMG-20251014-WA0043.jpg" alt="Store Display Board">
+                    <div class="gallery-overlay">
+                        <h4>Store Display Board</h4>
+                        <p>Modern store display</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Shop Signboard" data-description="Professional shop signboard">
+                    <img src="assets/store signboard/IMG-20251014-WA0044.jpg" alt="Shop Signboard">
+                    <div class="gallery-overlay">
+                        <h4>Shop Signboard</h4>
+                        <p>Professional shop signboard</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Retail Sign Project" data-description="Complete retail sign solution">
+                    <img src="assets/store signboard/IMG-20251014-WA0045.jpg" alt="Retail Sign Project">
+                    <div class="gallery-overlay">
+                        <h4>Retail Sign Project</h4>
+                        <p>Complete retail sign solution</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Store Front Design" data-description="Creative store front design">
+                    <img src="assets/store signboard/IMG-20251014-WA0046.jpg" alt="Store Front Design">
+                    <div class="gallery-overlay">
+                        <h4>Store Front Design</h4>
+                        <p>Creative store front design</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Commercial Display" data-description="Professional commercial display">
+                    <img src="assets/store signboard/IMG-20251014-WA0047.jpg" alt="Commercial Display">
+                    <div class="gallery-overlay">
+                        <h4>Commercial Display</h4>
+                        <p>Professional commercial display</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Shop Signage" data-description="Modern shop signage">
+                    <img src="assets/store signboard/IMG-20251014-WA0048.jpg" alt="Shop Signage">
+                    <div class="gallery-overlay">
+                        <h4>Shop Signage</h4>
+                        <p>Modern shop signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Retail Signage" data-description="Attractive retail signage">
+                    <img src="assets/store signboard/IMG-20251014-WA0049.jpg" alt="Retail Signage">
+                    <div class="gallery-overlay">
+                        <h4>Retail Signage</h4>
+                        <p>Attractive retail signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Store Signage Design" data-description="Creative store signage">
+                    <img src="assets/store signboard/IMG-20251014-WA0050.jpg" alt="Store Signage Design">
+                    <div class="gallery-overlay">
+                        <h4>Store Signage Design</h4>
+                        <p>Creative store signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Business Store Front" data-description="Professional business store">
+                    <img src="assets/store signboard/IMG-20251014-WA0051.jpg" alt="Business Store Front">
+                    <div class="gallery-overlay">
+                        <h4>Business Store Front</h4>
+                        <p>Professional business store</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Shop Display Board" data-description="Modern shop display">
+                    <img src="assets/store signboard/IMG-20251014-WA0052.jpg" alt="Shop Display Board">
+                    <div class="gallery-overlay">
+                        <h4>Shop Display Board</h4>
+                        <p>Modern shop display</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Retail Sign Board" data-description="Professional retail sign">
+                    <img src="assets/store signboard/IMG-20251014-WA0053.jpg" alt="Retail Sign Board">
+                    <div class="gallery-overlay">
+                        <h4>Retail Sign Board</h4>
+                        <p>Professional retail sign</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Store Front Sign" data-description="Attractive store front sign">
+                    <img src="assets/store signboard/IMG-20251014-WA0054.jpg" alt="Store Front Sign">
+                    <div class="gallery-overlay">
+                        <h4>Store Front Sign</h4>
+                        <p>Attractive store front sign</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Commercial Shop Sign" data-description="Professional shop sign">
+                    <img src="assets/store signboard/IMG-20251014-WA0055.jpg" alt="Commercial Shop Sign">
+                    <div class="gallery-overlay">
+                        <h4>Commercial Shop Sign</h4>
+                        <p>Professional shop sign</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Store Signboard Design" data-description="Creative signboard design">
+                    <img src="assets/store signboard/IMG-20251014-WA0056.jpg" alt="Store Signboard Design">
+                    <div class="gallery-overlay">
+                        <h4>Store Signboard Design</h4>
+                        <p>Creative signboard design</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Shop Sign Board" data-description="Professional shop sign board">
+                    <img src="assets/store signboard/IMG-20251014-WA0057.jpg" alt="Shop Sign Board">
+                    <div class="gallery-overlay">
+                        <h4>Shop Sign Board</h4>
+                        <p>Professional shop sign board</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Retail Display Sign" data-description="Modern retail display">
+                    <img src="assets/store signboard/IMG-20251014-WA0058.jpg" alt="Retail Display Sign">
+                    <div class="gallery-overlay">
+                        <h4>Retail Display Sign</h4>
+                        <p>Modern retail display</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Store Sign Project" data-description="Complete store sign solution">
+                    <img src="assets/store signboard/IMG-20251014-WA0059.jpg" alt="Store Sign Project">
+                    <div class="gallery-overlay">
+                        <h4>Store Sign Project</h4>
+                        <p>Complete store sign solution</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Business Signage" data-description="Professional business signage">
+                    <img src="assets/store signboard/IMG-20251014-WA0060.jpg" alt="Business Signage">
+                    <div class="gallery-overlay">
+                        <h4>Business Signage</h4>
+                        <p>Professional business signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Store Front Project" data-description="Modern store front project">
+                    <img src="assets/store signboard/IMG-20251014-WA0061.jpg" alt="Store Front Project">
+                    <div class="gallery-overlay">
+                        <h4>Store Front Project</h4>
+                        <p>Modern store front project</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Commercial Store Sign" data-description="Professional commercial store">
+                    <img src="assets/store signboard/IMG-20251014-WA0062.jpg" alt="Commercial Store Sign">
+                    <div class="gallery-overlay">
+                        <h4>Commercial Store Sign</h4>
+                        <p>Professional commercial store</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="Shop Signage Project" data-description="Complete shop signage">
+                    <img src="assets/store signboard/IMG-20251014-WA0063.jpg" alt="Shop Signage Project">
+                    <div class="gallery-overlay">
+                        <h4>Shop Signage Project</h4>
+                        <p>Complete shop signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="WhatsApp Project 1" data-description="Special WhatsApp project">
+                    <img src="assets/store signboard/WhatsApp Image 2025-10-14 at 22.43.15_d6b05c05.jpg" alt="WhatsApp Project 1">
+                    <div class="gallery-overlay">
+                        <h4>WhatsApp Project 1</h4>
+                        <p>Special WhatsApp project</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="store" data-title="WhatsApp Project 2" data-description="Special WhatsApp project">
+                    <img src="assets/store signboard/WhatsApp Image 2025-10-14 at 22.43.16_8733b9aa.jpg" alt="WhatsApp Project 2">
+                    <div class="gallery-overlay">
+                        <h4>WhatsApp Project 2</h4>
+                        <p>Special WhatsApp project</p>
+                    </div>
+                </div>
+
+                <!-- Medical & Hospital -->
+                <div class="gallery-item" data-category="medical" data-title="Hospital Entrance Sign" data-description="Professional hospital entrance">
+                    <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Hospital Entrance Sign">
+                    <div class="gallery-overlay">
+                        <h4>Hospital Entrance Sign</h4>
+                        <p>Professional hospital entrance</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="medical" data-title="Medical Department Sign" data-description="Medical department signage">
+                    <img src="assets/medical and hospital/IMG-20251014-WA0031.jpg" alt="Medical Department Sign">
+                    <div class="gallery-overlay">
+                        <h4>Medical Department Sign</h4>
+                        <p>Medical department signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="medical" data-title="Healthcare Facility" data-description="Modern healthcare facility">
+                    <img src="assets/medical and hospital/IMG-20251014-WA0032.jpg" alt="Healthcare Facility">
+                    <div class="gallery-overlay">
+                        <h4>Healthcare Facility</h4>
+                        <p>Modern healthcare facility</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="medical" data-title="Clinic Signage" data-description="Professional clinic signage">
+                    <img src="assets/medical and hospital/IMG-20251014-WA0033.jpg" alt="Clinic Signage">
+                    <div class="gallery-overlay">
+                        <h4>Clinic Signage</h4>
+                        <p>Professional clinic signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="medical" data-title="Hospital Wayfinding" data-description="Hospital wayfinding system">
+                    <img src="assets/medical and hospital/IMG-20251014-WA0034.jpg" alt="Hospital Wayfinding">
+                    <div class="gallery-overlay">
+                        <h4>Hospital Wayfinding</h4>
+                        <p>Hospital wayfinding system</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="medical" data-title="Medical Office Sign" data-description="Medical office signage">
+                    <img src="assets/medical and hospital/IMG-20251014-WA0035.jpg" alt="Medical Office Sign">
+                    <div class="gallery-overlay">
+                        <h4>Medical Office Sign</h4>
+                        <p>Medical office signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="medical" data-title="Digital Medical Sign" data-description="Digital medical display">
+                    <img src="assets/medical and hospital/IMG-20251014-WA0036.jpg" alt="Digital Medical Sign">
+                    <div class="gallery-overlay">
+                        <h4>Digital Medical Sign</h4>
+                        <p>Digital medical display</p>
+                    </div>
+                </div>
+
+                <!-- Hotels & Restaurant -->
+                <div class="gallery-item" data-category="hotels" data-title="Restaurant Signage" data-description="Professional restaurant signage">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0066.jpg" alt="Restaurant Signage">
+                    <div class="gallery-overlay">
+                        <h4>Restaurant Signage</h4>
+                        <p>Professional restaurant signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Hotel Entrance Sign" data-description="Luxury hotel entrance">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0067.jpg" alt="Hotel Entrance Sign">
+                    <div class="gallery-overlay">
+                        <h4>Hotel Entrance Sign</h4>
+                        <p>Luxury hotel entrance</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Cafe Signage" data-description="Modern cafe signage">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0068.jpg" alt="Cafe Signage">
+                    <div class="gallery-overlay">
+                        <h4>Cafe Signage</h4>
+                        <p>Modern cafe signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Restaurant Display" data-description="Attractive restaurant display">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0069.jpg" alt="Restaurant Display">
+                    <div class="gallery-overlay">
+                        <h4>Restaurant Display</h4>
+                        <p>Attractive restaurant display</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Hotel Lobby Sign" data-description="Hotel lobby signage">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0070.jpg" alt="Hotel Lobby Sign">
+                    <div class="gallery-overlay">
+                        <h4>Hotel Lobby Sign</h4>
+                        <p>Hotel lobby signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Restaurant Front" data-description="Restaurant front signage">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0071.jpg" alt="Restaurant Front">
+                    <div class="gallery-overlay">
+                        <h4>Restaurant Front</h4>
+                        <p>Restaurant front signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Hotel Signage" data-description="Professional hotel signage">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0072.jpg" alt="Hotel Signage">
+                    <div class="gallery-overlay">
+                        <h4>Hotel Signage</h4>
+                        <p>Professional hotel signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Cafe Display" data-description="Modern cafe display">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0073.jpg" alt="Cafe Display">
+                    <div class="gallery-overlay">
+                        <h4>Cafe Display</h4>
+                        <p>Modern cafe display</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Restaurant Sign" data-description="Restaurant sign design">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0074.jpg" alt="Restaurant Sign">
+                    <div class="gallery-overlay">
+                        <h4>Restaurant Sign</h4>
+                        <p>Restaurant sign design</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Hotel Display" data-description="Hotel display signage">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0075.jpg" alt="Hotel Display">
+                    <div class="gallery-overlay">
+                        <h4>Hotel Display</h4>
+                        <p>Hotel display signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Cafe Front" data-description="Cafe front signage">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0076.jpg" alt="Cafe Front">
+                    <div class="gallery-overlay">
+                        <h4>Cafe Front</h4>
+                        <p>Cafe front signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Restaurant Board" data-description="Restaurant board design">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0077.jpg" alt="Restaurant Board">
+                    <div class="gallery-overlay">
+                        <h4>Restaurant Board</h4>
+                        <p>Restaurant board design</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Hotel Sign Board" data-description="Hotel sign board">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0078.jpg" alt="Hotel Sign Board">
+                    <div class="gallery-overlay">
+                        <h4>Hotel Sign Board</h4>
+                        <p>Hotel sign board</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Cafe Sign Board" data-description="Cafe sign board">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0079.jpg" alt="Cafe Sign Board">
+                    <div class="gallery-overlay">
+                        <h4>Cafe Sign Board</h4>
+                        <p>Cafe sign board</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Restaurant Project" data-description="Complete restaurant project">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0080.jpg" alt="Restaurant Project">
+                    <div class="gallery-overlay">
+                        <h4>Restaurant Project</h4>
+                        <p>Complete restaurant project</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hotels" data-title="Hotel Project" data-description="Complete hotel project">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0081.jpg" alt="Hotel Project">
+                    <div class="gallery-overlay">
+                        <h4>Hotel Project</h4>
+                        <p>Complete hotel project</p>
+                    </div>
+                </div>
+
+                <!-- Co-operative Office -->
+                <div class="gallery-item" data-category="office" data-title="Office Signage" data-description="Professional office signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0004.jpg" alt="Office Signage">
+                    <div class="gallery-overlay">
+                        <h4>Office Signage</h4>
+                        <p>Professional office signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Corporate Office" data-description="Corporate office signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0005.jpg" alt="Corporate Office">
+                    <div class="gallery-overlay">
+                        <h4>Corporate Office</h4>
+                        <p>Corporate office signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Building Sign" data-description="Office building signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0006.jpg" alt="Office Building Sign">
+                    <div class="gallery-overlay">
+                        <h4>Office Building Sign</h4>
+                        <p>Office building signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Business Office" data-description="Business office signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0007.jpg" alt="Business Office">
+                    <div class="gallery-overlay">
+                        <h4>Business Office</h4>
+                        <p>Business office signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Front" data-description="Office front signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0008.jpg" alt="Office Front">
+                    <div class="gallery-overlay">
+                        <h4>Office Front</h4>
+                        <p>Office front signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Co-operative Sign" data-description="Co-operative society sign">
+                    <img src="assets/co operative office/IMG-20251014-WA0009.jpg" alt="Co-operative Sign">
+                    <div class="gallery-overlay">
+                        <h4>Co-operative Sign</h4>
+                        <p>Co-operative society sign</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Display" data-description="Office display signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0010.jpg" alt="Office Display">
+                    <div class="gallery-overlay">
+                        <h4>Office Display</h4>
+                        <p>Office display signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Corporate Building" data-description="Corporate building sign">
+                    <img src="assets/co operative office/IMG-20251014-WA0011.jpg" alt="Corporate Building">
+                    <div class="gallery-overlay">
+                        <h4>Corporate Building</h4>
+                        <p>Corporate building sign</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Complex" data-description="Office complex signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0012.jpg" alt="Office Complex">
+                    <div class="gallery-overlay">
+                        <h4>Office Complex</h4>
+                        <p>Office complex signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Business Center" data-description="Business center signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0013.jpg" alt="Business Center">
+                    <div class="gallery-overlay">
+                        <h4>Business Center</h4>
+                        <p>Business center signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Tower" data-description="Office tower signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0014.jpg" alt="Office Tower">
+                    <div class="gallery-overlay">
+                        <h4>Office Tower</h4>
+                        <p>Office tower signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Co-operative Office" data-description="Co-operative office sign">
+                    <img src="assets/co operative office/IMG-20251014-WA0015.jpg" alt="Co-operative Office">
+                    <div class="gallery-overlay">
+                        <h4>Co-operative Office</h4>
+                        <p>Co-operative office sign</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Park" data-description="Office park signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0016.jpg" alt="Office Park">
+                    <div class="gallery-overlay">
+                        <h4>Office Park</h4>
+                        <p>Office park signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Business Park" data-description="Business park signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0017.jpg" alt="Business Park">
+                    <div class="gallery-overlay">
+                        <h4>Business Park</h4>
+                        <p>Business park signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Campus" data-description="Office campus signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0018.jpg" alt="Office Campus">
+                    <div class="gallery-overlay">
+                        <h4>Office Campus</h4>
+                        <p>Office campus signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Corporate Campus" data-description="Corporate campus signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0019.jpg" alt="Corporate Campus">
+                    <div class="gallery-overlay">
+                        <h4>Corporate Campus</h4>
+                        <p>Corporate campus signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Plaza" data-description="Office plaza signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0020.jpg" alt="Office Plaza">
+                    <div class="gallery-overlay">
+                        <h4>Office Plaza</h4>
+                        <p>Office plaza signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Business Complex" data-description="Business complex signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0021.jpg" alt="Business Complex">
+                    <div class="gallery-overlay">
+                        <h4>Business Complex</h4>
+                        <p>Business complex signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Center" data-description="Office center signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0022.jpg" alt="Office Center">
+                    <div class="gallery-overlay">
+                        <h4>Office Center</h4>
+                        <p>Office center signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Corporate Sign" data-description="Corporate signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0023.jpg" alt="Corporate Sign">
+                    <div class="gallery-overlay">
+                        <h4>Corporate Sign</h4>
+                        <p>Corporate signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Entrance" data-description="Office entrance signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0024.jpg" alt="Office Entrance">
+                    <div class="gallery-overlay">
+                        <h4>Office Entrance</h4>
+                        <p>Office entrance signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Business Building" data-description="Business building signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0025.jpg" alt="Business Building">
+                    <div class="gallery-overlay">
+                        <h4>Business Building</h4>
+                        <p>Business building signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Facility" data-description="Office facility signage">
+                    <img src="assets/co operative office/IMG-20251014-WA0026.jpg" alt="Office Facility">
+                    <div class="gallery-overlay">
+                        <h4>Office Facility</h4>
+                        <p>Office facility signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Corporate Office Sign" data-description="Corporate office sign">
+                    <img src="assets/co operative office/IMG-20251014-WA0027.jpg" alt="Corporate Office Sign">
+                    <div class="gallery-overlay">
+                        <h4>Corporate Office Sign</h4>
+                        <p>Corporate office sign</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Office Complex Sign" data-description="Office complex sign">
+                    <img src="assets/co operative office/IMG-20251014-WA0028.jpg" alt="Office Complex Sign">
+                    <div class="gallery-overlay">
+                        <h4>Office Complex Sign</h4>
+                        <p>Office complex sign</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="office" data-title="Business Office Sign" data-description="Business office sign">
+                    <img src="assets/co operative office/IMG-20251014-WA0029.jpg" alt="Business Office Sign">
+                    <div class="gallery-overlay">
+                        <h4>Business Office Sign</h4>
+                        <p>Business office sign</p>
+                    </div>
+                </div>
+
+                <!-- Building & Infrastructure -->
+                <div class="gallery-item" data-category="building" data-title="Building Signage" data-description="Professional building signage">
+                    <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="Building Signage">
+                    <div class="gallery-overlay">
+                        <h4>Building Signage</h4>
+                        <p>Professional building signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Infrastructure Project" data-description="Infrastructure project signage">
+                    <img src="assets/building and infra/IMG-20251014-WA0083.jpg" alt="Infrastructure Project">
+                    <div class="gallery-overlay">
+                        <h4>Infrastructure Project</h4>
+                        <p>Infrastructure project signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Construction Sign" data-description="Construction site signage">
+                    <img src="assets/building and infra/IMG-20251014-WA0084.jpg" alt="Construction Sign">
+                    <div class="gallery-overlay">
+                        <h4>Construction Sign</h4>
+                        <p>Construction site signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Building Project" data-description="Building project signage">
+                    <img src="assets/building and infra/IMG-20251014-WA0085.jpg" alt="Building Project">
+                    <div class="gallery-overlay">
+                        <h4>Building Project</h4>
+                        <p>Building project signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Infrastructure Sign" data-description="Infrastructure signage">
+                    <img src="assets/building and infra/IMG-20251014-WA0086.jpg" alt="Infrastructure Sign">
+                    <div class="gallery-overlay">
+                        <h4>Infrastructure Sign</h4>
+                        <p>Infrastructure signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Building Complex" data-description="Building complex signage">
+                    <img src="assets/building and infra/IMG-20251014-WA0087.jpg" alt="Building Complex">
+                    <div class="gallery-overlay">
+                        <h4>Building Complex</h4>
+                        <p>Building complex signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Large Format Sign" data-description="Large format signage">
+                    <img src="assets/building and infra/IMG-20251014-WA0088.jpg" alt="Large Format Sign">
+                    <div class="gallery-overlay">
+                        <h4>Large Format Sign</h4>
+                        <p>Large format signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Building Facade" data-description="Building facade signage">
+                    <img src="assets/building and infra/IMG-20251014-WA0089.jpg" alt="Building Facade">
+                    <div class="gallery-overlay">
+                        <h4>Building Facade</h4>
+                        <p>Building facade signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Infrastructure Development" data-description="Infrastructure development sign">
+                    <img src="assets/building and infra/IMG-20251014-WA0090.jpg" alt="Infrastructure Development">
+                    <div class="gallery-overlay">
+                        <h4>Infrastructure Development</h4>
+                        <p>Infrastructure development sign</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Building Construction" data-description="Building construction signage">
+                    <img src="assets/building and infra/IMG-20251014-WA0091.jpg" alt="Building Construction">
+                    <div class="gallery-overlay">
+                        <h4>Building Construction</h4>
+                        <p>Building construction signage</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="building" data-title="Infrastructure Building" data-description="Infrastructure building sign">
+                    <img src="assets/building and infra/IMG-20251014-WA0092.jpg" alt="Infrastructure Building">
+                    <div class="gallery-overlay">
+                        <h4>Infrastructure Building</h4>
+                        <p>Infrastructure building sign</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="lightbox-close" id="lightboxClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="Board Bazaar">
+                        <h3>Board Bazaar</h3>
+                    </div>
+                    <p>Your trusted partner for premium advertising solutions and signboard manufacturing. Transform your business visibility with our expert services.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">About Us</a></li>
+                        <li><a href="index.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="index.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="index.html">Signboard Design</a></li>
+                        <li><a href="index.html">LED Signage</a></li>
+                        <li><a href="index.html">3D Sign Manufacturing</a></li>
+                        <li><a href="index.html">Digital Displays</a></li>
+                        <li><a href="index.html">Installation Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>Stay connected with us for latest updates and projects</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Board Bazaar. All rights reserved. | Designed with passion for advertising excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Gallery functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            let currentImageIndex = 0;
+            let visibleItems = [];
+            
+            // Filter functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter items with proper display logic
+                    galleryItems.forEach(item => {
+                        const category = item.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            item.style.display = 'block';
+                            // Add animation after a small delay
+                            setTimeout(() => {
+                                item.classList.remove('hide');
+                                item.classList.add('show');
+                            }, 50);
+                        } else {
+                            item.classList.add('hide');
+                            item.classList.remove('show');
+                            // Hide after animation
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                    
+                    // Re-grid after filter animation
+                    setTimeout(() => {
+                        updateVisibleItems();
+                    }, 350);
+                });
+            });
+            
+            // Lightbox functionality
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    openLightbox(index);
+                });
+            });
+            
+            function openLightbox(index) {
+                currentImageIndex = index;
+                updateVisibleItems();
+                
+                if (visibleItems.length > 0) {
+                    const currentItem = visibleItems[currentImageIndex];
+                    const img = currentItem.querySelector('img');
+                    const title = currentItem.getAttribute('data-title');
+                    const description = currentItem.getAttribute('data-description');
+                    
+                    lightboxImage.src = img.src;
+                    lightboxImage.alt = img.alt;
+                    lightboxCaption.innerHTML = `<strong>${title}</strong><br>${description}`;
+                    
+                    lightboxModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            function updateVisibleItems() {
+                visibleItems = Array.from(galleryItems).filter(item => {
+                    return item.style.display !== 'none';
+                });
+            }
+            
+            function closeLightbox() {
+                lightboxModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            function showPreviousImage() {
+                if (visibleItems.length > 0) {
+                    currentImageIndex = (currentImageIndex - 1 + visibleItems.length) % visibleItems.length;
+                    openLightbox(currentImageIndex);
+                }
+            }
+            
+            function showNextImage() {
+                if (visibleItems.length > 0) {
+                    currentImageIndex = (currentImageIndex + 1) % visibleItems.length;
+                    openLightbox(currentImageIndex);
+                }
+            }
+            
+            // Event listeners
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', showPreviousImage);
+            lightboxNext.addEventListener('click', showNextImage);
+            
+            // Close on background click
+            lightboxModal.addEventListener('click', function(e) {
+                if (e.target === lightboxModal) {
+                    closeLightbox();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (lightboxModal.classList.contains('active')) {
+                    switch(e.key) {
+                        case 'Escape':
+                            closeLightbox();
+                            break;
+                        case 'ArrowLeft':
+                            showPreviousImage();
+                            break;
+                        case 'ArrowRight':
+                            showNextImage();
+                            break;
+                    }
+                }
+            });
+            
+            // Touch/Swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            lightboxModal.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            lightboxModal.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        showNextImage(); // Swipe left, next image
+                    } else {
+                        showPreviousImage(); // Swipe right, previous image
+                    }
+                }
+            }
+            
+            // Initialize visible items
+            galleryItems.forEach(item => {
+                item.style.display = 'block';
+                item.classList.add('show');
+            });
+            updateVisibleItems();
+        });
+    </script>
+</body>
+</html>

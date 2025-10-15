@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Board Bazaar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Blog Specific Styles */
+        .blog-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: var(--white);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .blog-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
+        }
+
+        .blog-hero p {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            line-height: 1.5;
+        }
+
+        .blog-main {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .blog-container {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .blog-post {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-medium);
+        }
+
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .blog-post-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-post:hover .blog-post-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-post-content {
+            padding: 40px;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .blog-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-meta-item i {
+            color: var(--primary-orange);
+        }
+
+        .blog-post-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            line-height: 1.3;
+            transition: color 0.3s ease;
+        }
+
+        .blog-post:hover .blog-post-title {
+            color: var(--primary-orange);
+        }
+
+        .blog-post-excerpt {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-orange);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--secondary-orange);
+            transform: translateX(5px);
+        }
+
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .sidebar-widget {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-medium);
+        }
+
+        .sidebar-widget h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-orange);
+        }
+
+        .categories-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: var(--gray-light);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .category-item:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .category-count {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .category-item:hover .category-count {
+            background: var(--white);
+            color: var(--primary-orange);
+        }
+
+        .recent-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .recent-post {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: var(--gray-light);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .recent-post:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .recent-post-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .recent-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recent-post-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .recent-post-content p {
+            font-size: 12px;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            padding: 8px 16px;
+            background: var(--gray-light);
+            color: var(--text-dark);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .newsletter-input {
+            padding: 12px 20px;
+            border: 2px solid var(--gray-medium);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .newsletter-button {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .blog-sidebar {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero {
+                padding: 80px 0 60px;
+            }
+            
+            .blog-hero h1 {
+                font-size: 32px;
+            }
+            
+            .blog-hero p {
+                font-size: 16px;
+            }
+            
+            .blog-main {
+                padding: 60px 0;
+            }
+            
+            .blog-post-content {
+                padding: 25px;
+            }
+            
+            .blog-post-title {
+                font-size: 22px;
+            }
+            
+            .blog-sidebar {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-text">
+                        <h1>Board <span class="highlight">Bazaar</span></h1>
+                        <p class="tagline">Illuminating Your Brand's Future</p>
+                    </div>
+                </div>
+                <div class="quick-contact">
+                    <div class="quick-links">
+                        <a href="about.html">About Us</a>
+                        <a href="gallery.html">Signage</a>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="blog.html" class="active">Blog</a>
+                        <a href="contact.html">Contact Us</a>
+                    </div>
+                    <div class="phone-number">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+919876543210">+91 98765 43210</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="youtube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Header -->
+    <header class="nav-header">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="store.html" class="nav-link">Store</a></li>
+                    <li><a href="signage.html" class="nav-link">Signage</a></li>
+                    <li><a href="fabric-backlit.html" class="nav-link">Fabric Backlit Board</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Sign Category <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="medical-hospital.html">Hospital Medical</a></li>
+                            <li><a href="cafe-restaurant.html">Cafe Restaurant</a></li>
+                            <li><a href="co-operative-office.html">Corporate Office</a></li>
+                            <li><a href="store-signboard.html">Retail Store</a></li>
+                            <li><a href="building-infra.html">Infrastructure</a></li>
+                            <li><a href="sign-category.html#education">Education</a></li>
+                            <li><a href="sign-category.html#hospitality">Hospitality</a></li>
+                            <li><a href="sign-category.html#healthcare">Healthcare</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Stainless Sign <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="stainless-sign.html#brushed">Brushed Stainless</a></li>
+                            <li><a href="stainless-sign.html#mirror">Mirror Polish</a></li>
+                            <li><a href="stainless-sign.html#etched">Etched Signs</a></li>
+                            <li><a href="stainless-sign.html#cutout">Cut Out Letters</a></li>
+                            <li><a href="stainless-sign.html#fabricated">Fabricated Signs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="acrylic-sign.html" class="nav-link">Acrylic Sign</a></li>
+                    <li><a href="video-wall.html" class="nav-link">Video Wall</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1>Our Blog</h1>
+            <p>Discover the latest insights, trends, and innovations in the world of signage and advertising</p>
+        </div>
+    </section>
+
+    <!-- Blog Main Section -->
+    <section class="blog-main">
+        <div class="container">
+            <div class="blog-container">
+                <!-- Blog Posts -->
+                <div class="blog-posts">
+                    <article class="blog-post">
+                        <div class="blog-post-image">
+                            <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="Modern Signage Trends">
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="blog-meta">
+                                <div class="blog-meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>October 14, 2024</span>
+                                </div>
+                                <div class="blog-meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>Board Bazaar Team</span>
+                                </div>
+                            </div>
+                            <h2 class="blog-post-title">Top 10 Signage Trends That Will Define 2024</h2>
+                            <p class="blog-post-excerpt">Discover the cutting-edge signage trends that are transforming how businesses communicate with their customers. From sustainable materials to digital integration, learn what's shaping the future of visual advertising.</p>
+                            <a href="#" class="read-more">
+                                Read More
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post">
+                        <div class="blog-post-image">
+                            <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="LED Signage Guide">
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="blog-meta">
+                                <div class="blog-meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>October 10, 2024</span>
+                                </div>
+                                <div class="blog-meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>Tech Experts</span>
+                                </div>
+                            </div>
+                            <h2 class="blog-post-title">The Ultimate Guide to LED Signage for Businesses</h2>
+                            <p class="blog-post-excerpt">Everything you need to know about LED signage - from choosing the right type for your business to installation tips and maintenance best practices. Boost your visibility with modern LED solutions.</p>
+                            <a href="#" class="read-more">
+                                Read More
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post">
+                        <div class="blog-post-image">
+                            <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Healthcare Signage">
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="blog-meta">
+                                <div class="blog-meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>October 8, 2024</span>
+                                </div>
+                                <div class="blog-meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>Healthcare Division</span>
+                                </div>
+                            </div>
+                            <h2 class="blog-post-title">Healthcare Signage: Balancing Compliance and Aesthetics</h2>
+                            <p class="blog-post-excerpt">Navigate the complex world of healthcare signage where regulatory requirements meet patient-centered design. Learn how to create effective medical signage that's both compliant and welcoming.</p>
+                            <a href="#" class="read-more">
+                                Read More
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Sidebar -->
+                <aside class="blog-sidebar">
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget">
+                        <h3>Categories</h3>
+                        <div class="categories-list">
+                            <a href="#" class="category-item">
+                                <span>Signage Trends</span>
+                                <span class="category-count">8</span>
+                            </a>
+                            <a href="#" class="category-item">
+                                <span>Technology</span>
+                                <span class="category-count">6</span>
+                            </a>
+                            <a href="#" class="category-item">
+                                <span>Healthcare</span>
+                                <span class="category-count">4</span>
+                            </a>
+                            <a href="#" class="category-item">
+                                <span>Hospitality</span>
+                                <span class="category-count">7</span>
+                            </a>
+                            <a href="#" class="category-item">
+                                <span>Corporate</span>
+                                <span class="category-count">5</span>
+                            </a>
+                            <a href="#" class="category-item">
+                                <span>Design Tips</span>
+                                <span class="category-count">9</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recent Posts Widget -->
+                    <div class="sidebar-widget">
+                        <h3>Recent Posts</h3>
+                        <div class="recent-posts">
+                            <a href="#" class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="assets/store signboard/IMG-20251014-WA0045.jpg" alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Understanding Signage Materials</h4>
+                                    <p>September 28, 2024</p>
+                                </div>
+                            </a>
+                            <a href="#" class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="assets/hotels and restaurent/IMG-20251014-WA0072.jpg" alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Cafe Signage Design Ideas</h4>
+                                    <p>September 25, 2024</p>
+                                </div>
+                            </a>
+                            <a href="#" class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="assets/building and infra/IMG-20251014-WA0088.jpg" alt="Recent Post">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Large Format Signage Projects</h4>
+                                    <p>September 20, 2024</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Tags Widget -->
+                    <div class="sidebar-widget">
+                        <h3>Popular Tags</h3>
+                        <div class="tags-cloud">
+                            <a href="#" class="tag">LED Signs</a>
+                            <a href="#" class="tag">3D Letters</a>
+                            <a href="#" class="tag">Digital Display</a>
+                            <a href="#" class="tag">Wayfinding</a>
+                            <a href="#" class="tag">Brand Identity</a>
+                            <a href="#" class="tag">Sustainable</a>
+                            <a href="#" class="tag">Innovation</a>
+                            <a href="#" class="tag">Design</a>
+                            <a href="#" class="tag">Installation</a>
+                            <a href="#" class="tag">Maintenance</a>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Widget -->
+                    <div class="sidebar-widget">
+                        <h3>Newsletter</h3>
+                        <p style="margin-bottom: 20px; color: var(--text-light); line-height: 1.5;">
+                            Subscribe to get the latest insights and industry updates delivered to your inbox.
+                        </p>
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-button">Subscribe</button>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="Board Bazaar">
+                        <h3>Board Bazaar</h3>
+                    </div>
+                    <p>Your trusted partner for premium advertising solutions and signboard manufacturing. Transform your business visibility with our expert services.</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">About Us</a></li>
+                        <li><a href="index.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="index.html">Signboard Design</a></li>
+                        <li><a href="index.html">LED Signage</a></li>
+                        <li><a href="index.html">3D Sign Manufacturing</a></li>
+                        <li><a href="index.html">Digital Displays</a></li>
+                        <li><a href="index.html">Installation Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p>Stay connected with us for latest updates and projects</p>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Board Bazaar. All rights reserved. | Designed with passion for advertising excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Newsletter form handling
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // Create success message
+            const successMessage = document.createElement('div');
+            successMessage.style.cssText = `
+                background: #d4edda;
+                color: #155724;
+                padding: 15px;
+                border-radius: 8px;
+                margin-top: 15px;
+                text-align: center;
+                font-weight: 500;
+                border: 1px solid #c3e6cb;
+            `;
+            successMessage.textContent = 'Thank you for subscribing! Check your email for confirmation.';
+            
+            // Show success message
+            this.appendChild(successMessage);
+            
+            // Reset form
+            this.reset();
+            
+            // Remove message after 5 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 5000);
+        });
+
+        // Blog post interactions
+        document.querySelectorAll('.blog-post').forEach(post => {
+            post.addEventListener('click', function(e) {
+                // Don't trigger if clicking on a link
+                if (e.target.tagName === 'A') return;
+                
+                // Add a subtle animation on click
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Read more link interactions
+        document.querySelectorAll('.read-more').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('This would navigate to the full blog post in a real implementation.');
+            });
+        });
+    </script>
+</body>
+</html>
