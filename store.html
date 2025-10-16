@@ -4,8 +4,505 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Store - Board Bazaar</title>
+    <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Aesthetic Store Page Styles */
+        .store-hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 50%, var(--primary-orange) 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        .store-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: shimmer 8s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .store-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .store-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .store-hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-orange);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+            background: var(--secondary-orange);
+        }
+
+        /* Category Section */
+        .categories-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--secondary-orange));
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 30px auto 0;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--secondary-orange));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .category-card:hover .category-image img {
+            transform: scale(1.1);
+        }
+
+        .category-content {
+            padding: 30px;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .category-icon i {
+            color: white;
+            font-size: 24px;
+        }
+
+        .category-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .category-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .category-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .category-link:hover {
+            color: var(--secondary-orange);
+            transform: translateX(5px);
+        }
+
+        .category-link i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .category-link:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Gallery Showcase */
+        .gallery-showcase {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--gray-light) 0%, #ffffff 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay-text {
+            color: white;
+        }
+
+        .gallery-overlay-text h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 40px;
+            background: var(--primary-orange);
+            opacity: 0.3;
+        }
+
+        .process-step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .step-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .store-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.1; }
+        }
+
+        .store-cta .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .store-cta h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .store-cta p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: var(--primary-orange);
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+            background: var(--secondary-orange);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .store-hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .categories-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step::before {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-primary, .cta-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Main Header -->
@@ -13,15 +510,29 @@
         <div class="container">
             <div class="header-top">
                 <div class="logo">
-                    <img src="assets/logo.jpg" alt="Board Bazaar Logo">
-                    <span>Board Bazaar</span>
+                    <div class="logo-text">
+                        <h1>Board <span class="highlight">Bazaar</span></h1>
+                        <p class="tagline">Illuminating Your Brand's Future</p>
+                    </div>
                 </div>
-                <div class="social-links">
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <div class="quick-contact">
+                    <div class="quick-links">
+                        <a href="index.html">About</a>
+                        <a href="store-signboard.html">Signage</a>
+                        <a href="store-signboard.html">Gallery</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="phone-number">
+                        <i class="fas fa-phone"></i>
+                        <span class="copy-number" onclick="copyNumber('+91 78008 08870')">+91 78008 08870</span>
+                    </div>
+                    <div class="phone-number">
+                        <i class="fas fa-phone"></i>
+                        <span class="copy-number" onclick="copyNumber('+91 86527 37065')">+91 86527 37065</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,123 +545,250 @@
                 <ul>
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="store.html" class="nav-link active">Store</a></li>
-                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="signage.html" class="nav-link">Signage</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Sign Category <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="medical-hospital.html">Hospital Medical</a></li>
+                            <li><a href="cafe-restaurant.html">Cafe Restaurant</a></li>
+                            <li><a href="co-operative-office.html">Corporate Office</a></li>
+                            <li><a href="store-signboard.html">Retail Store</a></li>
+                            <li><a href="building-infra.html">Infrastructure</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- Store Hero Section -->
+    <section class="store-hero">
         <div class="container">
-            <h1>Our Store</h1>
-            <p>Explore our premium collection of signboards and advertising solutions</p>
+            <h1>Premium Signage Solutions</h1>
+            <p>Transform your business presence with our cutting-edge, custom-designed signboards that capture attention and drive growth</p>
+            <a href="#categories" class="cta-button">Explore Our Collection</a>
         </div>
     </section>
 
-    <!-- Store Section -->
-    <section class="store-section">
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
         <div class="container">
-            <div class="store-filters">
-                <button class="filter-btn active" data-category="all">All Products</button>
-                <button class="filter-btn" data-category="led">LED Signs</button>
-                <button class="filter-btn" data-category="neon">Neon Signs</button>
-                <button class="filter-btn" data-category="3d">3D Signs</button>
-                <button class="filter-btn" data-category="digital">Digital Displays</button>
-                <button class="filter-btn" data-category="traditional">Traditional</button>
+            <div class="section-header">
+                <h2>Our Signage Categories</h2>
+                <p>Discover our comprehensive range of premium signboard solutions tailored to your unique business needs</p>
             </div>
-
-            <div class="store-grid">
-                <div class="product-card" data-category="led">
-                    <div class="product-image">
-                        <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="LED Signboard">
-                        <div class="product-overlay">
-                            <button class="view-btn"><i class="fas fa-eye"></i> Quick View</button>
-                        </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="LED Signboards">
                     </div>
-                    <div class="product-info">
-                        <h3>Premium LED Signboard</h3>
-                        <p>High-quality LED display with customizable colors</p>
-                        <div class="product-price">Starting at $299</div>
-                        <button class="add-to-cart">Enquire Now</button>
+                    <div class="category-content">
+                        <div class="category-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>LED Signboards</h3>
+                        <p>Energy-efficient LED displays with vibrant colors and dynamic content capabilities</p>
+                        <a href="#" class="category-link">
+                            Explore LED Signs <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="product-card" data-category="neon">
-                    <div class="product-image">
-                        <img src="assets/store signboard/IMG-20251014-WA0040.jpg" alt="Neon Sign">
-                        <div class="product-overlay">
-                            <button class="view-btn"><i class="fas fa-eye"></i> Quick View</button>
-                        </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="assets/store signboard/IMG-20251014-WA0040.jpg" alt="Neon Signs">
                     </div>
-                    <div class="product-info">
-                        <h3>Custom Neon Sign</h3>
-                        <p>Vibrant neon signs for modern businesses</p>
-                        <div class="product-price">Starting at $399</div>
-                        <button class="add-to-cart">Enquire Now</button>
+                    <div class="category-content">
+                        <div class="category-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Neon Signs</h3>
+                        <p>Eye-catching neon lighting solutions that make your brand stand out day and night</p>
+                        <a href="#" class="category-link">
+                            View Neon Collection <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="product-card" data-category="3d">
-                    <div class="product-image">
-                        <img src="assets/store signboard/IMG-20251014-WA0042.jpg" alt="3D Sign">
-                        <div class="product-overlay">
-                            <button class="view-btn"><i class="fas fa-eye"></i> Quick View</button>
-                        </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="assets/store signboard/IMG-20251014-WA0042.jpg" alt="3D Signs">
                     </div>
-                    <div class="product-info">
-                        <h3>3D Letter Signage</h3>
-                        <p>Dimensional signs with premium materials</p>
-                        <div class="product-price">Starting at $199</div>
-                        <button class="add-to-cart">Enquire Now</button>
+                    <div class="category-content">
+                        <div class="category-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3>3D Letter Signs</h3>
+                        <p>Dimensional signage that adds depth and sophistication to your brand identity</p>
+                        <a href="#" class="category-link">
+                            Discover 3D Signs <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="product-card" data-category="digital">
-                    <div class="product-image">
-                        <img src="assets/hotels and restaurent/IMG-20251014-WA0066.jpg" alt="Digital Display">
-                        <div class="product-overlay">
-                            <button class="view-btn"><i class="fas fa-eye"></i> Quick View</button>
-                        </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="assets/store signboard/IMG-20251014-WA0045.jpg" alt="Digital Displays">
                     </div>
-                    <div class="product-info">
-                        <h3>Digital Display Screen</h3>
-                        <p>Modern digital advertising solutions</p>
-                        <div class="product-price">Starting at $899</div>
-                        <button class="add-to-cart">Enquire Now</button>
+                    <div class="category-content">
+                        <div class="category-icon">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <h3>Digital Displays</h3>
+                        <p>State-of-the-art digital signage for dynamic advertising and information display</p>
+                        <a href="#" class="category-link">
+                            Browse Digital Options <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="product-card" data-category="traditional">
-                    <div class="product-image">
-                        <img src="assets/hotels and restaurent/IMG-20251014-WA0070.jpg" alt="Traditional Sign">
-                        <div class="product-overlay">
-                            <button class="view-btn"><i class="fas fa-eye"></i> Quick View</button>
-                        </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="assets/store signboard/IMG-20251014-WA0048.jpg" alt="Stainless Steel">
                     </div>
-                    <div class="product-info">
-                        <h3>Traditional Wooden Sign</h3>
-                        <p>Classic wooden craftsmanship</p>
-                        <div class="product-price">Starting at $149</div>
-                        <button class="add-to-cart">Enquire Now</button>
+                    <div class="category-content">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Stainless Steel Signs</h3>
+                        <p>Premium, durable signage with a modern, professional finish that lasts</p>
+                        <a href="#" class="category-link">
+                            Explore Steel Signs <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="product-card" data-category="led">
-                    <div class="product-image">
-                        <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="LED Building Sign">
-                        <div class="product-overlay">
-                            <button class="view-btn"><i class="fas fa-eye"></i> Quick View</button>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="assets/store signboard/IMG-20251014-WA0051.jpg" alt="Acrylic Signs">
+                    </div>
+                    <div class="category-content">
+                        <div class="category-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Acrylic Signs</h3>
+                        <p>Versatile acrylic signage perfect for indoor and outdoor applications</p>
+                        <a href="#" class="category-link">
+                            View Acrylic Options <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Showcase -->
+    <section class="gallery-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Recent Projects</h2>
+                <p>Browse through our portfolio of stunning signage solutions delivered to satisfied clients</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/store signboard/IMG-20251014-WA0054.jpg" alt="Project 1">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-text">
+                            <h4>Corporate Office Signage</h4>
+                            <p>Premium stainless steel installation</p>
                         </div>
                     </div>
-                    <div class="product-info">
-                        <h3>Building LED Display</h3>
-                        <p>Large-scale illuminated building signs</p>
-                        <div class="product-price">Starting at $1299</div>
-                        <button class="add-to-cart">Enquire Now</button>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/store signboard/IMG-20251014-WA0057.jpg" alt="Project 2">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-text">
+                            <h4>Retail Store Display</h4>
+                            <p>Vibrant LED backlight signage</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/store signboard/IMG-20251014-WA0060.jpg" alt="Project 3">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-text">
+                            <h4>Restaurant Neon Sign</h4>
+                            <p>Custom neon lighting solution</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/store signboard/IMG-20251014-WA0063.jpg" alt="Project 4">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-text">
+                            <h4>Hospital Wayfinding</h4>
+                            <p>Professional directional signage</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/store signboard/IMG-20251014-WA0051.jpg" alt="Project 5">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-text">
+                            <h4>Hotel Reception Sign</h4>
+                            <p>Elegant illuminated welcome sign</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/store signboard/IMG-20251014-WA0048.jpg" alt="Project 6">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-text">
+                            <h4>Shop Front Signage</h4>
+                            <p>Eye-catching storefront display</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Simple Process</h2>
+                <p>From concept to installation, we make getting your perfect signboard seamless</p>
+            </div>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Consultation</h3>
+                        <p>We discuss your requirements, brand identity, and design preferences to understand your vision</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Design & Approval</h3>
+                        <p>Our design team creates custom concepts for your review and approval</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Production</h3>
+                        <p>We craft your signage using premium materials and advanced manufacturing techniques</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Installation</h3>
+                        <p>Professional installation ensures your signage looks perfect and lasts for years</p>
                     </div>
                 </div>
             </div>
@@ -158,16 +796,19 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="store-cta">
         <div class="container">
-            <h2>Don't See What You're Looking For?</h2>
-            <p>Contact us for custom signboard solutions tailored to your needs</p>
-            <a href="contact.html" class="cta-button">Get Custom Quote</a>
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Let's create stunning signage that makes your brand unforgettable</p>
+            <div class="cta-buttons">
+                <a href="javascript:void(0)" onclick="copyEmail()" class="cta-primary">Get Free Consultation</a>
+                <a href="store-signboard.html" class="cta-secondary">View Gallery</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -177,53 +818,28 @@
                     </div>
                     <p>Your trusted partner for premium advertising solutions and signboard manufacturing. Transform your business visibility with our expert services.</p>
                     <div class="footer-social">
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html">About Us</a></li>
+                        <li><a href="index.html">Services</a></li>
+                        <li><a href="store-signboard.html">Gallery</a></li>
+                        <li><a href="index.html">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Our Services</h3>
                     <ul>
-                        <li><a href="services.html">Signboard Design</a></li>
-                        <li><a href="services.html">LED Signage</a></li>
-                        <li><a href="services.html">3D Sign Manufacturing</a></li>
-                        <li><a href="services.html">Digital Displays</a></li>
-                        <li><a href="services.html">Installation Services</a></li>
+                        <li><a href="index.html">Signboard Design</a></li>
+                        <li><a href="index.html">LED Signage</a></li>
+                        <li><a href="index.html">3D Sign Manufacturing</a></li>
+                        <li><a href="index.html">Digital Displays</a></li>
+                        <li><a href="index.html">Installation Services</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Information</h3>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>info@boardbazaar.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 78008 08870</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+91 86527 37065</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>123 Business Park, Main Street<br>Your City, State 123456</span>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -241,5 +857,47 @@
     </a>
 
     <script src="js/script.js"></script>
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.category-card, .gallery-item, .process-step');
+            animatedElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'all 0.6s ease';
+                element.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>

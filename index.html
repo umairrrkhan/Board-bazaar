@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board Bazaar - Advertising Excellence</title>
+    <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Firebase -->
@@ -23,26 +24,21 @@
                 </div>
                 <div class="quick-contact">
                     <div class="quick-links">
-                        <a href="index.html">About Us</a>
+                        <a href="index.html">About</a>
                         <a href="store-signboard.html">Signage</a>
                         <a href="store-signboard.html">Gallery</a>
-                        <a href="index.html">Blog</a>
-                        <a href="contact.html">Contact Us</a>
+                        <a href="contact.html">Contact</a>
                     </div>
                     <div class="phone-number">
                         <i class="fas fa-phone"></i>
-                        <a href="tel:+917800808870">+91 78008 08870</a>
+                        <span class="copy-number" onclick="copyNumber('+91 78008 08870')">+91 78008 08870</span>
                     </div>
                     <div class="phone-number">
                         <i class="fas fa-phone"></i>
-                        <a href="tel:+918652737065">+91 86527 37065</a>
+                        <span class="copy-number" onclick="copyNumber('+91 86527 37065')">+91 86527 37065</span>
                     </div>
                     <div class="social-links">
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -57,7 +53,6 @@
                     <li><a href="index.html" class="nav-link active">Home</a></li>
                     <li><a href="store.html" class="nav-link">Store</a></li>
                     <li><a href="signage.html" class="nav-link">Signage</a></li>
-                    <li><a href="fabric-backlit.html" class="nav-link">Fabric Backlit Board</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle">Sign Category <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
@@ -66,23 +61,8 @@
                             <li><a href="co-operative-office.html">Corporate Office</a></li>
                             <li><a href="store-signboard.html">Retail Store</a></li>
                             <li><a href="building-infra.html">Infrastructure</a></li>
-                            <li><a href="sign-category.html#education">Education</a></li>
-                            <li><a href="sign-category.html#hospitality">Hospitality</a></li>
-                            <li><a href="sign-category.html#healthcare">Healthcare</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle">Stainless Sign <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="stainless-sign.html#brushed">Brushed Stainless</a></li>
-                            <li><a href="stainless-sign.html#mirror">Mirror Polish</a></li>
-                            <li><a href="stainless-sign.html#etched">Etched Signs</a></li>
-                            <li><a href="stainless-sign.html#cutout">Cut Out Letters</a></li>
-                            <li><a href="stainless-sign.html#fabricated">Fabricated Signs</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="acrylic-sign.html" class="nav-link">Acrylic Sign</a></li>
-                    <li><a href="video-wall.html" class="nav-link">Video Wall</a></li>
                     <li><a href="contact.html" class="nav-link">Contact Us</a></li>
                 </ul>
             </nav>
@@ -91,50 +71,54 @@
 
     <!-- Hero Section -->
     <section class="hero-section" id="home">
-        <div class="hero-carousel" id="heroCarousel">
-            <div class="hero-slide">
-                <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="Board Bazaar Signage Work">
-                <div class="slide-content">
-                    <h2>Expert Signage Solutions</h2>
-                    <p>Professional signboards that elevate your brand presence and attract customers</p>
+        <div class="hero-container">
+            <div class="hero-slider">
+                <div class="hero-slide active">
+                    <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="Board Bazaar Signage Work">
+                    <div class="slide-content">
+                        <h2>Expert Signage Solutions</h2>
+                        <p>Professional signboards that elevate your brand presence and attract customers</p>
+                    </div>
+                </div>
+                <div class="hero-slide">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0066.jpg" alt="Restaurant Signage Project">
+                    <div class="slide-content">
+                        <h2>Custom Business Signage</h2>
+                        <p>Tailored signage solutions designed to match your unique business identity</p>
+                    </div>
+                </div>
+                <div class="hero-slide">
+                    <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="Building Signage Project">
+                    <div class="slide-content">
+                        <h2>Large Format Signage</h2>
+                        <p>Impressive building and infrastructure signage that makes a statement</p>
+                    </div>
+                </div>
+                <div class="hero-slide">
+                    <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Medical Facility Signage">
+                    <div class="slide-content">
+                        <h2>Professional Commercial Signs</h2>
+                        <p>High-quality signage for all commercial and institutional spaces</p>
+                    </div>
                 </div>
             </div>
-            <div class="hero-slide">
-                <img src="assets/hotels and restaurent/IMG-20251014-WA0066.jpg" alt="Restaurant Signage Project">
-                <div class="slide-content">
-                    <h2>Custom Business Signage</h2>
-                    <p>Tailored signage solutions designed to match your unique business identity</p>
-                </div>
-            </div>
-            <div class="hero-slide">
-                <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="Building Signage Project">
-                <div class="slide-content">
-                    <h2>Large Format Signage</h2>
-                    <p>Impressive building and infrastructure signage that makes a statement</p>
-                </div>
-            </div>
-            <div class="hero-slide">
-                <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Medical Facility Signage">
-                <div class="slide-content">
-                    <h2>Professional Commercial Signs</h2>
-                    <p>High-quality signage for all commercial and institutional spaces</p>
-                </div>
+            
+            <!-- Navigation Controls -->
+            <button class="carousel-btn prev-btn" onclick="changeSlide(-1)" aria-label="Previous slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next-btn" onclick="changeSlide(1)" aria-label="Next slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+                <span class="indicator" onclick="goToSlide(3)"></span>
             </div>
         </div>
-        
-        <div class="hero-indicators">
-            <span class="hero-indicator active" onclick="goToSlide(0)"></span>
-            <span class="hero-indicator" onclick="goToSlide(1)"></span>
-            <span class="hero-indicator" onclick="goToSlide(2)"></span>
-            <span class="hero-indicator" onclick="goToSlide(3)"></span>
-        </div>
-        
-        <button class="hero-arrow hero-prev" onclick="moveSlide(-1)" aria-label="Previous slide">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="hero-arrow hero-next" onclick="moveSlide(1)" aria-label="Next slide">
-            <i class="fas fa-chevron-right"></i>
-        </button>
     </section>
 
     <!-- About Us Section -->
@@ -318,11 +302,7 @@
                     </div>
                     <p>Your trusted partner for premium advertising solutions and signboard manufacturing. Transform your business visibility with our expert services.</p>
                     <div class="footer-social">
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -344,17 +324,6 @@
                         <li><a href="index.html">Digital Displays</a></li>
                         <li><a href="index.html">Installation Services</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <p>Stay connected with us for latest updates and projects</p>
-                    <div class="footer-social">
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -390,5 +359,85 @@
     </script>
 
     <script src="js/script.js"></script>
+    <script>
+        // Fresh Hero Carousel Script - No Conflicts
+        let currentSlide = 0;
+        let autoSlideInterval;
+        let slides;
+        let indicators;
+        let totalSlides;
+
+        function initCarousel() {
+            slides = document.querySelectorAll('.hero-slide');
+            indicators = document.querySelectorAll('.indicator');
+            totalSlides = slides.length;
+            
+            if (totalSlides === 0) return;
+            
+            // Show first slide
+            showSlide(0);
+            
+            // Start auto-slide
+            startAutoSlide();
+            
+            // Pause on hover
+            const heroSection = document.querySelector('.hero-section');
+            heroSection.addEventListener('mouseenter', stopAutoSlide);
+            heroSection.addEventListener('mouseleave', startAutoSlide);
+        }
+
+        function showSlide(index) {
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
+            }
+            
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Show current slide
+            slides[currentSlide].classList.add('active');
+            
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+            restartAutoSlide();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            restartAutoSlide();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                changeSlide(1);
+            }, 4000); // 4 seconds
+        }
+
+        function stopAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+        }
+
+        function restartAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            initCarousel();
+        });
+    </script>
 </body>
 </html>

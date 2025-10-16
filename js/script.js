@@ -1,5 +1,98 @@
 // Board Bazaar - Main JavaScript File
 
+// Global copy functions for all pages
+window.copyNumber = function(number) {
+    // Create temporary input to copy number
+    const tempInput = document.createElement('input');
+    tempInput.value = number;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    
+    // Show copied message
+    showCopiedMessage('Phone number copied to clipboard!');
+};
+
+window.copyEmail = function() {
+    const email = 'faisal.khan868@gmail.com';
+    
+    // Create temporary input to copy email
+    const tempInput = document.createElement('input');
+    tempInput.value = email;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    
+    // Show copied message
+    showCopiedMessage('Email copied to clipboard!');
+};
+
+window.showCopiedMessage = function(messageText) {
+    // Remove existing message if any
+    const existingMsg = document.querySelector('.copy-message');
+    if (existingMsg) {
+        existingMsg.remove();
+    }
+    
+    // Create message element
+    const message = document.createElement('div');
+    message.className = 'copy-message';
+    message.textContent = messageText;
+    message.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        font-weight: 600;
+        z-index: 10000;
+        animation: slideIn 0.3s ease-out, slideOut 0.3s ease-out 2s forwards;
+        box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+    `;
+    
+    // Add animation styles if not already added
+    if (!document.querySelector('#copy-animation-styles')) {
+        const style = document.createElement('style');
+        style.id = 'copy-animation-styles';
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(message);
+    
+    // Remove message after animation
+    setTimeout(() => {
+        if (message.parentNode) {
+            message.remove();
+        }
+    }, 3000);
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initHeroCarousel();
@@ -77,145 +170,6 @@ function initDropdownMenu() {
             });
         }
     });
-}
-
-// Hero Carousel Functionality
-let currentSlide = 0;
-let autoSlideInterval;
-let isTransitioning = false;
-const slides = document.querySelectorAll('.hero-slide');
-const indicators = document.querySelectorAll('.hero-indicator');
-const totalSlides = slides.length;
-
-function initHeroCarousel() {
-    if (slides.length === 0) return;
-    
-    // Set initial slide
-    showSlide(0);
-    
-    // Start auto-slide
-    startAutoSlide();
-    
-    // Pause auto-slide on hover
-    const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
-        heroSection.addEventListener('mouseenter', stopAutoSlide);
-        heroSection.addEventListener('mouseleave', startAutoSlide);
-    }
-    
-    // Initialize keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft' && !isTransitioning) {
-            moveSlide(-1);
-        } else if (e.key === 'ArrowRight' && !isTransitioning) {
-            moveSlide(1);
-        }
-    });
-    
-    // Touch/swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    heroSection.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-    
-    heroSection.addEventListener('touchend', function(e) {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        if (Math.abs(touchEndX - touchStartX) > 50 && !isTransitioning) {
-            if (touchEndX < touchStartX) {
-                moveSlide(1); // Swipe left, go next
-            }
-            if (touchEndX > touchStartX) {
-                moveSlide(-1); // Swipe right, go prev
-            }
-        }
-    }
-}
-
-function showSlide(index) {
-    if (isTransitioning) return;
-    
-    const carousel = document.getElementById('heroCarousel');
-    if (!carousel) return;
-    
-    // Wrap around
-    if (index >= totalSlides) {
-        currentSlide = 0;
-    } else if (index < 0) {
-        currentSlide = totalSlides - 1;
-    } else {
-        currentSlide = index;
-    }
-    
-    // Apply transform
-    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-    
-    // Update indicators
-    updateIndicators();
-}
-
-function goToSlide(index) {
-    if (!isTransitioning && index !== currentSlide) {
-        isTransitioning = true;
-        showSlide(index);
-        
-        // Reset transition flag after animation
-        setTimeout(() => {
-            isTransitioning = false;
-        }, 600);
-        
-        stopAutoSlide();
-        startAutoSlide(); // Restart auto-slide after manual interaction
-    }
-}
-
-function moveSlide(direction) {
-    if (isTransitioning) return;
-    
-    isTransitioning = true;
-    showSlide(currentSlide + direction);
-    
-    // Reset transition flag after animation
-    setTimeout(() => {
-        isTransitioning = false;
-    }, 600);
-    
-    stopAutoSlide();
-    startAutoSlide(); // Restart auto-slide after manual interaction
-}
-
-function updateIndicators() {
-    indicators.forEach((indicator, index) => {
-        if (index === currentSlide) {
-            indicator.classList.add('active');
-        } else {
-            indicator.classList.remove('active');
-        }
-    });
-}
-
-function startAutoSlide() {
-    stopAutoSlide(); // Clear any existing interval
-    autoSlideInterval = setInterval(() => {
-        if (!isTransitioning) {
-            moveSlide(1);
-        }
-    }, 4000); // 4 seconds
-}
-
-function stopAutoSlide() {
-    if (autoSlideInterval) {
-        clearInterval(autoSlideInterval);
-    }
-}
-
-function updateSlideIndicators() {
-    updateIndicators();
 }
 
 // Navigation Functionality
