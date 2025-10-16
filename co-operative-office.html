@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Co-operative Office Signage - Board Bazaar</title>
+    <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Category Hero Section */
+        .category-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .category-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .category-hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            line-height: 1.4;
+        }
+
+        .category-cta {
+            display: inline-block;
+            background: var(--primary-orange);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+            background: var(--secondary-orange);
+        }
+
+        /* Category Features Section */
+        .category-features {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .feature-item {
+            background: var(--gray-light);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-medium);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--primary-orange);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .feature-icon i {
+            color: white;
+            font-size: 32px;
+        }
+
+        .feature-item h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Category Gallery Section */
+        .category-gallery {
+            padding: 100px 0;
+            background: var(--gray-light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+        }
+
+        .gallery-overlay h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Category CTA Section */
+        .category-cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.1; }
+        }
+
+        .category-cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-cta-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .category-cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: var(--primary-orange);
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+            background: var(--secondary-orange);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .category-hero h1 {
+                font-size: 32px;
+            }
+            
+            .category-hero p {
+                font-size: 18px;
+            }
+            
+            .features-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-primary, .cta-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-text">
+                        <h1>Board <span class="highlight">Bazaar</span></h1>
+                        <p class="tagline">Illuminating Your Brand's Future</p>
+                    </div>
+                </div>
+                <div class="quick-contact">
+                    <div class="quick-links">
+                        <a href="about.html">About</a>
+                        <a href="store-signboard.html">Signage</a>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="phone-number">
+                        <i class="fas fa-phone"></i>
+                        <span class="copy-number" onclick="copyNumber('+91 78008 08870')">+91 78008 08870</span>
+                    </div>
+                    <div class="phone-number">
+                        <i class="fas fa-phone"></i>
+                        <span class="copy-number" onclick="copyNumber('+91 86527 37065')">+91 86527 37065</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Header -->
+    <header class="nav-header">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="store.html" class="nav-link active">Store</a></li>
+                    <li><a href="store-signboard.html" class="nav-link">Signage</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Sign Category <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="medical-hospital.html">Hospital Medical</a></li>
+                            <li><a href="cafe-restaurant.html">Cafe Restaurant</a></li>
+                            <li><a href="co-operative-office.html" class="nav-link active">Corporate Office</a></li>
+                            <li><a href="store-signboard.html">Retail Store</a></li>
+                            <li><a href="building-infra.html">Infrastructure</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="category-hero">
+        <div class="container">
+            <h1>Co-operative Office Signage</h1>
+            <p>Professional signage solutions designed specifically for co-operative and corporate office environments that promote unity and brand identity</p>
+            <a href="#gallery" class="category-cta">View Our Projects</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="category-features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Board Bazaar for Co-operative Office Signage?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Co-operative Focus</h3>
+                    <p>Specialized signage solutions designed with co-operative values and community identity in mind</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Professional Design</h3>
+                    <p>Creative and modern signage designs that reflect your co-operative's mission and vision</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Office Branding</h3>
+                    <p>Complete office interior and exterior signage solutions for brand consistency</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Custom Solutions</h3>
+                    <p>Tailored signage designs that match your co-operative's unique requirements</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Durable Materials</h3>
+                    <p>High-quality materials that ensure longevity and professional appearance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="category-gallery">
+        <div class="container">
+            <h2 class="section-title">Our Co-operative Office Signage Projects</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0029.jpg" alt="Corporate Office Reception">
+                    <div class="gallery-overlay">
+                        <h4>Corporate Office Reception</h4>
+                        <p>Elegant reception signage with company branding</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0028.jpg" alt="Office Lobby Sign">
+                    <div class="gallery-overlay">
+                        <h4>Office Lobby Sign</h4>
+                        <p>Modern lobby signage for co-operative office building</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0027.jpg" alt="Office Directory">
+                    <div class="gallery-overlay">
+                        <h4>Office Directory</h4>
+                        <p>Professional office directory with tenant listings</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0026.jpg" alt="Meeting Room Signs">
+                    <div class="gallery-overlay">
+                        <h4>Meeting Room Signs</h4>
+                        <p>Custom meeting room identification signage</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0025.jpg" alt="Office Wayfinding">
+                    <div class="gallery-overlay">
+                        <h4>Office Wayfinding</h4>
+                        <p>Directional signage for office navigation</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0024.jpg" alt="Office Door Signs">
+                    <div class="gallery-overlay">
+                        <h4>Office Door Signs</h4>
+                        <p>Professional door signs for individual offices</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0023.jpg" alt="Co-operative Bank">
+                    <div class="gallery-overlay">
+                        <h4>Co-operative Bank Branch</h4>
+                        <p>Complete banking signage for co-operative institutions</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0022.jpg" alt="Office Exterior Sign">
+                    <div class="gallery-overlay">
+                        <h4>Office Exterior Sign</h4>
+                        <p>Large format exterior signage for co-operative offices</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0021.jpg" alt="Office Illuminated Sign">
+                    <div class="gallery-overlay">
+                        <h4>Illuminated Office Sign</h4>
+                        <p>LED illuminated signage for enhanced visibility</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0020.jpg" alt="Office Wall Graphics">
+                    <div class="gallery-overlay">
+                        <h4>Office Wall Graphics</h4>
+                        <p>Branded wall graphics for office interiors</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0019.jpg" alt="Conference Room Sign">
+                    <div class="gallery-overlay">
+                        <h4>Conference Room</h4>
+                        <p>Professional conference room identification</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0018.jpg" alt="Office Floor Graphics">
+                    <div class="gallery-overlay">
+                        <h4>Office Floor Graphics</h4>
+                        <p>Custom floor graphics for office branding</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0017.jpg" alt="Office Reception Area">
+                    <div class="gallery-overlay">
+                        <h4>Reception Area</h4>
+                        <p>Professional reception area with signage</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0016.jpg" alt="Office Building Sign">
+                    <div class="gallery-overlay">
+                        <h4>Office Building Sign</h4>
+                        <p>Large format building signage for office complex</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0015.jpg" alt="Office Entrance">
+                    <div class="gallery-overlay">
+                        <h4>Office Entrance</h4>
+                        <p>Professional entrance signage with lighting</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0014.jpg" alt="Office Nameplate">
+                    <div class="gallery-overlay">
+                        <h4>Office Nameplate</h4>
+                        <p>Custom nameplates for office identification</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0013.jpg" alt="Office Board">
+                    <div class="gallery-overlay">
+                        <h4>Office Display Board</h4>
+                        <p>Illuminated display board for office information</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0012.jpg" alt="Office Sign Board">
+                    <div class="gallery-overlay">
+                        <h4>Office Sign Board</h4>
+                        <p>Professional sign boards for office use</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0011.jpg" alt="Office Wall Sign">
+                    <div class="gallery-overlay">
+                        <h4>Office Wall Sign</h4>
+                        <p>Large wall signs for office branding</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0010.jpg" alt="Office Branding">
+                    <div class="gallery-overlay">
+                        <h4>Office Branding</h4>
+                        <p>Complete branding solutions for office identity</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0009.jpg" alt="Office Facade Sign">
+                    <div class="gallery-overlay">
+                        <h4>Office Facade</h4>
+                        <p>Facade signage for office building exterior</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0008.jpg" alt="Office Entrance Signage">
+                    <div class="gallery-overlay">
+                        <h4>Entrance Signage</h4>
+                        <p>Professional entrance signage with company branding</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0007.jpg" alt="Office Interior Signs">
+                    <div class="gallery-overlay">
+                        <h4>Interior Office Signs</h4>
+                        <p>Interior signage solutions for office spaces</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0006.jpg" alt="Office External Signage">
+                    <div class="gallery-overlay">
+                        <h4>External Signage</h4>
+                        <p>External signage for office building visibility</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0005.jpg" alt="Office Identification">
+                    <div class="gallery-overlay">
+                        <h4>Office Identification</h4>
+                        <p>Professional identification signs for offices</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/co operative office/IMG-20251014-WA0004.jpg" alt="Office Design Sign">
+                    <div class="gallery-overlay">
+                        <h4>Office Design</h4>
+                        <p>Custom designed signs for office branding</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="category-cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Co-operative Office?</h2>
+            <p>Let's create professional signage that reflects your co-operative's values and strengthens your brand presence in the community</p>
+            <div class="cta-buttons">
+                <a href="javascript:void(0)" onclick="copyEmail()" class="cta-primary">Get Free Consultation</a>
+                <a href="store-signboard.html" class="cta-secondary">View Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="Board Bazaar">
+                        <h3>Board Bazaar</h3>
+                    </div>
+                    <p>Your trusted partner for premium advertising solutions and signboard manufacturing. Transform your business visibility with our expert services.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">About Us</a></li>
+                        <li><a href="index.html">Services</a></li>
+                        <li><a href="store-signboard.html">Gallery</a></li>
+                        <li><a href="index.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="index.html">Signboard Design</a></li>
+                        <li><a href="index.html">LED Signage</a></li>
+                        <li><a href="index.html">3D Sign Manufacturing</a></li>
+                        <li><a href="index.html">Digital Displays</a></li>
+                        <li><a href="index.html">Installation Services</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Board Bazaar. All rights reserved. | Designed with passion for advertising excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/917800808870?text=Hi%20Board%20Bazaar,%20I'm%20interested%20in%20your%20signboard%20services" 
+       class="whatsapp-float" 
+       target="_blank" 
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
