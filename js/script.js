@@ -368,48 +368,7 @@ function debounce(func, wait) {
     };
 }
 
-// Form handling (for contact page)
-function initContactForm() {
-    const form = document.querySelector('.contact-form');
-    if (!form) return;
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Basic form validation
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
-        if (validateForm(data)) {
-            // Show success message
-            showFormMessage('Thank you for your inquiry! We will contact you soon.', 'success');
-            form.reset();
-        } else {
-            showFormMessage('Please fill in all required fields correctly.', 'error');
-        }
-    });
-}
-
-function validateForm(data) {
-    // Basic validation logic
-    const required = ['name', 'email', 'message'];
-    return required.every(field => data[field] && data[field].trim() !== '');
-}
-
-function showFormMessage(message, type) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `form-message ${type}`;
-    messageDiv.textContent = message;
-    
-    const form = document.querySelector('.contact-form');
-    if (form) {
-        form.appendChild(messageDiv);
-        
-        setTimeout(() => {
-            messageDiv.remove();
-        }, 5000);
-    }
-}
+// Form handling is now managed by contact-form-handler.js to avoid conflicts
 
 // Performance optimization
 function optimizeImages() {
@@ -473,8 +432,7 @@ function initAccessibility() {
 // Initialize accessibility features
 initAccessibility();
 
-// Initialize contact form if it exists
-initContactForm();
+// Contact form handling is now managed by contact-form-handler.js
 
 // Optimize images on load
 optimizeImages();
@@ -511,6 +469,12 @@ styleSheet.textContent = `
         background: #f8d7da;
         color: #721c24;
         border: 1px solid #f5c6cb;
+    }
+    
+    .form-message.info {
+        background: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
     }
     
     @keyframes slideInDown {

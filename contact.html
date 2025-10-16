@@ -98,109 +98,65 @@
     <section class="contact-section">
         <div class="container">
             <div class="contact-grid">
-                <!-- Contact Form -->
-                <div class="contact-form-section">
-                    <h2>Send Us a Message</h2>
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Your Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Company Name</label>
-                            <input type="text" id="company" name="company" placeholder="Your company name">
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Service Type *</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service</option>
-                                <option value="signboard-design">Signboard Design</option>
-                                <option value="led-signage">LED Signage</option>
-                                <option value="3d-signs">3D Signs</option>
-                                <option value="fabric-backlit">Fabric Backlit Board</option>
-                                <option value="stainless-signs">Stainless Steel Signs</option>
-                                <option value="acrylic-signs">Acrylic Signs</option>
-                                <option value="video-wall">Video Wall</option>
-                                <option value="installation">Installation Service</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project requirements..."></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
-
-                <!-- Contact Information -->
-                <div class="contact-info-section">
-                    <h2>Get in Touch</h2>
-                    <div class="contact-info">
-                        <div class="contact-item">
+                <!-- Contact Information Card -->
+                <div class="contact-info-card">
+                    <div class="card-header">
+                        <h2>Get in Touch</h2>
+                        <div class="card-decoration"></div>
+                    </div>
+                    
+                    <div class="contact-content">
+                        <div class="contact-row">
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
-                            <div class="contact-details">
+                            <div class="contact-text">
                                 <h3>Office Address</h3>
-                                <p>123 Business Park, Main Street<br>Your City, State 123456<br>India</p>
+                                <p class="highlight-text">A Wing Shop 03, Plot B/102<br>Sector 23, Dharave<br>Navi Mumbai - 400706</p>
                             </div>
                         </div>
                         
-                        <div class="contact-item">
+                        <div class="contact-row">
                             <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
-                            <div class="contact-details">
-                                <h3>Phone Numbers</h3>
-                                <p>Main: <a href="tel:+919876543210">+91 98765 43210</a><br>
-                                   Sales: <a href="tel:+919876543211">+91 98765 43211</a><br>
-                                   Support: <a href="tel:+919876543212">+91 98765 43212</a></p>
+                            <div class="contact-text">
+                                <h3>Call Us</h3>
+                                <p><span class="copy-number" onclick="copyNumber('+91 86527 37065')">+91 86527 37065</span></p>
+                                <p><span class="copy-number" onclick="copyNumber('+91 78008 08870')">+91 78008 08870</span></p>
                             </div>
                         </div>
                         
-                        <div class="contact-item">
+                        <div class="contact-row">
                             <div class="contact-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
-                            <div class="contact-details">
-                                <h3>Email Addresses</h3>
-                                <p>General: <a href="mailto:info@boardbazaar.com">info@boardbazaar.com</a><br>
-                                   Sales: <a href="mailto:sales@boardbazaar.com">sales@boardbazaar.com</a><br>
-                                   Support: <a href="mailto:support@boardbazaar.com">support@boardbazaar.com</a></p>
+                            <div class="contact-text">
+                                <h3>Email Us</h3>
+                                <p><a href="javascript:void(0)" onclick="copyEmail()" class="email-link">faisal.khan868@gmail.com</a></p>
                             </div>
                         </div>
                         
-                        <div class="contact-item">
+                        <div class="contact-row">
                             <div class="contact-icon">
                                 <i class="fas fa-clock"></i>
                             </div>
-                            <div class="contact-details">
+                            <div class="contact-text">
                                 <h3>Business Hours</h3>
-                                <p>Monday - Friday: 9:00 AM - 7:00 PM<br>
-                                   Saturday: 10:00 AM - 6:00 PM<br>
-                                   Sunday: Closed</p>
+                                <p class="highlight-text">Mon - Fri: 9:00 AM - 7:00 PM</p>
+                                <p class="highlight-text">Saturday: 10:00 AM - 6:00 PM</p>
+                                <p class="highlight-text">Sunday: Closed</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Social Media -->
-                    <div class="contact-social">
-                        <h3>Follow Us</h3>
+                    <!-- Instagram Only -->
+                    <div class="social-section">
+                        <h4>Follow Us on Instagram</h4>
                         <div class="social-links">
-                            <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram" class="social-link instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -214,7 +170,7 @@
             <h2>Find Us Here</h2>
             <div class="map-container">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.897693987197!2d-46.63633168502008!3d-23.54897158468169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da5aae43%3A0x1b0c9e9e9e9e9e9e!2sS%C3%A3o%20Paulo%2C%20SP%2C%20Brazil!5e0!3m2!1sen!2sus!4v1234567890" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.4054322526897!2d73.07309331483031!3d19.07990748706944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s19.07990748706944%2C73.07309331483031!2sA%20Wing%20Shop%2003%2C%20Plot%20B%2F102%2C%20Sector%2023%2C%20Dharave%2C%20Navi%20Mumbai%20400706!5e0!3m2!1sen!2sin!4v1234567890" 
                     width="100%" 
                     height="450" 
                     style="border:0;" 
@@ -226,83 +182,11 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="contact-faq-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Frequently Asked Questions</h2>
-                <p class="section-subtitle">Quick answers to common questions</p>
-            </div>
-            
-            <div class="faq-items">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How quickly can you respond to inquiries?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We typically respond to all inquiries within 24 hours during business days. For urgent requests, please call us directly.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you provide on-site consultations?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we offer free on-site consultations for projects within our service area. For locations outside our area, we can arrange virtual consultations.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What information do I need to provide for a quote?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>To provide an accurate quote, we'll need your project requirements, dimensions, preferred materials, timeline, and budget range if available.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How long does a typical project take?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Project timelines vary based on complexity. Most standard signboard projects are completed within 7-14 days from design approval to installation.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you offer warranty on your products?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we offer comprehensive warranty packages ranging from 1-5 years depending on the type of signboard and materials used.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you serve businesses outside your local area?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we provide services nationwide and have partnerships with local installation teams to serve clients across multiple locations.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <h2>Ready to Transform Your Business Visibility?</h2>
-            <a href="mailto:sales@boardbazaar.com" class="cta-button">Email Our Team</a>
+            <a href="javascript:void(0)" onclick="copyEmail()" class="cta-button">Email Our Team</a>
         </div>
     </section>
 
@@ -364,28 +248,86 @@
 
     <script src="js/script.js"></script>
     <script>
-        // FAQ accordion functionality for contact page
+        // Copy email function
+        function copyEmail() {
+            const email = 'faisal.khan868@gmail.com';
+            
+            // Create temporary input to copy email
+            const tempInput = document.createElement('input');
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            // Show copied message
+            showCopiedMessage();
+        }
+        
+        // Show copied message
+        function showCopiedMessage() {
+            // Remove existing message if any
+            const existingMsg = document.querySelector('.copy-message');
+            if (existingMsg) {
+                existingMsg.remove();
+            }
+            
+            // Create message element
+            const message = document.createElement('div');
+            message.className = 'copy-message';
+            message.textContent = 'Email copied to clipboard!';
+            message.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                font-weight: 600;
+                z-index: 10000;
+                animation: slideIn 0.3s ease-out, slideOut 0.3s ease-out 2s forwards;
+                box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            `;
+            
+            // Add animation styles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(400px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+                @keyframes slideOut {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(400px);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(message);
+            
+            // Remove message after animation
+            setTimeout(() => {
+                if (message.parentNode) {
+                    message.remove();
+                }
+            }, 3000);
+        }
+        
+        // Initialize animations for contact page elements
         document.addEventListener('DOMContentLoaded', function() {
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                const answer = item.querySelector('.faq-answer');
-                
-                question.addEventListener('click', () => {
-                    // Close other items
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current item
-                    item.classList.toggle('active');
-                });
-            });
-            
-            // Initialize animations for contact page elements
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -401,7 +343,7 @@
             }, observerOptions);
             
             // Observe elements for animation
-            const animatedElements = document.querySelectorAll('.contact-form-section, .contact-item, .faq-item');
+            const animatedElements = document.querySelectorAll('.contact-info-card, .contact-row');
             animatedElements.forEach((element, index) => {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(30px)';
