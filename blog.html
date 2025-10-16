@@ -4,47 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Board Bazaar</title>
+    <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Blog Specific Styles */
+        /* Simple Blog Styles */
         .blog-hero {
             background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
-            color: var(--white);
+            color: white;
             padding: 120px 0 80px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .blog-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
         }
 
         .blog-hero h1 {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 700;
             margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-            letter-spacing: -1px;
         }
 
         .blog-hero p {
-            font-size: 20px;
+            font-size: 18px;
             opacity: 0.95;
             max-width: 600px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            line-height: 1.5;
         }
 
         .blog-main {
@@ -52,46 +34,40 @@
             background: var(--white);
         }
 
-        .blog-container {
+        .blog-grid {
             display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .blog-posts {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
+            padding: 0 20px;
         }
 
         .blog-post {
             background: var(--white);
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             border: 1px solid var(--gray-medium);
         }
 
         .blog-post:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
         .blog-post-image {
             width: 100%;
-            height: 280px;
+            height: 250px;
             overflow: hidden;
-            position: relative;
         }
 
         .blog-post-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.3s ease;
         }
 
         .blog-post:hover .blog-post-image img {
@@ -99,46 +75,35 @@
         }
 
         .blog-post-content {
-            padding: 40px;
-        }
-
-        .blog-meta {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        .blog-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .blog-meta-item i {
-            color: var(--primary-orange);
+            padding: 25px;
         }
 
         .blog-post-title {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 600;
             color: var(--primary-blue);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.3;
-            transition: color 0.3s ease;
         }
 
-        .blog-post:hover .blog-post-title {
+        .blog-post-meta {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .blog-post-meta i {
             color: var(--primary-orange);
         }
 
         .blog-post-excerpt {
             font-size: 16px;
-            line-height: 1.7;
+            line-height: 1.6;
             color: var(--text-dark);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .read-more {
@@ -156,219 +121,45 @@
             transform: translateX(5px);
         }
 
-        .blog-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
+        .blog-cta {
+            text-align: center;
+            padding: 80px 0;
+            background: var(--gray-light);
         }
 
-        .sidebar-widget {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border: 1px solid var(--gray-medium);
-        }
-
-        .sidebar-widget h3 {
-            font-size: 20px;
+        .blog-cta h2 {
+            font-size: 32px;
             font-weight: 700;
             color: var(--primary-blue);
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary-orange);
+            margin-bottom: 20px;
         }
 
-        .categories-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .blog-cta p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .category-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-            background: var(--gray-light);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: var(--text-dark);
-        }
-
-        .category-item:hover {
+        .cta-button {
+            display: inline-block;
             background: var(--primary-orange);
-            color: var(--white);
-            transform: translateX(5px);
-        }
-
-        .category-count {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .category-item:hover .category-count {
-            background: var(--white);
-            color: var(--primary-orange);
-        }
-
-        .recent-posts {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .recent-post {
-            display: flex;
-            gap: 15px;
-            padding: 15px;
-            background: var(--gray-light);
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 30px;
             text-decoration: none;
-            color: var(--text-dark);
-        }
-
-        .recent-post:hover {
-            background: var(--primary-orange);
-            color: var(--white);
-            transform: translateX(5px);
-        }
-
-        .recent-post-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .recent-post-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .recent-post-content h4 {
-            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 5px;
-            line-height: 1.3;
-        }
-
-        .recent-post-content p {
-            font-size: 12px;
-            opacity: 0.8;
-            margin: 0;
-        }
-
-        .tags-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tag {
-            padding: 8px 16px;
-            background: var(--gray-light);
-            color: var(--text-dark);
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
+            font-size: 16px;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
-        .tag:hover {
-            background: var(--primary-orange);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .newsletter-input {
-            padding: 12px 20px;
-            border: 2px solid var(--gray-medium);
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: var(--primary-orange);
-            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
-        }
-
-        .newsletter-button {
-            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
-            color: var(--white);
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .blog-container {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .blog-sidebar {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .blog-hero {
-                padding: 80px 0 60px;
-            }
-            
-            .blog-hero h1 {
-                font-size: 32px;
-            }
-            
-            .blog-hero p {
-                font-size: 16px;
-            }
-            
-            .blog-main {
-                padding: 60px 0;
-            }
-            
-            .blog-post-content {
-                padding: 25px;
-            }
-            
-            .blog-post-title {
-                font-size: 22px;
-            }
-            
-            .blog-sidebar {
-                grid-template-columns: 1fr;
-            }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+            background: var(--secondary-orange);
         }
     </style>
 </head>
@@ -385,22 +176,21 @@
                 </div>
                 <div class="quick-contact">
                     <div class="quick-links">
-                        <a href="about.html">About Us</a>
-                        <a href="store-signboard.html">Signage</a>
-                        <a href="gallery.html">Gallery</a>
-                        <a href="blog.html" class="active">Blog</a>
-                        <a href="contact.html">Contact Us</a>
+                        <a href="index.html">About</a>
+                        <a href="store.html">Signage</a>
+                        <a href="store-signboard.html">Gallery</a>
+                        <a href="contact.html">Contact</a>
                     </div>
                     <div class="phone-number">
                         <i class="fas fa-phone"></i>
-                        <a href="tel:+917800808870">+91 78008 08870</a>
+                        <span class="copy-number" onclick="copyNumber('+91 78008 08870')">+91 78008 08870</span>
                     </div>
                     <div class="phone-number">
                         <i class="fas fa-phone"></i>
-                        <a href="tel:+918652737065">+91 86527 37065</a>
+                        <span class="copy-number" onclick="copyNumber('+91 86527 37065')">+91 86527 37065</span>
                     </div>
                     <div class="social-links">
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -425,196 +215,199 @@
                             <li><a href="building-infra.html">Infrastructure</a></li>
                         </ul>
                     </li>
+                    <li><a href="blog.html" class="nav-link active">Blog</a></li>
                     <li><a href="contact.html" class="nav-link">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Blog Hero Section -->
+    <!-- Hero Section -->
     <section class="blog-hero">
         <div class="container">
             <h1>Our Blog</h1>
-            <p>Discover the latest insights, trends, and innovations in the world of signage and advertising</p>
+            <p>Expert insights and trends in signage and advertising</p>
         </div>
     </section>
 
     <!-- Blog Main Section -->
     <section class="blog-main">
         <div class="container">
-            <div class="blog-container">
-                <!-- Blog Posts -->
-                <div class="blog-posts">
-                    <article class="blog-post">
-                        <div class="blog-post-image">
-                            <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="Modern Signage Trends">
+            <div class="blog-grid">
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="Signage Trends">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2 class="blog-post-title">Top Signage Trends for 2024</h2>
+                        <div class="blog-post-meta">
+                            <i class="fas fa-calendar"></i>
+                            <span>November 15, 2024</span>
+                            <i class="fas fa-user"></i>
+                            <span>Board Bazaar Team</span>
                         </div>
-                        <div class="blog-post-content">
-                            <div class="blog-meta">
-                                <div class="blog-meta-item">
-                                    <i class="fas fa-calendar"></i>
-                                    <span>October 14, 2024</span>
-                                </div>
-                                <div class="blog-meta-item">
-                                    <i class="fas fa-user"></i>
-                                    <span>Board Bazaar Team</span>
-                                </div>
+                        <div class="blog-post-excerpt">
+                            <p>Discover the latest trends in signage that will transform your business visibility and customer engagement.</p>
+                            <div class="blog-post-full" style="display: none;">
+                                <h3>Complete Guide to 2024 Signage Trends</h3>
+                                <p>In today's competitive business environment, effective signage is more important than ever. The year 2024 brings exciting new trends that are revolutionizing how businesses communicate with their customers.</p>
+                                <p><strong>Key Trends Include:</strong></p>
+                                <ul>
+                                    <li>• Sustainable and eco-friendly signage materials</li>
+                                    <li>• Digital integration with traditional signage</li>
+                                    <li>• Interactive and touch-sensitive displays</li>
+                                    <li>• Minimalist design with maximum impact</li>
+                                    <li>• Smart signage with real-time updates</li>
+                                </ul>
+                                <p><strong>Why These Trends Matter:</strong></p>
+                                <p>Modern consumers expect businesses to be environmentally conscious while maintaining professional appeal. The integration of technology into traditional signage allows for dynamic content that can be updated in real-time, making your marketing efforts more effective and responsive.</p>
+                                <p><strong>Implementation Tips:</strong></p>
+                                <p>When adopting these trends, consider your specific industry requirements and target audience. While some trends may work better for retail environments, others might be more suitable for corporate offices or healthcare facilities.</p>
                             </div>
-                            <h2 class="blog-post-title">Top 10 Signage Trends That Will Define 2024</h2>
-                            <p class="blog-post-excerpt">Discover the cutting-edge signage trends that are transforming how businesses communicate with their customers. From sustainable materials to digital integration, learn what's shaping the future of visual advertising.</p>
-                            <a href="#" class="read-more">
-                                Read More
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
-                    </article>
+                        <a href="#" class="read-more" onclick="toggleFullContent(this)">Read More</a>
+                    </div>
+                </article>
 
-                    <article class="blog-post">
-                        <div class="blog-post-image">
-                            <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="LED Signage Guide">
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <img src="assets/hotels and restaurent/IMG-20251014-WA0072.jpg" alt="Restaurant Signage">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2 class="blog-post-title">Restaurant Signage Guide</h2>
+                        <div class="blog-post-meta">
+                            <i class="fas fa-calendar"></i>
+                            <span>November 12, 2024</span>
+                            <i class="fas fa-user"></i>
+                            <span>Marketing Team</span>
                         </div>
-                        <div class="blog-post-content">
-                            <div class="blog-meta">
-                                <div class="blog-meta-item">
-                                    <i class="fas fa-calendar"></i>
-                                    <span>October 10, 2024</span>
-                                </div>
-                                <div class="blog-meta-item">
-                                    <i class="fas fa-user"></i>
-                                    <span>Tech Experts</span>
-                                </div>
+                        <div class="blog-post-excerpt">
+                            <p>Essential signage solutions that make your restaurant stand out and attract more customers.</p>
+                            <div class="blog-post-full" style="display: none;">
+                                <h3>Complete Restaurant Signage Guide</h3>
+                                <p>Your restaurant's signage is often the first impression potential customers have of your establishment. Effective signage can significantly impact foot traffic and overall business success.</p>
+                                <p><strong>Types of Restaurant Signage:</strong></p>
+                                <ul>
+                                    <li>• Building fascia signs</li>
+                                    <li>• Illuminated channel letters</li>
+                                    <li>• Menu boards and displays</li>
+                                    <li>• Directional signage</li>
+                                    <li>• Promotional A-frame signs</li>
+                                </ul>
+                                <p><strong>Design Considerations:</strong></p>
+                                <p>Restaurant signage should reflect your brand's personality while being easily readable and visually appealing. Consider using colors and fonts that complement your interior design and target demographic.</p>
+                                <p><strong>Lighting Options:</strong></p>
+                                <p>Illuminated signage can significantly enhance visibility, especially during evening hours. LED lighting offers energy efficiency and longevity, making it a cost-effective choice for restaurant owners.</p>
                             </div>
-                            <h2 class="blog-post-title">The Ultimate Guide to LED Signage for Businesses</h2>
-                            <p class="blog-post-excerpt">Everything you need to know about LED signage - from choosing the right type for your business to installation tips and maintenance best practices. Boost your visibility with modern LED solutions.</p>
-                            <a href="#" class="read-more">
-                                Read More
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
-                    </article>
+                        <a href="#" class="read-more" onclick="toggleFullContent(this)">Read More</a>
+                    </div>
+                </article>
 
-                    <article class="blog-post">
-                        <div class="blog-post-image">
-                            <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Healthcare Signage">
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="LED Signage">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2 class="blog-post-title">LED Signage Benefits</h2>
+                        <div class="blog-post-meta">
+                            <i class="fas fa-calendar"></i>
+                            <span>November 10, 2024</span>
+                            <i class="fas fa-user"></i>
+                            <span>Tech Experts</span>
                         </div>
-                        <div class="blog-post-content">
-                            <div class="blog-meta">
-                                <div class="blog-meta-item">
-                                    <i class="fas fa-calendar"></i>
-                                    <span>October 8, 2024</span>
-                                </div>
-                                <div class="blog-meta-item">
-                                    <i class="fas fa-user"></i>
-                                    <span>Healthcare Division</span>
-                                </div>
+                        <div class="blog-post-excerpt">
+                            <p>Why LED signage is the smart choice for modern businesses looking to enhance their visibility.</p>
+                            <div class="blog-post-full" style="display: none;">
+                                <h3>Why LED Signage Is the Future</h3>
+                                <p>LED signage has revolutionized the advertising industry with its numerous advantages over traditional lighting solutions. From energy efficiency to superior visibility, LED technology offers unmatched benefits for businesses of all sizes.</p>
+                                <p><strong>Key Benefits of LED Signage:</strong></p>
+                                <ul>
+                                    <li>• Energy Efficiency: Up to 80% less energy consumption</li>
+                                    <li>• Longevity: 50,000+ hours of operational life</li>
+                                    <li>• Brightness: Superior visibility even in daylight</li>
+                                    <li>• Customization: Full color spectrum and dynamic content</li>
+                                    <li>• Low Maintenance: Minimal upkeep required</li>
+                                </ul>
+                                <p><strong>Cost Analysis:</strong></p>
+                                <p>While LED signage may have higher initial costs, the long-term savings in energy bills and replacement costs make it the most economical choice over time. Most businesses see a return on investment within 2-3 years.</p>
+                                <p><strong>Environmental Impact:</strong></p>
+                                <p>LED signage contains no hazardous materials like mercury found in traditional fluorescent lighting. This makes it environmentally friendly and compliant with increasingly strict regulations.</p>
                             </div>
-                            <h2 class="blog-post-title">Healthcare Signage: Balancing Compliance and Aesthetics</h2>
-                            <p class="blog-post-excerpt">Navigate the complex world of healthcare signage where regulatory requirements meet patient-centered design. Learn how to create effective medical signage that's both compliant and welcoming.</p>
-                            <a href="#" class="read-more">
-                                Read More
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
-                    </article>
-                </div>
+                        <a href="#" class="read-more" onclick="toggleFullContent(this)">Read More</a>
+                    </div>
+                </article>
 
-                <!-- Blog Sidebar -->
-                <aside class="blog-sidebar">
-                    <!-- Categories Widget -->
-                    <div class="sidebar-widget">
-                        <h3>Categories</h3>
-                        <div class="categories-list">
-                            <a href="#" class="category-item">
-                                <span>Signage Trends</span>
-                                <span class="category-count">8</span>
-                            </a>
-                            <a href="#" class="category-item">
-                                <span>Technology</span>
-                                <span class="category-count">6</span>
-                            </a>
-                            <a href="#" class="category-item">
-                                <span>Healthcare</span>
-                                <span class="category-count">4</span>
-                            </a>
-                            <a href="#" class="category-item">
-                                <span>Hospitality</span>
-                                <span class="category-count">7</span>
-                            </a>
-                            <a href="#" class="category-item">
-                                <span>Corporate</span>
-                                <span class="category-count">5</span>
-                            </a>
-                            <a href="#" class="category-item">
-                                <span>Design Tips</span>
-                                <span class="category-count">9</span>
-                            </a>
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Healthcare Signage">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2 class="blog-post-title">Healthcare Signage Compliance</h2>
+                        <div class="blog-post-meta">
+                            <i class="fas fa-calendar"></i>
+                            <span>November 8, 2024</span>
+                            <i class="fas fa-user"></i>
+                            <span>Healthcare Division</span>
                         </div>
+                        <p class="blog-post-excerpt">Navigate healthcare signage requirements with our expert guidance on compliance and design.</p>
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
+                </article>
 
-                    <!-- Recent Posts Widget -->
-                    <div class="sidebar-widget">
-                        <h3>Recent Posts</h3>
-                        <div class="recent-posts">
-                            <a href="#" class="recent-post">
-                                <div class="recent-post-image">
-                                    <img src="assets/store signboard/IMG-20251014-WA0045.jpg" alt="Recent Post">
-                                </div>
-                                <div class="recent-post-content">
-                                    <h4>Understanding Signage Materials</h4>
-                                    <p>September 28, 2024</p>
-                                </div>
-                            </a>
-                            <a href="#" class="recent-post">
-                                <div class="recent-post-image">
-                                    <img src="assets/hotels and restaurent/IMG-20251014-WA0072.jpg" alt="Recent Post">
-                                </div>
-                                <div class="recent-post-content">
-                                    <h4>Cafe Signage Design Ideas</h4>
-                                    <p>September 25, 2024</p>
-                                </div>
-                            </a>
-                            <a href="#" class="recent-post">
-                                <div class="recent-post-image">
-                                    <img src="assets/building and infra/IMG-20251014-WA0088.jpg" alt="Recent Post">
-                                </div>
-                                <div class="recent-post-content">
-                                    <h4>Large Format Signage Projects</h4>
-                                    <p>September 20, 2024</p>
-                                </div>
-                            </a>
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <img src="assets/store signboard/IMG-20251014-WA0045.jpg" alt="Retail Signage">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2 class="blog-post-title">Retail Store Signage Tips</h2>
+                        <div class="blog-post-meta">
+                            <i class="fas fa-calendar"></i>
+                            <span>November 5, 2024</span>
+                            <i class="fas fa-user"></i>
+                            <span>Sales Team</span>
                         </div>
+                        <p class="blog-post-excerpt">How effective signage can boost retail store sales and customer foot traffic.</p>
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
+                </article>
 
-                    <!-- Tags Widget -->
-                    <div class="sidebar-widget">
-                        <h3>Popular Tags</h3>
-                        <div class="tags-cloud">
-                            <a href="#" class="tag">LED Signs</a>
-                            <a href="#" class="tag">3D Letters</a>
-                            <a href="#" class="tag">Digital Display</a>
-                            <a href="#" class="tag">Wayfinding</a>
-                            <a href="#" class="tag">Brand Identity</a>
-                            <a href="#" class="tag">Sustainable</a>
-                            <a href="#" class="tag">Innovation</a>
-                            <a href="#" class="tag">Design</a>
-                            <a href="#" class="tag">Installation</a>
-                            <a href="#" class="tag">Maintenance</a>
+                <article class="blog-post">
+                    <div class="blog-post-image">
+                        <img src="assets/co operative office/IMG-20251014-WA0029.jpg" alt="Office Signage">
+                    </div>
+                    <div class="blog-post-content">
+                        <h2 class="blog-post-title">Office Signage Solutions</h2>
+                        <div class="blog-post-meta">
+                            <i class="fas fa-calendar"></i>
+                            <span>November 2, 2024</span>
+                            <i class="fas fa-user"></i>
+                            <span>Design Team</span>
                         </div>
+                        <p class="blog-post-excerpt">Professional signage solutions that enhance your office environment and brand identity.</p>
+                        <a href="#" class="read-more">
+                            Read More
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-
-                    <!-- Newsletter Widget -->
-                    <div class="sidebar-widget">
-                        <h3>Newsletter</h3>
-                        <p style="margin-bottom: 20px; color: var(--text-light); line-height: 1.5;">
-                            Subscribe to get the latest insights and industry updates delivered to your inbox.
-                        </p>
-                        <form class="newsletter-form">
-                            <input type="email" class="newsletter-input" placeholder="Enter your email" required>
-                            <button type="submit" class="newsletter-button">Subscribe</button>
-                        </form>
-                    </div>
-                </aside>
+                </article>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="blog-cta">
+        <div class="container">
+            <h2>Need Expert Signage Advice?</h2>
+            <p>Our team of professionals is ready to help transform your business visibility</p>
+            <a href="contact.html" class="cta-button">Get Free Consultation</a>
         </div>
     </section>
 
@@ -629,11 +422,7 @@
                     </div>
                     <p>Your trusted partner for premium advertising solutions and signboard manufacturing. Transform your business visibility with our expert services.</p>
                     <div class="footer-social">
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -642,8 +431,8 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="index.html">About Us</a></li>
                         <li><a href="index.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="store-signboard.html">Gallery</a></li>
+                        <li><a href="index.html">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -656,79 +445,12 @@
                         <li><a href="index.html">Installation Services</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <p>Stay connected with us for latest updates and projects</p>
-                    <div class="footer-social">
-                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Board Bazaar. All rights reserved. | Designed with passion for advertising excellence</p>
             </div>
         </div>
     </footer>
-
-    <script src="js/script.js"></script>
-    <script>
-        // Newsletter form handling
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            
-            // Create success message
-            const successMessage = document.createElement('div');
-            successMessage.style.cssText = `
-                background: #d4edda;
-                color: #155724;
-                padding: 15px;
-                border-radius: 8px;
-                margin-top: 15px;
-                text-align: center;
-                font-weight: 500;
-                border: 1px solid #c3e6cb;
-            `;
-            successMessage.textContent = 'Thank you for subscribing! Check your email for confirmation.';
-            
-            // Show success message
-            this.appendChild(successMessage);
-            
-            // Reset form
-            this.reset();
-            
-            // Remove message after 5 seconds
-            setTimeout(() => {
-                successMessage.remove();
-            }, 5000);
-        });
-
-        // Blog post interactions
-        document.querySelectorAll('.blog-post').forEach(post => {
-            post.addEventListener('click', function(e) {
-                // Don't trigger if clicking on a link
-                if (e.target.tagName === 'A') return;
-                
-                // Add a subtle animation on click
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
-            });
-        });
-
-        // Read more link interactions
-        document.querySelectorAll('.read-more').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('This would navigate to the full blog post in a real implementation.');
-            });
-        });
-    </script>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/917800808870?text=Hi%20Board%20Bazaar,%20I'm%20interested%20in%20your%20signboard%20services" 
@@ -737,5 +459,61 @@
        aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Toggle full content for blog posts
+        function toggleFullContent(readMoreBtn) {
+            const postContent = readMoreBtn.parentElement;
+            const excerpt = postContent.querySelector('.blog-post-excerpt');
+            const fullContent = postContent.querySelector('.blog-post-full');
+            
+            if (fullContent.style.display === 'none') {
+                // Show full content, hide excerpt
+                fullContent.style.display = 'block';
+                readMoreBtn.textContent = 'Read Less';
+                readMoreBtn.classList.add('read-less');
+                
+                // Smooth scroll to the top of the post
+                postContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                // Show excerpt, hide full content
+                fullContent.style.display = 'none';
+                readMoreBtn.textContent = 'Read More';
+                readMoreBtn.classList.remove('read-less');
+            }
+        }
+        
+        // Add CSS for read-less state
+        const style = document.createElement('style');
+        style.textContent = `
+            .read-more.read-less {
+                color: var(--secondary-orange);
+                transform: translateX(-5px);
+            }
+            
+            .read-more.read-less::before {
+                content: '↑';
+                margin-right: 5px;
+            }
+            
+            .read-more.read-less::after {
+                content: '';
+            }
+            
+            .blog-post-full {
+                border-top: 2px solid var(--primary-orange);
+                padding-top: 20px;
+                margin-top: 20px;
+                animation: fadeIn 0.3s ease-in;
+            }
+            
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
