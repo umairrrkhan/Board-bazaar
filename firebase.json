@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "board-bazaar",
+    "public": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
