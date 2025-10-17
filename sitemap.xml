@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <!-- Homepage -->
+    <url>
+        <loc>https://boardbazaar.in/</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://boardbazaar.in/assets/logo.jpg</image:loc>
+            <image:title>Board Bazaar - Professional Signage Solutions</image:title>
+            <image:caption>Expert signage and advertising solutions</image:caption>
+        </image:image>
+    </url>
+
+    <!-- About Page -->
+    <url>
+        <loc>https://boardbazaar.in/about.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Contact Page -->
+    <url>
+        <loc>https://boardbazaar.in/contact.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Gallery Page -->
+    <url>
+        <loc>https://boardbazaar.in/gallery.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Store Page -->
+    <url>
+        <loc>https://boardbazaar.in/store.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Blog Page -->
+    <url>
+        <loc>https://boardbazaar.in/blog.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Store Signboard Category -->
+    <url>
+        <loc>https://boardbazaar.in/store-signboard.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Medical Hospital Signage -->
+    <url>
+        <loc>https://boardbazaar.in/medical-hospital.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Cafe Restaurant Signage -->
+    <url>
+        <loc>https://boardbazaar.in/cafe-restaurant.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Co-operative Office Signage -->
+    <url>
+        <loc>https://boardbazaar.in/co-operative-office.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Building Infrastructure Signage -->
+    <url>
+        <loc>https://boardbazaar.in/building-infra.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+</urlset>
