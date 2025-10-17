@@ -505,8 +505,64 @@
     </style>
 </head>
 <body>
-    <!-- Main Header -->
-    <header class="main-header">
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="mobile-header-content">
+            <h1 class="mobile-title">Board Bazaar</h1>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <h2>Board Bazaar</h2>
+            <button class="close-sidebar" onclick="toggleMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-quick-links">
+                <h3>Quick Links</h3>
+                <a href="about.html">About</a>
+                <a href="store-signboard.html">Signage</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="sidebar-nav">
+                <h3>Navigation</h3>
+                <a href="index.html">Home</a>
+                <a href="store.html">Store</a>
+                <a href="store-signboard.html">Signage</a>
+                <h4 style="margin: 15px 0 10px 0; color: var(--primary-orange); font-size: 0.95rem;">Sign Category</h4>
+                <a href="medical-hospital.html" style="padding-left: 25px; font-size: 0.9rem;">• Hospital Medical</a>
+                <a href="cafe-restaurant.html" style="padding-left: 25px; font-size: 0.9rem;">• Cafe Restaurant</a>
+                <a href="co-operative-office.html" style="padding-left: 25px; font-size: 0.9rem;">• Corporate Office</a>
+                <a href="store-signboard.html" style="padding-left: 25px; font-size: 0.9rem;">• Retail Store</a>
+                <a href="building-infra.html" style="padding-left: 25px; font-size: 0.9rem;">• Infrastructure</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="sidebar-contact">
+                <h3>Contact</h3>
+                <div class="phone-number">
+                    <i class="fas fa-phone"></i>
+                    <span class="copy-number" onclick="copyNumber('+91 78008 08870')">+91 78008 08870</span>
+                </div>
+                <div class="phone-number">
+                    <i class="fas fa-phone"></i>
+                    <span class="copy-number" onclick="copyNumber('+91 86527 37065')">+91 86527 37065</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header (Desktop only) -->
+    <header class="main-header desktop-only">
         <div class="container">
             <div class="header-top">
                 <div class="logo">
@@ -538,8 +594,8 @@
         </div>
     </header>
 
-    <!-- Navigation Header -->
-    <header class="nav-header">
+    <!-- Navigation Header (Desktop only) -->
+    <header class="nav-header desktop-only">
         <div class="container">
             <nav>
                 <ul>
@@ -859,6 +915,24 @@
 
     <script src="js/script.js"></script>
     <script>
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('mobileSidebar');
+            sidebar.classList.toggle('active');
+            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('mobileSidebar');
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            
+            if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
+                sidebar.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

@@ -95,7 +95,6 @@ window.showCopiedMessage = function(messageText) {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
-    initHeroCarousel();
     initNavigation();
     initScrollEffects();
     initFAQ();
