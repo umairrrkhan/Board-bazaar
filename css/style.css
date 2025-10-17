@@ -908,6 +908,7 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
 }
+.quick-links a {
     background: rgba(255,255,255,0.08);
     transition: all 0.3s ease;
     text-transform: capitalize;
@@ -3256,6 +3257,7 @@ footer {
         transform: scale(1.2); 
     }
 }
+@keyframes pulse {
     0% {
         transform: scale(1);
     }
