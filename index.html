@@ -7,6 +7,332 @@
     <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Index Page Mobile Enhancements */
+        @media (max-width: 767px) {
+            /* Hero Section Mobile */
+            .hero-section {
+                height: 60vh;
+                min-height: 450px;
+            }
+            
+            .slide-content {
+                padding: 30px 20px 25px;
+                text-align: center;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
+            }
+            
+            .slide-content h2 {
+                font-size: 22px;
+                line-height: 1.2;
+                margin-bottom: 8px;
+                font-weight: 700;
+            }
+            
+            .slide-content p {
+                font-size: 13px;
+                line-height: 1.4;
+                max-width: 90%;
+                margin: 0 auto;
+                opacity: 0.95;
+            }
+            
+            .carousel-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 12px;
+                opacity: 0.8;
+            }
+            
+            .prev-btn {
+                left: 8px;
+            }
+            
+            .next-btn {
+                right: 8px;
+            }
+            
+            .carousel-indicators {
+                bottom: 12px;
+                gap: 6px;
+            }
+            
+            .indicator {
+                width: 6px;
+                height: 6px;
+            }
+            
+            /* About Section Mobile */
+            .about-section {
+                padding: 40px 0;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .about-title {
+                font-size: 22px;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
+            .about-description p {
+                font-size: 14px;
+                line-height: 1.6;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+            
+            .about-right {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .sign-category {
+                background: var(--white);
+                border-radius: 15px;
+                padding: 15px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            }
+            
+            .category-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+                text-align: center;
+                color: var(--primary-blue);
+            }
+            
+            .category-image img {
+                height: 180px;
+                border-radius: 10px;
+            }
+            
+            /* CTA Section Mobile */
+            .cta-section {
+                padding: 50px 0;
+            }
+            
+            .cta-section h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                line-height: 1.3;
+                padding: 0 15px;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 14px;
+                border-radius: 25px;
+            }
+            
+            /* Why Choose Section Mobile */
+            .why-choose {
+                padding: 50px 0;
+            }
+            
+            .section-header {
+                margin-bottom: 35px;
+            }
+            
+            .section-header h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            
+            .section-subtitle {
+                font-size: 15px;
+            }
+            
+            .why-points {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+            
+            .why-point {
+                padding: 25px 20px;
+                border-radius: 15px;
+                text-align: center;
+            }
+            
+            .why-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+            
+            .why-content h3 {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+            
+            .why-point p {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+            
+            .why-number {
+                font-size: 32px;
+                top: 12px;
+                right: 12px;
+            }
+            
+            .service-tiles {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .service-tile {
+                height: 180px;
+                border-radius: 12px;
+            }
+            
+            .service-overlay {
+                padding: 20px 15px 12px;
+            }
+            
+            .service-overlay h4 {
+                font-size: 15px;
+                margin-bottom: 4px;
+            }
+            
+            .service-overlay p {
+                font-size: 12px;
+            }
+            
+            /* FAQ Section Mobile */
+            .faq-section {
+                padding: 50px 0;
+            }
+            
+            .section-header h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            
+            .faq-tiles {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .faq-tile {
+                padding: 20px 15px;
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+                border-radius: 12px;
+            }
+            
+            .faq-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+            }
+            
+            .faq-tile h3 {
+                font-size: 15px;
+                margin-bottom: 6px;
+            }
+            
+            .faq-tile p {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+            
+            /* Footer Mobile */
+            footer {
+                padding: 40px 0 15px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+            
+            .footer-logo {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .footer-logo img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            
+            .footer-logo h3 {
+                font-size: 20px;
+                margin: 0;
+            }
+            
+            .footer-section p {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+            
+            .footer-section h3 {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+            
+            .footer-section ul li a {
+                font-size: 13px;
+            }
+            
+            .footer-bottom {
+                margin-top: 15px;
+                padding-top: 15px;
+            }
+            
+            .footer-bottom p {
+                font-size: 11px;
+            }
+            
+            /* WhatsApp Button Mobile */
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+                bottom: 15px;
+                right: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slide-content h2 {
+                font-size: 20px;
+            }
+            
+            .slide-content p {
+                font-size: 12px;
+            }
+            
+            .cta-section h2 {
+                font-size: 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 22px;
+            }
+            
+            .why-point {
+                padding: 20px 15px;
+            }
+            
+            .service-tile {
+                height: 160px;
+            }
+        }
+    </style>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
@@ -184,9 +510,9 @@
                 <div class="about-left">
                     <h3 class="about-title">About Board Bazaar</h3>
                     <div class="about-description">
-                        <p>Board Bazaar brings over 10 years of expertise in crafting exceptional custom interior and exterior signs that transform business spaces into powerful brand statements. Our specialized portfolio includes premium acrylic signage, dynamic LED displays, striking 3D metal letters, and comprehensive sign solutions tailored to your unique business needs.</p>
+                        <p>Board Bazaar brings over 10 years of expertise in crafting exceptional custom interior and exterior signs that transform business spaces into powerful brand statements.</p>
                         
-                        <p>We pride ourselves on using only the highest quality materials combined with our experienced team's craftsmanship to deliver sign products that stand the test of time. From concept to installation, every project reflects our commitment to excellence, attention to detail, and understanding of how effective signage drives business growth and brand recognition.</p>
+                        <p>We pride ourselves on using only the highest quality materials combined with our experienced team's craftsmanship to deliver sign products that stand the test of time.</p>
                     </div>
                 </div>
                 

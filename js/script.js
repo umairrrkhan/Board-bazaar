@@ -105,33 +105,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Mobile Menu Functionality
 function initMobileMenu() {
-    // Create mobile menu toggle button
-    const navHeader = document.querySelector('.nav-header');
-    const nav = navHeader.querySelector('nav');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
     
-    if (window.innerWidth <= 768) {
-        const mobileToggle = document.createElement('button');
-        mobileToggle.className = 'mobile-menu-toggle';
-        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        mobileToggle.setAttribute('aria-label', 'Toggle mobile menu');
-        
-        navHeader.querySelector('.container').insertBefore(mobileToggle, nav);
-        
-        mobileToggle.addEventListener('click', function() {
-            nav.classList.toggle('mobile-open');
-            this.innerHTML = nav.classList.contains('mobile-open') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!navHeader.contains(e.target) && nav.classList.contains('mobile-open')) {
-                nav.classList.remove('mobile-open');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        });
-    }
+    if (!mobileMenuBtn || !mobileSidebar) return;
+    
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!mobileSidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileSidebar.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close sidebar when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileSidebar.classList.contains('active')) {
+            mobileSidebar.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 767 && mobileSidebar.classList.contains('active')) {
+            mobileSidebar.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
 }
 
 // Dropdown Menu Functionality
@@ -203,9 +204,36 @@ function initNavigation() {
     initMobileMenu();
 }
 
+// Mobile Menu Functionality
 function initMobileMenu() {
-    // Placeholder for mobile menu functionality
-    // Can be expanded when mobile menu is added
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    
+    if (!mobileMenuBtn || !mobileSidebar) return;
+    
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!mobileSidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileSidebar.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close sidebar when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileSidebar.classList.contains('active')) {
+            mobileSidebar.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 767 && mobileSidebar.classList.contains('active')) {
+            mobileSidebar.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
 }
 
 // Scroll Effects
