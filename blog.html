@@ -3,30 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Board Bazaar</title>
+    <title>Blog - Board Bazaar | Signage Expert Tips & Industry Insights</title>
+    <meta name="description" content="Expert insights, tips, and latest trends in signage, advertising, and brand visibility from Board Bazaar - Mumbai's leading signboard manufacturer. Learn about LED signs, custom signage, and business growth strategies.">
+    <meta name="keywords" content="signage blog, board bazaar blog, signboard tips, advertising insights, LED signage guide, custom signs, brand visibility, signage trends, business marketing">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://boardbazaar.in/blog.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Blog - Board Bazaar | Signage Expert Tips & Industry Insights">
+    <meta property="og:description" content="Expert insights and latest trends in signage and advertising from Mumbai's leading signboard manufacturer">
+    <meta property="og:url" content="https://boardbazaar.in/blog.html">
+    <meta property="og:type" content="website">
     <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* Simple Blog Styles */
+        /* Enhanced Blog Styles */
         .blog-hero {
             background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
-            color: white;
+            color: var(--white);
             padding: 120px 0 80px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 50px;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .blog-hero h1 {
             font-size: 42px;
             font-weight: 700;
             margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .blog-hero p {
-            font-size: 18px;
+            font-size: 20px;
             opacity: 0.95;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .blog-categories {
+            background: var(--gray-light);
+            padding: 40px 0;
+            position: sticky;
+            top: 50px;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .category-btn {
+            background: var(--white);
+            border: 2px solid var(--gray-medium);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .category-btn:hover {
+            border-color: var(--primary-orange);
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .category-btn.active {
+            background: var(--primary-orange);
+            color: var(--white);
+            border-color: var(--primary-orange);
         }
 
         .blog-main {
@@ -45,80 +121,222 @@
 
         .blog-post {
             background: var(--white);
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
             border: 1px solid var(--gray-medium);
+            position: relative;
         }
 
         .blog-post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .blog-post::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--secondary-orange));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover::before {
+            transform: scaleX(1);
         }
 
         .blog-post-image {
             width: 100%;
             height: 250px;
             overflow: hidden;
+            position: relative;
         }
 
         .blog-post-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.6s ease;
         }
 
         .blog-post:hover .blog-post-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
+        }
+
+        .blog-category-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-orange);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .blog-post-content {
-            padding: 25px;
+            padding: 30px;
         }
 
         .blog-post-title {
             font-size: 22px;
-            font-weight: 600;
-            color: var(--primary-blue);
+            font-weight: 700;
+            color: var(--text-dark);
             margin-bottom: 15px;
             line-height: 1.3;
+            transition: color 0.3s ease;
+        }
+
+        .blog-post:hover .blog-post-title {
+            color: var(--primary-orange);
         }
 
         .blog-post-meta {
             font-size: 14px;
             color: var(--text-light);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .blog-post-meta i {
             color: var(--primary-orange);
+            margin-right: 5px;
         }
-        
+
+        .blog-post-excerpt {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--secondary-orange);
+            transform: translateX(5px);
+        }
+
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .newsletter-content h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            background: rgba(255,255,255,0.95);
+        }
+
+        .newsletter-button {
+            background: var(--text-dark);
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: var(--text-light);
+            transform: translateY(-2px);
+        }
+
         /* Blog Mobile Responsive */
         @media (max-width: 767px) {
             .blog-hero {
-                padding: 50px 0 35px;
+                padding: 80px 0 60px;
             }
             
             .blog-hero h1 {
-                font-size: 26px;
+                font-size: 28px;
                 line-height: 1.2;
-                margin-bottom: 12px;
+                margin-bottom: 15px;
             }
             
             .blog-hero p {
-                font-size: 15px;
-                line-height: 1.5;
+                font-size: 16px;
                 padding: 0 20px;
             }
             
+            .blog-categories {
+                padding: 30px 0;
+                position: static;
+            }
+            
+            .category-filter {
+                padding: 0 15px;
+                gap: 10px;
+            }
+            
+            .category-btn {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+            
             .blog-main {
-                padding: 40px 0;
+                padding: 50px 0;
             }
             
             .blog-grid {
@@ -128,11 +346,11 @@
             }
             
             .blog-post {
-                border-radius: 12px;
+                border-radius: 15px;
             }
             
             .blog-post-image {
-                height: 180px;
+                height: 200px;
             }
             
             .blog-post-content {
@@ -145,171 +363,36 @@
             }
             
             .blog-post-meta {
-                font-size: 12px;
-                gap: 10px;
+                font-size: 13px;
+                gap: 15px;
             }
             
             .blog-post-excerpt {
-                font-size: 13px;
-                line-height: 1.5;
+                font-size: 14px;
                 margin-bottom: 15px;
             }
             
-            .read-more {
-                font-size: 13px;
-                padding: 8px 16px;
+            .newsletter-section {
+                padding: 60px 0;
             }
             
-            /* Footer Mobile */
-            footer {
-                padding: 35px 0 15px;
+            .newsletter-content h2 {
+                font-size: 24px;
             }
             
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                text-align: center;
-            }
-            
-            .footer-logo {
-                justify-content: center;
-                margin-bottom: 8px;
-            }
-            
-            .footer-logo img {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .footer-logo h3 {
-                font-size: 18px;
-            }
-            
-            .footer-section p {
-                font-size: 13px;
-                line-height: 1.5;
-            }
-            
-            .footer-section h3 {
-                font-size: 16px;
-                margin-bottom: 12px;
-            }
-            
-            .footer-section ul li a {
-                font-size: 13px;
-            }
-            
-            .footer-bottom {
-                margin-top: 15px;
-                padding-top: 15px;
-            }
-            
-            .footer-bottom p {
-                font-size: 11px;
-            }
-            
-            /* WhatsApp Button Mobile */
-            .whatsapp-float {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-                bottom: 15px;
-                right: 12px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .blog-hero h1 {
-                font-size: 22px;
-            }
-            
-            .blog-hero p {
-                font-size: 14px;
-            }
-            
-            .blog-post-image {
-                height: 150px;
-            }
-            
-            .blog-post-content {
-                padding: 15px 12px;
-            }
-            
-            .blog-post-title {
+            .newsletter-content p {
                 font-size: 16px;
             }
             
-            .blog-post-excerpt {
-                font-size: 12px;
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
             }
             
-            .read-more {
-                font-size: 12px;
-                padding: 6px 12px;
+            .newsletter-input,
+            .newsletter-button {
+                width: 100%;
             }
-        }
-
-        .blog-post-excerpt {
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
-
-        .read-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary-orange);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .read-more:hover {
-            color: var(--secondary-orange);
-            transform: translateX(5px);
-        }
-
-        .blog-cta {
-            text-align: center;
-            padding: 80px 0;
-            background: var(--gray-light);
-        }
-
-        .blog-cta h2 {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-        }
-
-        .blog-cta p {
-            font-size: 18px;
-            color: var(--text-light);
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--primary-orange);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
-            background: var(--secondary-orange);
         }
     </style>
 </head>
@@ -341,6 +424,7 @@
                 <a href="about.html">About</a>
                 <a href="store-signboard.html">Signage</a>
                 <a href="gallery.html">Gallery</a>
+                <a href="blog.html" class="active">Blog</a>
                 <a href="contact.html">Contact</a>
             </div>
             <div class="sidebar-nav">
@@ -385,9 +469,10 @@
                 </div>
                 <div class="quick-contact">
                     <div class="quick-links">
-                        <a href="index.html">About</a>
-                        <a href="store.html">Signage</a>
-                        <a href="store-signboard.html">Gallery</a>
+                        <a href="about.html">About</a>
+                        <a href="store-signboard.html">Signage</a>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="blog.html" class="active">Blog</a>
                         <a href="contact.html">Contact</a>
                     </div>
                     <div class="phone-number">
@@ -406,14 +491,14 @@
         </div>
     </header>
 
-    <!-- Navigation Header -->
+    <!-- Navigation Header (Desktop only) -->
     <header class="nav-header desktop-only">
         <div class="container">
             <nav>
                 <ul>
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="store.html" class="nav-link">Store</a></li>
-                    <li><a href="signage.html" class="nav-link">Signage</a></li>
+                    <li><a href="store-signboard.html" class="nav-link">Signage</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle">Sign Category <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
@@ -431,192 +516,249 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Blog Hero Section -->
     <section class="blog-hero">
         <div class="container">
-            <h1>Our Blog</h1>
-            <p>Expert insights and trends in signage and advertising</p>
+            <div class="blog-hero-content">
+                <h1>Signage Insights & Expert Tips</h1>
+                <p>Discover the latest trends, expert advice, and industry insights from Mumbai's leading signage professionals</p>
+            </div>
         </div>
     </section>
 
-    <!-- Blog Main Section -->
+    <!-- Blog Categories -->
+    <section class="blog-categories">
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">All Articles</button>
+            <button class="category-btn" data-category="trends">Industry Trends</button>
+            <button class="category-btn" data-category="tips">Expert Tips</button>
+            <button class="category-btn" data-category="case-studies">Case Studies</button>
+            <button class="category-btn" data-category="technology">Technology</button>
+            <button class="category-btn" data-category="business">Business Growth</button>
+        </div>
+    </section>
+
+    <!-- Blog Main Content -->
     <section class="blog-main">
         <div class="container">
             <div class="blog-grid">
-                <article class="blog-post">
+                <!-- Blog Post 1 -->
+                <article class="blog-post" data-category="trends">
                     <div class="blog-post-image">
-                        <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="Signage Trends">
+                        <img src="assets/store signboard/IMG-20251014-WA0037.jpg" alt="2024 Signage Trends">
+                        <span class="blog-category-tag">Trends</span>
                     </div>
                     <div class="blog-post-content">
-                        <h2 class="blog-post-title">Top Signage Trends for 2024</h2>
+                        <h2 class="blog-post-title">Top 7 Signage Trends Transforming Business in 2024</h2>
                         <div class="blog-post-meta">
-                            <i class="fas fa-calendar"></i>
-                            <span>November 15, 2024</span>
-                            <i class="fas fa-user"></i>
-                            <span>Board Bazaar Team</span>
+                            <span><i class="fas fa-calendar"></i> November 18, 2024</span>
+                            <span><i class="fas fa-user"></i> Board Bazaar Team</span>
+                            <span><i class="fas fa-clock"></i> 5 min read</span>
                         </div>
                         <div class="blog-post-excerpt">
-                            <p>Discover the latest trends in signage that will transform your business visibility and customer engagement.</p>
-                            <div class="blog-post-full" style="display: none;">
-                                <h3>Complete Guide to 2024 Signage Trends</h3>
-                                <p>In today's competitive business environment, effective signage is more important than ever. The year 2024 brings exciting new trends that are revolutionizing how businesses communicate with their customers.</p>
-                                <p><strong>Key Trends Include:</strong></p>
-                                <ul>
-                                    <li>• Sustainable and eco-friendly signage materials</li>
-                                    <li>• Digital integration with traditional signage</li>
-                                    <li>• Interactive and touch-sensitive displays</li>
-                                    <li>• Minimalist design with maximum impact</li>
-                                    <li>• Smart signage with real-time updates</li>
-                                </ul>
-                                <p><strong>Why These Trends Matter:</strong></p>
-                                <p>Modern consumers expect businesses to be environmentally conscious while maintaining professional appeal. The integration of technology into traditional signage allows for dynamic content that can be updated in real-time, making your marketing efforts more effective and responsive.</p>
-                                <p><strong>Implementation Tips:</strong></p>
-                                <p>When adopting these trends, consider your specific industry requirements and target audience. While some trends may work better for retail environments, others might be more suitable for corporate offices or healthcare facilities.</p>
-                            </div>
+                            <p>Discover the cutting-edge signage trends that are revolutionizing how businesses connect with customers in 2024. From sustainable materials to smart technology integration.</p>
+                            <p>Stay ahead of the competition with insights into minimalist designs, interactive displays, and eco-friendly solutions that are shaping the future of business signage.</p>
                         </div>
-                        <a href="#" class="read-more" onclick="toggleFullContent(this)">Read More</a>
                     </div>
                 </article>
 
-                <article class="blog-post">
+                <!-- Blog Post 2 -->
+                <article class="blog-post" data-category="tips">
                     <div class="blog-post-image">
-                        <img src="assets/hotels and restaurent/IMG-20251014-WA0072.jpg" alt="Restaurant Signage">
+                        <img src="assets/hotels and restaurent/IMG-20251014-WA0066.jpg" alt="Restaurant Signage Tips">
+                        <span class="blog-category-tag">Tips</span>
                     </div>
                     <div class="blog-post-content">
-                        <h2 class="blog-post-title">Restaurant Signage Guide</h2>
+                        <h2 class="blog-post-title">Complete Guide to Restaurant Signage That Drives Sales</h2>
                         <div class="blog-post-meta">
-                            <i class="fas fa-calendar"></i>
-                            <span>November 12, 2024</span>
-                            <i class="fas fa-user"></i>
-                            <span>Marketing Team</span>
+                            <span><i class="fas fa-calendar"></i> November 16, 2024</span>
+                            <span><i class="fas fa-user"></i> Marketing Experts</span>
+                            <span><i class="fas fa-clock"></i> 7 min read</span>
                         </div>
                         <div class="blog-post-excerpt">
-                            <p>Essential signage solutions that make your restaurant stand out and attract more customers.</p>
-                            <div class="blog-post-full" style="display: none;">
-                                <h3>Complete Restaurant Signage Guide</h3>
-                                <p>Your restaurant's signage is often the first impression potential customers have of your establishment. Effective signage can significantly impact foot traffic and overall business success.</p>
-                                <p><strong>Types of Restaurant Signage:</strong></p>
-                                <ul>
-                                    <li>• Building fascia signs</li>
-                                    <li>• Illuminated channel letters</li>
-                                    <li>• Menu boards and displays</li>
-                                    <li>• Directional signage</li>
-                                    <li>• Promotional A-frame signs</li>
-                                </ul>
-                                <p><strong>Design Considerations:</strong></p>
-                                <p>Restaurant signage should reflect your brand's personality while being easily readable and visually appealing. Consider using colors and fonts that complement your interior design and target demographic.</p>
-                                <p><strong>Lighting Options:</strong></p>
-                                <p>Illuminated signage can significantly enhance visibility, especially during evening hours. LED lighting offers energy efficiency and longevity, making it a cost-effective choice for restaurant owners.</p>
-                            </div>
+                            <p>Learn how strategic restaurant signage can increase foot traffic by up to 40%. From menu boards to building signs, discover proven techniques that convert passersby into loyal customers.</p>
+                            <p>Master the art of visual storytelling through signage that reflects your restaurant's unique brand identity while maximizing visibility and customer engagement.</p>
                         </div>
-                        <a href="#" class="read-more" onclick="toggleFullContent(this)">Read More</a>
                     </div>
                 </article>
 
-                <article class="blog-post">
+                <!-- Blog Post 3 -->
+                <article class="blog-post" data-category="technology">
                     <div class="blog-post-image">
-                        <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="LED Signage">
+                        <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="LED Signage Technology">
+                        <span class="blog-category-tag">Technology</span>
                     </div>
                     <div class="blog-post-content">
-                        <h2 class="blog-post-title">LED Signage Benefits</h2>
+                        <h2 class="blog-post-title">LED vs Traditional Signage: Complete Cost Analysis</h2>
                         <div class="blog-post-meta">
-                            <i class="fas fa-calendar"></i>
-                            <span>November 10, 2024</span>
-                            <i class="fas fa-user"></i>
-                            <span>Tech Experts</span>
+                            <span><i class="fas fa-calendar"></i> November 14, 2024</span>
+                            <span><i class="fas fa-user"></i> Tech Specialists</span>
+                            <span><i class="fas fa-clock"></i> 6 min read</span>
                         </div>
                         <div class="blog-post-excerpt">
-                            <p>Why LED signage is the smart choice for modern businesses looking to enhance their visibility.</p>
-                            <div class="blog-post-full" style="display: none;">
-                                <h3>Why LED Signage Is the Future</h3>
-                                <p>LED signage has revolutionized the advertising industry with its numerous advantages over traditional lighting solutions. From energy efficiency to superior visibility, LED technology offers unmatched benefits for businesses of all sizes.</p>
-                                <p><strong>Key Benefits of LED Signage:</strong></p>
-                                <ul>
-                                    <li>• Energy Efficiency: Up to 80% less energy consumption</li>
-                                    <li>• Longevity: 50,000+ hours of operational life</li>
-                                    <li>• Brightness: Superior visibility even in daylight</li>
-                                    <li>• Customization: Full color spectrum and dynamic content</li>
-                                    <li>• Low Maintenance: Minimal upkeep required</li>
-                                </ul>
-                                <p><strong>Cost Analysis:</strong></p>
-                                <p>While LED signage may have higher initial costs, the long-term savings in energy bills and replacement costs make it the most economical choice over time. Most businesses see a return on investment within 2-3 years.</p>
-                                <p><strong>Environmental Impact:</strong></p>
-                                <p>LED signage contains no hazardous materials like mercury found in traditional fluorescent lighting. This makes it environmentally friendly and compliant with increasingly strict regulations.</p>
-                            </div>
+                            <p>Is LED signage worth the investment? Our comprehensive analysis breaks down costs, ROI, and long-term benefits compared to traditional lighting solutions.</p>
+                            <p>Discover why businesses are making the switch to LED technology and how it impacts energy consumption, maintenance costs, and overall brand visibility.</p>
                         </div>
-                        <a href="#" class="read-more" onclick="toggleFullContent(this)">Read More</a>
                     </div>
                 </article>
 
-                <article class="blog-post">
+                <!-- Blog Post 4 -->
+                <article class="blog-post" data-category="case-studies">
                     <div class="blog-post-image">
-                        <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Healthcare Signage">
+                        <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Hospital Signage Case Study">
+                        <span class="blog-category-tag">Case Study</span>
                     </div>
                     <div class="blog-post-content">
-                        <h2 class="blog-post-title">Healthcare Signage Compliance</h2>
+                        <h2 class="blog-post-title">How Strategic Signage Transformed a Mumbai Hospital</h2>
                         <div class="blog-post-meta">
-                            <i class="fas fa-calendar"></i>
-                            <span>November 8, 2024</span>
-                            <i class="fas fa-user"></i>
-                            <span>Healthcare Division</span>
+                            <span><i class="fas fa-calendar"></i> November 12, 2024</span>
+                            <span><i class="fas fa-user"></i> Case Studies Team</span>
+                            <span><i class="fas fa-clock"></i> 8 min read</span>
                         </div>
-                        <p class="blog-post-excerpt">Navigate healthcare signage requirements with our expert guidance on compliance and design.</p>
-                        <a href="#" class="read-more">
-                            Read More
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="blog-post-excerpt">
+                            <p>Dive deep into our recent hospital signage project that improved patient navigation by 60% and enhanced the overall healthcare experience. Learn the strategies behind this successful transformation.</p>
+                            <p>Explore how thoughtful signage design can significantly improve operational efficiency in healthcare settings while maintaining compliance with industry regulations.</p>
+                        </div>
                     </div>
                 </article>
 
-                <article class="blog-post">
+                <!-- Blog Post 5 -->
+                <article class="blog-post" data-category="business">
                     <div class="blog-post-image">
-                        <img src="assets/store signboard/IMG-20251014-WA0045.jpg" alt="Retail Signage">
+                        <img src="assets/co operative office/IMG-20251014-WA0004.jpg" alt="Business Growth Signage">
+                        <span class="blog-category-tag">Business</span>
                     </div>
                     <div class="blog-post-content">
-                        <h2 class="blog-post-title">Retail Store Signage Tips</h2>
+                        <h2 class="blog-post-title">Signage Investment: ROI That Every Business Owner Should Know</h2>
                         <div class="blog-post-meta">
-                            <i class="fas fa-calendar"></i>
-                            <span>November 5, 2024</span>
-                            <i class="fas fa-user"></i>
-                            <span>Sales Team</span>
+                            <span><i class="fas fa-calendar"></i> November 10, 2024</span>
+                            <span><i class="fas fa-user"></i> Business Analysts</span>
+                            <span><i class="fas fa-clock"></i> 5 min read</span>
                         </div>
-                        <p class="blog-post-excerpt">How effective signage can boost retail store sales and customer foot traffic.</p>
-                        <a href="#" class="read-more">
-                            Read More
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="blog-post-excerpt">
+                            <p>Understand the direct correlation between quality signage and business growth. Real data shows how strategic signage investments can generate up to 300% ROI within the first year.</p>
+                            <p>Learn to calculate the true value of signage for your business, from increased foot traffic to enhanced brand recognition and customer loyalty.</p>
+                        </div>
                     </div>
                 </article>
 
-                <article class="blog-post">
+                <!-- Blog Post 6 -->
+                <article class="blog-post" data-category="tips">
                     <div class="blog-post-image">
-                        <img src="assets/co operative office/IMG-20251014-WA0029.jpg" alt="Office Signage">
+                        <img src="assets/logo.jpg" alt="Signage Maintenance Tips">
+                        <span class="blog-category-tag">Tips</span>
                     </div>
                     <div class="blog-post-content">
-                        <h2 class="blog-post-title">Office Signage Solutions</h2>
+                        <h2 class="blog-post-title">Essential Signage Maintenance Guide for Longevity</h2>
                         <div class="blog-post-meta">
-                            <i class="fas fa-calendar"></i>
-                            <span>November 2, 2024</span>
-                            <i class="fas fa-user"></i>
-                            <span>Design Team</span>
+                            <span><i class="fas fa-calendar"></i> November 8, 2024</span>
+                            <span><i class="fas fa-user"></i> Maintenance Team</span>
+                            <span><i class="fas fa-clock"></i> 4 min read</span>
                         </div>
-                        <p class="blog-post-excerpt">Professional signage solutions that enhance your office environment and brand identity.</p>
-                        <a href="#" class="read-more">
-                            Read More
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="blog-post-excerpt">
+                            <p>Protect your signage investment with our expert maintenance tips. Learn how proper care can extend the life of your signs by up to 50% while maintaining optimal appearance.</p>
+                            <p>From cleaning techniques to seasonal maintenance schedules, discover the best practices that keep your signage looking professional and functioning perfectly year-round.</p>
+                        </div>
                     </div>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="blog-cta">
+    <!-- SEO Content Section -->
+    <section class="seo-content-section" style="background: var(--gray-light); padding: 80px 0;">
         <div class="container">
-            <h2>Need Expert Signage Advice?</h2>
-            <p>Our team of professionals is ready to help transform your business visibility</p>
-            <a href="contact.html" class="cta-button">Get Free Consultation</a>
+            <div class="seo-content">
+                <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px; color: var(--text-dark);">Why Board Bazaar is Mumbai's #1 Signboard Choice</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
+                    <div style="background: var(--white); padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h3 style="color: var(--primary-orange); font-size: 20px; margin-bottom: 15px;">10+ Years Expertise</h3>
+                        <p>Board Bazaar (Boardbazaar) has been the trusted signboard manufacturer in Mumbai since 2014, serving over 2500+ happy clients with premium signage solutions.</p>
+                    </div>
+                    
+                    <div style="background: var(--white); padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h3 style="color: var(--primary-orange); font-size: 20px; margin-bottom: 15px;">Quality Materials</h3>
+                        <p>As the leading Board Bazaar signage provider, we use only premium materials and advanced technology to ensure durable, weather-resistant signboards.</p>
+                    </div>
+                    
+                    <div style="background: var(--white); padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h3 style="color: var(--primary-orange); font-size: 20px; margin-bottom: 15px;">Pan India Service</h3>
+                        <p>Boardbazaar serves clients across Mumbai, Navi Mumbai, Thane, and throughout India with professional installation and maintenance services.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; background: var(--primary-blue); color: var(--white); padding: 40px; border-radius: 15px; margin-bottom: 40px;">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Contact Board Bazaar Today!</h3>
+                    <p style="font-size: 18px; margin-bottom: 20px;">Transform your business visibility with Mumbai's most trusted signboard manufacturer</p>
+                    <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 78008 08870</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 86527 37065</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-envelope"></i>
+                            <span>faisal.khan868@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hidden SEO Content -->
+                <div style="display: none;">
+                    <h1>Board Bazaar - Mumbai's #1 Signboard Manufacturer</h1>
+                    <h2>Boardbazaar Signage Solutions Since 2014</h2>
+                    <p>Board Bazaar (Boardbazaar) is Mumbai's premier signboard manufacturer offering custom signage, LED signs, 3D signs, digital displays, and advertising boards. Located in Navi Mumbai, we serve clients across Mumbai, Thane, Maharashtra, and Pan India.</p>
+                    
+                    <h3>Our Board Bazaar Services:</h3>
+                    <ul>
+                        <li>Custom Signage Design and Manufacturing</li>
+                        <li>LED Signs and Digital Display Boards</li>
+                        <li>3D Sign Creation and Installation</li>
+                        <li>Building Signage Solutions</li>
+                        <li>Restaurant and Cafe Signage</li>
+                        <li>Medical Facility and Hospital Signs</li>
+                        <li>Corporate Office Signage</li>
+                        <li>Retail Store Signboards</li>
+                        <li>Infrastructure Project Signage</li>
+                        <li>Promotional and Advertising Boards</li>
+                    </ul>
+                    
+                    <h3>Why Choose Board Bazaar?</h3>
+                    <p>✓ Mumbai's Most Trusted Signage Provider Since 2014</p>
+                    <p>✓ 2500+ Successfully Completed Projects</p>
+                    <p>✓ 500+ Happy Clients Across India</p>
+                    <p>✓ Premium Quality Materials and Advanced Technology</p>
+                    <p>✓ Professional Installation and Maintenance</p>
+                    <p>✓ Competitive Pricing and Timely Delivery</p>
+                    <p>✓ Expert Team of Designers and Technicians</p>
+                    <p>✓ Pan India Service Network</p>
+                    <p>✓ 24/7 Customer Support</p>
+                    
+                    <h3>Board Bazaar Location:</h3>
+                    <p>A Wing Shop 03, Plot B/102, Sector 23, Dharave, Navi Mumbai - 400706, Maharashtra, India</p>
+                    
+                    <h3>Areas Served by Board Bazaar:</h3>
+                    <p>Mumbai, Navi Mumbai, Thane, Kalyan, Dombivli, Pune, Nagpur, Nashik, Aurangabad, and across India</p>
+                    
+                    <h3>Board Bazaar Contact Information:</h3>
+                    <p>Phone: +91 78008 08870, +91 86527 37065</p>
+                    <p>Email: faisal.khan868@gmail.com</p>
+                    <p>Website: https://boardbazaar.in</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Business Visibility?</h2>
+            <p>Let our experts help you create signage that drives results</p>
+            <a href="contact.html" class="cta-button">Get Your Free Consultation</a>
         </div>
     </section>
 
@@ -638,10 +780,10 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html">About Us</a></li>
-                        <li><a href="index.html">Services</a></li>
-                        <li><a href="store-signboard.html">Gallery</a></li>
-                        <li><a href="index.html">Blog</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="store.html">Store</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -661,68 +803,54 @@
 
     <script src="js/script.js"></script>
     <script>
-        // Toggle full content for blog posts
-        function toggleFullContent(readMoreBtn) {
-            const postContent = readMoreBtn.parentElement;
-            const excerpt = postContent.querySelector('.blog-post-excerpt');
-            const fullContent = postContent.querySelector('.blog-post-full');
-            
-            if (fullContent.style.display === 'none') {
-                // Show full content, hide excerpt
-                fullContent.style.display = 'block';
-                readMoreBtn.textContent = 'Read Less';
-                readMoreBtn.classList.add('read-less');
-                
-                // Smooth scroll to the top of the post
-                postContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                // Show excerpt, hide full content
-                fullContent.style.display = 'none';
-                readMoreBtn.textContent = 'Read More';
-                readMoreBtn.classList.remove('read-less');
-            }
-        }
-        
-        // Add CSS for read-less state
-        const style = document.createElement('style');
-        style.textContent = `
-            .read-more.read-less {
-                color: var(--secondary-orange);
-                transform: translateX(-5px);
-            }
-            
-            .read-more.read-less::before {
-                content: '↑';
-                margin-right: 5px;
-            }
-            
-            .read-more.read-less::after {
-                content: '';
-            }
-            
-            .blog-post-full {
-                border-top: 2px solid var(--primary-orange);
-                padding-top: 20px;
-                margin-top: 20px;
-                animation: fadeIn 0.3s ease-in;
-            }
-            
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-
-    <script src="js/script.js"></script>
-    <script>
         // Mobile Menu Functions
         function toggleMobileMenu() {
             const sidebar = document.getElementById('mobileSidebar');
             sidebar.classList.toggle('active');
             document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
         }
+
+        // Category Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const blogPosts = document.querySelectorAll('.blog-post');
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const selectedCategory = this.getAttribute('data-category');
+                    
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter posts
+                    blogPosts.forEach(post => {
+                        const postCategory = post.getAttribute('data-category');
+                        
+                        if (selectedCategory === 'all' || postCategory === selectedCategory) {
+                            post.style.display = 'block';
+                            setTimeout(() => {
+                                post.style.opacity = '1';
+                                post.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            post.style.opacity = '0';
+                            post.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                post.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Set initial opacity for posts
+            blogPosts.forEach(post => {
+                post.style.transition = 'all 0.3s ease';
+                post.style.opacity = '1';
+                post.style.transform = 'translateY(0)';
+            });
+        });
 
         // Close sidebar when clicking outside
         document.addEventListener('click', function(event) {
