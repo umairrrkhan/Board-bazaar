@@ -90,10 +90,88 @@
     <style>
         /* Index Page Mobile Enhancements */
         @media (max-width: 767px) {
+            /* Mobile Header Redesign */
+            .mobile-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                z-index: 1000;
+                padding: 8px 0;
+            }
+            
+            .mobile-header-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 15px;
+                height: 60px;
+            }
+            
+            .mobile-logo {
+                flex-shrink: 0;
+                margin-right: 12px;
+            }
+            
+            .mobile-logo-img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid rgba(255,255,255,0.3);
+                box-shadow: 0 2px 8px rgba(255,107,53,0.3);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .mobile-logo-img:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(255,107,53,0.5);
+            }
+            
+            .mobile-title {
+                flex: 1;
+                font-size: 20px;
+                font-weight: 700;
+                color: var(--white);
+                margin: 0;
+                text-align: center;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                letter-spacing: 0.5px;
+            }
+            
+            .mobile-menu-btn {
+                width: 45px;
+                height: 45px;
+                background: rgba(255,255,255,0.2);
+                border: 2px solid rgba(255,255,255,0.3);
+                border-radius: 12px;
+                color: var(--white);
+                font-size: 18px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            
+            .mobile-menu-btn:hover {
+                background: rgba(255,255,255,0.25);
+                transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            }
+            
+            .mobile-menu-btn:active {
+                transform: scale(0.95);
+            }
+            
             /* Hero Section Mobile */
             .hero-section {
                 height: 60vh;
                 min-height: 450px;
+                margin-top: 60px;
             }
             
             .slide-content {
@@ -565,9 +643,12 @@
     <!-- Mobile Header -->
     <header class="mobile-header">
         <div class="mobile-header-content">
+            <div class="mobile-logo">
+                <img src="assets/logo.jpg" alt="Board Bazaar" class="mobile-logo-img">
+            </div>
             <h1 class="mobile-title">Board Bazaar</h1>
             <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
-                <i class="fas fa-ellipsis-v"></i>
+                <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
@@ -734,13 +815,21 @@
                 <div class="about-left">
                     <h3 class="about-title">About Board Bazaar</h3>
                     <div class="about-description">
-                        <p>A good sign is a good sign of your business, both your internal signs and external signs will give your customers the first impression of your business or products. We specialize in making custom interior signs, exterior signs, acrylic signs, LED illuminated signs and 3D metal signs, etc. Our high quality signage products can make your business to achieve an explosive growth impact. With over 10 years of successful signage production experience, we're signage manufacturers that know how to customize a personalized, professional signage for your great business.</p>
+                        <p>Welcome to Board Bazaar, your premier signage and advertising solutions provider based in Navi Mumbai. With over 10 years of excellence in the signage industry, we specialize in creating custom signboards that transform businesses and elevate brand presence across Mumbai, Maharashtra, and throughout India.</p>
                         
-                        <p>High quality signage can easily attract the eye and effectively bring the customer into the light. It is like a trained salesperson with matchless charm that allows customers to remember your brand strongly, it will give the greatest advantage to easily surpass other competitors. Our signs products will work well whether it is exterior signs or interior signs.</p>
+                        <p>At Board Bazaar, we understand that effective signage is more than just a display—it's your business's first impression and most powerful marketing tool. Our comprehensive range of signage solutions includes custom interior signs, exterior signs, acrylic signs, LED illuminated signs, 3D metal signs, digital displays, and innovative advertising boards designed to capture attention and drive customer engagement.</p>
                         
-                        <p>We use the highest quality materials in signage production along with experienced staffs and advanced professional production equipment, we provide you with custom signs with a long lifetime and easy maintenance, to ensure that our high quality Having custom commercial signs can provide a high-quality display of results.</p>
+                        <p>Our expert team combines creative design, advanced technology, and premium materials to deliver signage products that ensure explosive business growth. Whether you're looking for storefront signage, building signs, restaurant displays, medical facility signs, or corporate office signage, we provide tailored solutions that meet your specific industry needs and budget requirements.</p>
                         
-                        <p>If you want to give your business an updated look and increase customer traffic, an illuminated sign would be a great answer. Use the latest LED technology, your LED signs will definitely attract more pedestrians' attention. Meanwhile, LED lighting has also proven to be more eco-friendly, so that our planet can be greener.</p>
+                        <p>What sets Board Bazaar apart is our commitment to quality craftsmanship and customer satisfaction. We use state-of-the-art production equipment, weather-resistant materials, and energy-efficient LED technology to create signboards that not only look impressive but also stand the test of time. Our eco-friendly LED lighting solutions help reduce environmental impact while maximizing visibility and brand recognition.</p>
+                        
+                        <p>From concept to installation, our experienced professionals guide you through every step of the signage creation process. We serve diverse industries including retail, hospitality, healthcare, corporate offices, educational institutions, and infrastructure projects. Our portfolio showcases hundreds of successful projects throughout Mumbai, Navi Mumbai, and across India, making us a trusted name in the signage manufacturing industry.</p>
+                        
+                        <p>Our customer-centric approach ensures that every project receives personalized attention from initial consultation to final installation. We work closely with clients to understand their unique business challenges, target audience, and brand identity, creating customized signage strategies that deliver measurable results and maximum return on investment.</p>
+                        
+                        <p>As a leading signage manufacturer in Mumbai, Board Bazaar continues to innovate and adapt to emerging technologies and design trends. We stay ahead of industry developments to provide our clients with cutting-edge solutions that enhance brand visibility, improve customer experience, and drive business growth in an increasingly competitive marketplace.</p>
+                        
+                        <p>Choose Board Bazaar for signage solutions that combine innovation, quality, and affordability. Let us illuminate your brand's future with signboards that not only attract customers but also create lasting impressions that set you apart from the competition. Contact us today to discover how we can transform your business visibility with our professional signage expertise.</p>
                     </div>
                 </div>
                 
