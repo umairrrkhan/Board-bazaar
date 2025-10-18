@@ -1375,7 +1375,6 @@
             <button class="lightbox-close" id="lightboxClose">
                 <i class="fas fa-times"></i>
             </button>
-            <div class="lightbox-caption" id="lightboxCaption"></div>
         </div>
     </div>
 
@@ -1417,7 +1416,6 @@
             const galleryItems = document.querySelectorAll('.gallery-item');
             const lightboxModal = document.getElementById('lightboxModal');
             const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxCaption = document.getElementById('lightboxCaption');
             const lightboxPrev = document.getElementById('lightboxPrev');
             const lightboxNext = document.getElementById('lightboxNext');
             const lightboxClose = document.getElementById('lightboxClose');
@@ -1476,12 +1474,9 @@
                 if (visibleItems.length > 0) {
                     const currentItem = visibleItems[currentImageIndex];
                     const img = currentItem.querySelector('img');
-                    const title = currentItem.getAttribute('data-title');
-                    const description = currentItem.getAttribute('data-description');
                     
                     lightboxImage.src = img.src;
                     lightboxImage.alt = img.alt;
-                    lightboxCaption.innerHTML = `<strong>${title}</strong><br>${description}`;
                     
                     lightboxModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
