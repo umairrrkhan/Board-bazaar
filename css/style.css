@@ -819,11 +819,11 @@ body {
 
 /* Header Styles */
 .main-header {
-    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
     color: var(--white);
     padding: 8px 0;
     box-shadow: none;
-    border-bottom: 2px solid var(--primary-blue);
+    border-bottom: 2px solid var(--primary-orange);
     position: relative;
     z-index: 1001;
 }
@@ -846,7 +846,7 @@ body {
     margin: 0;
     letter-spacing: -0.5px;
     text-shadow: none;
-    color: var(--white);
+    color: var(--primary-orange);
 }
 
 .logo-text .highlight {
@@ -861,7 +861,7 @@ body {
     opacity: 0.9;
     font-style: normal;
     letter-spacing: 0.3px;
-    color: var(--white);
+    color: var(--primary-orange);
 }
 
 .quick-contact {
@@ -887,8 +887,14 @@ body {
 }
 
 .quick-links a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--primary-orange);
+    color: var(--white);
     transform: translateY(-1px);
+}
+
+.quick-links a.active {
+    background: var(--primary-orange);
+    color: var(--white);
 }
 
 .phone-number {
@@ -917,6 +923,11 @@ body {
 .copy-number {
     cursor: pointer;
     transition: all 0.3s ease;
+    color: var(--white);
+}
+
+.copy-number:hover {
+    color: var(--primary-orange);
 }
 
 .copy-number:hover {
@@ -952,8 +963,14 @@ body {
 }
 
 .quick-links a:hover {
-    background: rgba(255,255,255,0.15);
+    background: var(--primary-orange);
+    color: var(--white);
     transform: none;
+}
+
+.quick-links a.active {
+    background: var(--primary-orange);
+    color: var(--white);
 }
 
 .phone-number {
@@ -978,7 +995,7 @@ body {
 }
 
 .phone-number a:hover {
-    color: var(--light-blue);
+    color: var(--primary-orange);
 }
 
 .social-links {
@@ -1047,7 +1064,7 @@ body {
 
 /* Navigation Header */
 .nav-header {
-    background: var(--primary-blue);
+    background: var(--primary-orange);
     padding: 0;
     position: sticky;
     top: 0;
@@ -1072,16 +1089,16 @@ nav > ul > li {
 .nav-link {
     color: var(--white);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 10px;
-    padding: 6px 10px;
-    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 6px;
     transition: all 0.3s ease;
     text-transform: capitalize;
     letter-spacing: 0.3px;
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
 }
 
 .nav-link:hover,
@@ -1133,9 +1150,9 @@ nav > ul > li {
 .dropdown-menu a {
     color: var(--white);
     text-decoration: none;
-    padding: 8px 12px;
+    padding: 10px 14px;
     display: block;
-    font-size: 10px;
+    font-size: 13px;
     transition: all 0.3s ease;
     text-transform: capitalize;
     letter-spacing: 0.2px;
@@ -3303,6 +3320,45 @@ footer {
     100% {
         transform: scale(1);
     }
+}
+
+/* Footer Contact Info Styles */
+.footer-contact-info {
+    margin-top: 15px;
+}
+
+.footer-contact-info p {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--white);
+    opacity: 0.9;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-contact-info p:last-child {
+    margin-bottom: 0;
+}
+
+.footer-contact-info i {
+    color: var(--primary-orange);
+    width: 16px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+.footer-contact-info a {
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-contact-info a:hover {
+    color: var(--primary-orange);
+    text-decoration: underline;
 }
 
 /* Responsive Design */

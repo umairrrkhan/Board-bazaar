@@ -112,7 +112,14 @@
         .whatsapp-float{position:fixed;bottom:20px;right:15px;width:55px;height:55px;background:#25d366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;z-index:1000;box-shadow:0 4px 15px rgba(37,211,102,0.3);transition:all 0.3s ease}
         .whatsapp-float:hover{background:#128c7e;transform:scale(1.05)}
         .desktop-only{display:none!important}
-        @media (min-width:768px){.mobile-header{display:none}.desktop-only{display:block!important}}
+        
+        /* Tagline Section Styles */
+        .tagline-section{background:#fff;padding:100px 0;text-align:center;width:100%}
+        .tagline-content{max-width:1200px;margin:0 auto}
+        .tagline-text{font-size:56px;font-weight:900;color:#000;font-family:'Georgia','Times New Roman',serif;margin:0;letter-spacing:1px;line-height:1.3;position:relative;display:inline-block}
+        .tagline-text:hover{transform:scale(1.02);transition:all 0.3s ease}
+        @media (max-width:767px){.tagline-section{padding:80px 0}.tagline-text{font-size:36px}}
+        @media (max-width:480px){.tagline-section{padding:60px 0}.tagline-text{font-size:28px}}
     </style>
     
     <!-- Defer Non-Critical CSS -->
@@ -823,7 +830,7 @@
                 <div class="logo">
                     <div class="logo-text">
                         <h1>Board <span class="highlight">Bazaar</span></h1>
-                        <p class="tagline">Illuminating Your Brand's Future</p>
+                        <p class="tagline">Is se sasta aur accha kahin nahi!</p>
                     </div>
                 </div>
                 <div class="quick-contact">
@@ -834,12 +841,12 @@
                         <a href="contact.html">Contact</a>
                     </div>
                     <div class="phone-number">
-                        <i class="fas fa-phone"></i>
-                        <a href="tel:+917800808870" onclick="trackPhoneCall('+91 78008 08870')">+91 78008 08870</a>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <a href="tel:+917800808870" onclick="trackPhoneCall('+91 78008 08870')" aria-label="Call Board Bazaar at +91 78008 08870">+91 78008 08870</a>
                     </div>
                     <div class="phone-number">
-                        <i class="fas fa-phone"></i>
-                        <a href="tel:+918652737065" onclick="trackPhoneCall('+91 86527 37065')">+91 86527 37065</a>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <a href="tel:+918652737065" onclick="trackPhoneCall('+91 86527 37065')" aria-label="Call Board Bazaar at +91 86527 37065">+91 86527 37065</a>
                     </div>
                     <div class="social-links">
                         <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram" class="instagram"><i class="fab fa-instagram"></i></a>
@@ -954,14 +961,14 @@
                     <div class="sign-category">
                         <h3 class="category-title">Building & Structure Sign</h3>
                         <div class="category-image">
-                            <img src="assets/building and infra/IMG-20251014-WA0082.jpg" alt="Building and Structure Sign">
+                            <img src="assets/building and infra/IMG-20251014-WA0083.jpg" alt="Building and Structure Sign">
                         </div>
                     </div>
                     
                     <div class="sign-category">
                         <h3 class="category-title">Co-operative Office</h3>
                         <div class="category-image">
-                            <img src="assets/co operative office/IMG-20251014-WA0004.jpg" alt="Co-operative Office Sign">
+                            <img src="assets/co operative office/IMG-20251014-WA0010.jpg" alt="Co-operative Office Sign">
                         </div>
                     </div>
                     
@@ -1062,7 +1069,7 @@
                     </div>
                 </div>
                 <div class="service-tile">
-                    <img src="assets/building and infra/IMG-20251014-WA0088.jpg" alt="Infrastructure Projects">
+                    <img src="assets/building and infra/IMG-20251014-WA0083.jpg" alt="Infrastructure Projects">
                     <div class="service-overlay">
                         <h4>Infrastructure</h4>
                         <p>Large-scale project expertise</p>
@@ -1208,6 +1215,15 @@
         </div>
     </section>
 
+    <!-- Tagline Section -->
+    <section class="tagline-section">
+        <div class="container">
+            <div class="tagline-content">
+                <h2 class="tagline-text">Is se sasta aur accha kahin nahi! ✨</h2>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer id="contact">
         <div class="container">
@@ -1220,6 +1236,15 @@
                     <p>Your trusted partner for premium advertising solutions and signboard manufacturing. Transform your business visibility with our expert services.</p>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="footer-contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Siddhi Vinayak Apartment, A Wing, Shop No 03, Plot No B 102, Sector 23 (E), Near Seawoods Railway Station, Seawoods, Nerul, Navi Mumbai - 400706</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+917800808870">+91 78008 08870</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+918652737065">+91 86527 37065</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:faisal.khan868@gmail.com">faisal.khan868@gmail.com</a></p>
                     </div>
                 </div>
                 <div class="footer-section">
