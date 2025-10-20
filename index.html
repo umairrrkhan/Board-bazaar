@@ -466,189 +466,6 @@
                 font-size: 12px;
             }
             
-            /* FAQ Section Mobile */
-            .faq-section {
-                padding: 50px 0;
-            }
-            
-            .section-header {
-                margin-bottom: 30px;
-            }
-            
-            .section-header h2 {
-                font-size: 22px;
-                margin-bottom: 8px;
-            }
-            
-            .section-subtitle {
-                font-size: 15px;
-            }
-            
-            .faq-accordion {
-                max-width: 700px;
-                margin: 0 auto;
-            }
-            
-            .faq-item {
-                background: var(--white);
-                border-radius: 12px;
-                margin-bottom: 12px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-                overflow: hidden;
-                transition: all 0.3s ease;
-                border: 1px solid var(--gray-medium);
-            }
-            
-            .faq-item:hover {
-                box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-                transform: translateY(-2px);
-            }
-            
-            .faq-item.active {
-                border-color: var(--primary-orange);
-                box-shadow: 0 4px 20px rgba(255,107,53,0.15);
-            }
-            
-            .faq-question {
-                display: flex;
-                align-items: center;
-                padding: 16px;
-                cursor: pointer;
-                gap: 12px;
-            }
-            
-            .faq-icon-wrapper {
-                width: 40px;
-                height: 40px;
-                background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--white);
-                font-size: 16px;
-                flex-shrink: 0;
-            }
-            
-            .faq-text {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
-            
-            .faq-text h3 {
-                font-size: 16px;
-                font-weight: 600;
-                color: var(--text-dark);
-                margin: 0;
-                line-height: 1.3;
-            }
-            
-            .faq-tag {
-                background: var(--primary-orange);
-                color: var(--white);
-                padding: 2px 8px;
-                border-radius: 12px;
-                font-size: 11px;
-                font-weight: 500;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-            
-            .faq-tag.timeline {
-                background: var(--light-blue);
-            }
-            
-            .faq-tag.service {
-                background: #10b981;
-            }
-            
-            .faq-tag.location {
-                background: #8b5cf6;
-            }
-            
-            .faq-tag.warranty {
-                background: #f59e0b;
-            }
-            
-            .faq-toggle {
-                width: 30px;
-                height: 30px;
-                background: var(--gray-light);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                color: var(--text-light);
-                font-size: 12px;
-            }
-            
-            .faq-item.active .faq-toggle {
-                background: var(--primary-orange);
-                color: var(--white);
-                transform: rotate(180deg);
-            }
-            
-            .faq-answer {
-                padding: 0 16px;
-                max-height: 0;
-                overflow: hidden;
-                transition: all 0.3s ease;
-                border-top: 1px solid transparent;
-            }
-            
-            .faq-item.active .faq-answer {
-                padding: 16px;
-                max-height: 200px;
-                border-top-color: var(--gray-medium);
-            }
-            
-            .faq-answer p {
-                font-size: 14px;
-                line-height: 1.5;
-                color: var(--text-light);
-                margin: 0;
-            }
-            
-            .faq-cta {
-                text-align: center;
-                margin-top: 30px;
-                padding: 25px;
-                background: linear-gradient(135deg, var(--gray-light), var(--white));
-                border-radius: 12px;
-                border: 1px solid var(--gray-medium);
-            }
-            
-            .faq-cta p {
-                font-size: 16px;
-                color: var(--text-dark);
-                margin-bottom: 15px;
-                font-weight: 500;
-            }
-            
-            .faq-cta-btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                background: var(--primary-orange);
-                color: var(--white);
-                padding: 12px 20px;
-                border-radius: 8px;
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 14px;
-                transition: all 0.3s ease;
-            }
-            
-            .faq-cta-btn:hover {
-                background: var(--secondary-orange);
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(255,107,53,0.3);
-            }
-            
             /* Footer Mobile */
             footer {
                 padding: 40px 0 15px;
@@ -738,6 +555,128 @@
                 height: 160px;
             }
         }
+        
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        /* Lightbox Mobile Responsive */
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+            
+            .lightbox-prev {
+                left: 10px;
+            }
+            
+            .lightbox-next {
+                right: 10px;
+            }
+            
+            .lightbox-close {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                top: 10px;
+                right: 10px;
+            }
+        }
     </style>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js" defer></script>
@@ -766,9 +705,7 @@
     <!-- Mobile Header -->
     <header class="mobile-header">
         <div class="mobile-header-content">
-            <div class="mobile-logo">
-                <img src="assets/logo.jpg" alt="Board Bazaar" class="mobile-logo-img">
-            </div>
+            <img src="assets/mobile-header.jpg" alt="Board Bazaar" class="mobile-logo-img">
             <h1 class="mobile-title">Board Bazaar</h1>
             <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
@@ -827,10 +764,7 @@
         <div class="container">
             <div class="header-top">
                 <div class="logo">
-                    <div class="logo-text">
-                        <h1>Board <span class="highlight">Bazaar</span></h1>
-                        <p class="tagline">Is se sasta aur accha kahin nahi!</p>
-                    </div>
+                    <img src="assets/logo.jpg" alt="Board Bazaar" class="main-logo-img">
                 </div>
                 <div class="quick-contact">
                     <div class="quick-links">
@@ -884,28 +818,28 @@
         <div class="hero-container">
             <div class="hero-slider">
                 <div class="hero-slide active">
-                    <img src="assets/store signboard/IMG-20251014-WA0058.jpg" alt="Board Bazaar Signage Work">
+                    <img src="assets/store signboard/IMG-20251014-WA0058.jpg" alt="Board Bazaar Signage Work" onclick="openLightbox(this)" class="clickable-image">
                     <div class="slide-content">
                         <h2>Expert Signage Solutions</h2>
-                        <p>Professional signboards that elevate your brand presence and attract customers</p>
+                        <p>Professional signboards that elevate your brand presencse and attract customers</p>
                     </div>
                 </div>
                 <div class="hero-slide">
-                    <img src="assets/hotels and restaurent/one.jpg" alt="Restaurant Signage Project">
+                    <img src="assets/hotels and restaurent/IMG-20251014-WA0073.jpg" alt="Restaurant Signage Project" onclick="openLightbox(this)" class="clickable-image">
                     <div class="slide-content">
                         <h2>Custom Business Signage</h2>
                         <p>Tailored signage solutions designed to match your unique business identity</p>
                     </div>
                 </div>
                 <div class="hero-slide">
-                    <img src="assets/building and infra/IMG-20251014-WA0092.jpg" alt="Building Signage Project">
+                    <img src="assets/building and infra/IMG-20251014-WA0092.jpg" alt="Building Signage Project" onclick="openLightbox(this)" class="clickable-image">
                     <div class="slide-content">
                         <h2>Large Format Signage</h2>
                         <p>Impressive building and infrastructure signage that makes a statement</p>
                     </div>
                 </div>
                 <div class="hero-slide">
-                    <img src="assets/medical and hospital/IMG-20251014-WA0033.jpg" alt="Medical Facility Signage">
+                    <img src="assets/medical and hospital/IMG-20251014-WA0033.jpg" alt="Medical Facility Signage" onclick="openLightbox(this)" class="clickable-image">
                     <div class="slide-content">
                         <h2>Professional Commercial Signs</h2>
                         <p>High-quality signage for all commercial and institutional spaces</p>
@@ -960,42 +894,42 @@
                     <div class="sign-category">
                         <h3 class="category-title">Building & Structure Sign</h3>
                         <div class="category-image">
-                            <img src="assets/building and infra/IMG-20251014-WA0083.jpg" alt="Building and Structure Sign">
+                            <img src="assets/building and infra/IMG-20251014-WA0083.jpg" alt="Building and Structure Sign" onclick="openLightbox(this)">
                         </div>
                     </div>
                     
                     <div class="sign-category">
                         <h3 class="category-title">Co-operative Office</h3>
                         <div class="category-image">
-                            <img src="assets/co operative office/IMG-20251014-WA0010.jpg" alt="Co-operative Office Sign">
+                            <img src="assets/co operative office/IMG-20251014-WA0025.jpg" alt="Co-operative Office Sign" onclick="openLightbox(this)">
                         </div>
                     </div>
                     
                     <div class="sign-category">
                         <h3 class="category-title">Medical & Hospital</h3>
                         <div class="category-image">
-                            <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Medical and Hospital Sign">
+                            <img src="assets/medical and hospital/IMG-20251014-WA0030.jpg" alt="Medical and Hospital Sign" onclick="openLightbox(this)">
                         </div>
                     </div>
                     
                     <div class="sign-category">
                         <h3 class="category-title">Store Signboard</h3>
                         <div class="category-image">
-                            <img src="assets/store signboard/IMG-20251014-WA0058.jpg" alt="Store Signboard">
+                            <img src="assets/store signboard/IMG-20251014-WA0058.jpg" alt="Store Signboard" onclick="openLightbox(this)">
                         </div>
                     </div>
                     
                     <div class="sign-category">
                         <h3 class="category-title">Cafe & Cake Shop</h3>
                         <div class="category-image">
-                            <img src="assets/hotels and restaurent/IMG-20251014-WA0066.jpg" alt="Cafe and Cake Shop Sign">
+                            <img src="assets/hotels and restaurent/IMG-20251014-WA0066.jpg" alt="Cafe and Cake Shop Sign" onclick="openLightbox(this)">
                         </div>
                     </div>
                     
                     <div class="sign-category">
                         <h3 class="category-title">Hotel & Restaurant</h3>
                         <div class="category-image">
-                            <img src="assets/hotels and restaurent/IMG-20251014-WA0070.jpg" alt="Hotel and Restaurant Sign">
+                            <img src="assets/hotels and restaurent/IMG-20251014-WA0070.jpg" alt="Hotel and Restaurant Sign" onclick="openLightbox(this)">
                         </div>
                     </div>
                 </div>
@@ -1218,50 +1152,74 @@
     <section class="tagline-section">
         <div class="container">
             <div class="tagline-content">
-                <h2 class="tagline-text">Is se sasta aur accha kahin nahi! <img src="https://cdn-icons-png.flaticon.com/512/4236/4236909.png" alt="laser icon" style="width: 40px; height: 40px; vertical-align: middle; margin-left: 10px;"></h2>
+                <h2 class="tagline-text"><span style="color: var(--primary-orange);">Is se sasta aur</span> <span style="color: var(--primary-blue);">accha kahin nahi!</span> <img src="https://cdn-icons-png.flaticon.com/512/4236/4236909.png" alt="laser icon" style="width: 40px; height: 40px; vertical-align: middle; margin-left: 10px;"></h2>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="assets/logo.jpg" alt="Board Bazaar">
-                        <h3>Board Bazaar</h3>
-                    </div>
-                    <p>Your trusted partner for premium advertising solutions and signboard manufacturing. Transform your business visibility with our expert services.</p>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="assets/logo.jpg" alt="Board Bazaar">
+                    <h3>Board Bazaar</h3>
                 </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <div class="footer-contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Siddhi Vinayak Apartment, A Wing, Shop No 03, Plot No B 102, Sector 23 (E), Near Seawoods Railway Station, Seawoods, Nerul, Navi Mumbai - 400706</p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+917800808870">+91 78008 08870</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+918652737065">+91 86527 37065</a></p>
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:faisal.khan868@gmail.com">faisal.khan868@gmail.com</a></p>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
+                <p>Your trusted partner for premium advertising solutions and signboard manufacturing. We transform your business visibility with expert craftsmanship, innovative designs, and unparalleled quality that sets you apart from the competition.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Board Bazaar. All rights reserved. | Designed with passion for advertising excellence</p>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <div class="footer-contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> <span>Siddhi Vinayak Apartment, A Wing, Shop No 03, Plot No B 102, Sector 23 (E), Near Seawoods Railway Station, Seawoods, Nerul, Navi Mumbai - 400706</span></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+917800808870">+91 78008 08870</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+918652737065">+91 86527 37065</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:faisal.khan868@gmail.com">faisal.khan868@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="store.html">Store</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="store-signboard.html">Store Signage</a></li>
+                    <li><a href="medical-hospital.html">Hospital Signs</a></li>
+                    <li><a href="cafe-restaurant.html">Restaurant Signs</a></li>
+                    <li><a href="co-operative-office.html">Office Signage</a></li>
+                    <li><a href="building-infra.html">Building Signs</a></li>
+                    <li><a href="contact.html">Custom Projects</a></li>
+                </ul>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; 2021 Board Bazaar. All rights reserved. | <span>Designed with passion for advertising excellence</span></p>
+        </div>
     </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="imageLightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+            <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/917800808870?text=Hi%20Board%20Bazaar,%20I'm%20interested%20in%20your%20signboard%20services" 
@@ -1432,6 +1390,168 @@
             window.toggleFAQ = toggleFAQ;
             window.changeSlide = changeSlide;
             window.goToSlide = goToSlide;
+        });
+    </script>
+
+    <!-- Lightbox JavaScript -->
+    <script>
+        // Lightbox functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const clickableImages = document.querySelectorAll('.clickable-image');
+            const lightboxModal = document.querySelector('.lightbox');
+            const lightboxImage = document.querySelector('.lightbox img');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            
+            let currentImageIndex = 0;
+            let allImages = [];
+            
+            // Collect all clickable images
+            function collectAllImages() {
+                allImages = Array.from(clickableImages);
+            }
+            
+            // Lightbox functionality
+            clickableImages.forEach((img, index) => {
+                img.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openLightbox(index);
+                });
+            });
+            
+            // Global openLightbox function (for onclick handlers)
+            window.openLightbox = function(clickedElement) {
+                collectAllImages();
+                currentImageIndex = allImages.indexOf(clickedElement);
+                
+                if (currentImageIndex === -1) {
+                    currentImageIndex = 0;
+                }
+                
+                updateLightboxImage();
+                showLightbox();
+            };
+            
+            function showLightbox() {
+                lightboxModal.style.display = 'flex';
+                lightboxModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Show/hide navigation buttons based on number of images
+                if (allImages.length <= 1) {
+                    lightboxPrev.style.display = 'none';
+                    lightboxNext.style.display = 'none';
+                } else {
+                    lightboxPrev.style.display = 'flex';
+                    lightboxNext.style.display = 'flex';
+                }
+            }
+            
+            function hideLightbox() {
+                lightboxModal.style.display = 'none';
+                lightboxModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            function updateLightboxImage() {
+                if (allImages.length > 0 && currentImageIndex >= 0 && currentImageIndex < allImages.length) {
+                    const currentImg = allImages[currentImageIndex];
+                    lightboxImage.src = currentImg.src;
+                    lightboxImage.alt = currentImg.alt || 'Gallery Image';
+                    
+                    // Fade effect
+                    lightboxImage.style.opacity = '0';
+                    setTimeout(() => {
+                        lightboxImage.style.opacity = '1';
+                    }, 100);
+                }
+            }
+            
+            function showPreviousImage() {
+                if (allImages.length > 0) {
+                    currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+                    updateLightboxImage();
+                }
+            }
+            
+            function showNextImage() {
+                if (allImages.length > 0) {
+                    currentImageIndex = (currentImageIndex + 1) % allImages.length;
+                    updateLightboxImage();
+                }
+            }
+            
+            // Event listeners
+            if (lightboxClose) {
+                lightboxClose.addEventListener('click', hideLightbox);
+            }
+            
+            if (lightboxPrev) {
+                lightboxPrev.addEventListener('click', showPreviousImage);
+            }
+            
+            if (lightboxNext) {
+                lightboxNext.addEventListener('click', showNextImage);
+            }
+            
+            // Close on background click
+            lightboxModal.addEventListener('click', function(e) {
+                if (e.target === lightboxModal) {
+                    hideLightbox();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (lightboxModal.classList.contains('active')) {
+                    switch(e.key) {
+                        case 'Escape':
+                            hideLightbox();
+                            break;
+                        case 'ArrowLeft':
+                            showPreviousImage();
+                            break;
+                        case 'ArrowRight':
+                            showNextImage();
+                            break;
+                    }
+                }
+            });
+            
+            // Touch/Swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            lightboxModal.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            lightboxModal.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        showNextImage(); // Swipe left, next image
+                    } else {
+                        showPreviousImage(); // Swipe right, previous image
+                    }
+                }
+            }
+            
+            // Initialize
+            collectAllImages();
+            
+            // Make functions global
+            window.hideLightbox = hideLightbox;
+            window.showPreviousImage = showPreviousImage;
+            window.showNextImage = showNextImage;
         });
     </script>
 

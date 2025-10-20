@@ -347,10 +347,11 @@
             object-fit: contain;
             border-radius: 10px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease;
         }
 
         .lightbox-nav {
-            position: absolute;
+            position: fixed;
             top: 50%;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.1);
@@ -366,6 +367,7 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(10px);
+            z-index: 10001;
         }
 
         .lightbox-nav:hover {
@@ -374,17 +376,17 @@
         }
 
         .lightbox-prev {
-            left: 30px;
+            left: 20px;
         }
 
         .lightbox-next {
-            right: 30px;
+            right: 20px;
         }
 
         .lightbox-close {
-            position: absolute;
-            top: 30px;
-            right: 30px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
             background: rgba(255, 255, 255, 0.1);
             color: var(--white);
             border: none;
@@ -398,25 +400,12 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(10px);
+            z-index: 10001;
         }
 
         .lightbox-close:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: rotate(90deg);
-        }
-
-        .lightbox-caption {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            font-size: 16px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
         }
 
         /* Responsive */
@@ -449,19 +438,19 @@
             }
             
             .lightbox-prev {
-                left: 15px;
+                left: 10px;
             }
             
             .lightbox-next {
-                right: 15px;
+                right: 10px;
             }
             
             .lightbox-close {
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
-                top: 15px;
-                right: 15px;
+                top: 10px;
+                right: 10px;
             }
         }
 
@@ -502,7 +491,7 @@
     <header class="mobile-header">
         <div class="mobile-header-content">
             <div class="mobile-logo">
-                <img src="assets/logo.jpg" alt="Board Bazaar" class="mobile-logo-img">
+                <img src="assets/mobile-header.jpg" alt="Board Bazaar" class="mobile-logo-img">
             </div>
             <h1 class="mobile-title">Board Bazaar</h1>
             <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
@@ -560,10 +549,7 @@
         <div class="container">
             <div class="header-top">
                 <div class="logo">
-                    <div class="logo-text">
-                        <h1>Board <span class="highlight">Bazaar</span></h1>
-                        <p class="tagline">Is se sasta aur accha kahin nahi!</p>
-                    </div>
+                    <img src="assets/logo.jpg" alt="Board Bazaar" class="main-logo-img">
                 </div>
                 <div class="quick-contact">
                     <div class="quick-links">
@@ -635,22 +621,6 @@
             <!-- Gallery Grid -->
             <div class="gallery-container" id="galleryGrid">
                 <!-- Store Signboards -->
-
-                <div class="gallery-item" data-category="store" data-title="Retail Display Board" data-description="Eye-catching retail display">
-                    <img src="assets/store signboard/IMG-20251014-WA0038.jpg" alt="Retail Display">
-                    <div class="gallery-overlay">
-                        <h4>Retail Display Board</h4>
-                        <p>Eye-catching retail display</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="store" data-title="Shop Front Signage" data-description="Modern shop front design">
-                    <img src="assets/store signboard/IMG-20251014-WA0039.jpg" alt="Shop Front Signage">
-                    <div class="gallery-overlay">
-                        <h4>Shop Front Signage</h4>
-                        <p>Modern shop front design</p>
-                    </div>
-                </div>
 
                 <div class="gallery-item" data-category="store" data-title="Retail Store Front" data-description="Attractive retail store front">
                     <img src="assets/store signboard/IMG-20251014-WA0041.jpg" alt="Retail Store Front">
@@ -820,21 +790,6 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-category="store" data-title="Commercial Store Sign" data-description="Professional commercial store">
-                    <img src="assets/store signboard/IMG-20251014-WA0062.jpg" alt="Commercial Store Sign">
-                    <div class="gallery-overlay">
-                        <h4>Commercial Store Sign</h4>
-                        <p>Professional commercial store</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="store" data-title="Shop Signage Project" data-description="Complete shop signage">
-                    <img src="assets/store signboard/IMG-20251014-WA0063.jpg" alt="Shop Signage Project">
-                    <div class="gallery-overlay">
-                        <h4>Shop Signage Project</h4>
-                        <p>Complete shop signage</p>
-                    </div>
-                </div>
 
                 <!-- New Store Signage V2 Images -->
                 <div class="gallery-item" data-category="store" data-title="Modern Retail Signage V2" data-description="Contemporary retail store design with premium finish">
@@ -898,14 +853,6 @@
                     <div class="gallery-overlay">
                         <h4>Modern Shop Front V2</h4>
                         <p>Contemporary shop design with minimalist approach</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="store" data-title="Retail Complex Sign V2" data-description="Large-scale retail signage for shopping complexes">
-                    <img src="assets/store-signage-v2/IMG-20251020-WA0024.jpg" alt="Retail Complex Sign V2">
-                    <div class="gallery-overlay">
-                        <h4>Retail Complex Sign V2</h4>
-                        <p>Large-scale retail signage for shopping complexes</p>
                     </div>
                 </div>
 
@@ -977,14 +924,6 @@
 
                 <div class="gallery-item" data-category="medical" data-title="Emergency Room Sign" data-description="Clear signage for emergency room access">
                     <img src="assets/medical and hospital/two.jpg" alt="Emergency Room Sign">
-                    <div class="gallery-overlay">
-                        <h4>Emergency Room Sign</h4>
-                        <p>Clear signage for emergency room access</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="medical" data-title="Emergency Room Sign" data-description="Clear signage for emergency room access">
-                    <img src="assets/medical and hospital/three.jpg" alt="Emergency Room Sign">
                     <div class="gallery-overlay">
                         <h4>Emergency Room Sign</h4>
                         <p>Clear signage for emergency room access</p>
@@ -1171,13 +1110,7 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-category="hotels" data-title="Hotel Exterior" data-description="Professional hotel exterior signage">
-                    <img src="assets/hotels and restaurent/one.jpg" alt="Hotel Exterior">
-                    <div class="gallery-overlay">
-                        <h4>Hotel Exterior</h4>
-                        <p>Professional hotel exterior signage</p>
-                    </div>
-                </div>
+
 
                 <!-- New Cafe Restaurant V2 Images -->
                 <div class="gallery-item" data-category="hotels" data-title="Modern Cafe Signage V2" data-description="Contemporary cafe design with premium aesthetics">
@@ -1238,29 +1171,7 @@
 
                 <!-- Co-operative Office -->
 
-                <div class="gallery-item" data-category="office" data-title="Office Front" data-description="Office front signage">
-                    <img src="assets/co operative office/IMG-20251014-WA0008.jpg" alt="Office Front">
-                    <div class="gallery-overlay">
-                        <h4>Office Front</h4>
-                        <p>Office front signage</p>
-                    </div>
-                </div>
 
-                <div class="gallery-item" data-category="office" data-title="Co-operative Sign" data-description="Co-operative society sign">
-                    <img src="assets/co operative office/IMG-20251014-WA0009.jpg" alt="Co-operative Sign">
-                    <div class="gallery-overlay">
-                        <h4>Co-operative Sign</h4>
-                        <p>Co-operative society sign</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="office" data-title="Office Display" data-description="Office display signage">
-                    <img src="assets/co operative office/IMG-20251014-WA0010.jpg" alt="Office Display">
-                    <div class="gallery-overlay">
-                        <h4>Office Display</h4>
-                        <p>Office display signage</p>
-                    </div>
-                </div>
 
                 <div class="gallery-item" data-category="office" data-title="Corporate Building" data-description="Corporate building sign">
                     <img src="assets/co operative office/IMG-20251014-WA0011.jpg" alt="Corporate Building">
@@ -1278,14 +1189,6 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-category="office" data-title="Business Center" data-description="Business center signage">
-                    <img src="assets/co operative office/IMG-20251014-WA0013.jpg" alt="Business Center">
-                    <div class="gallery-overlay">
-                        <h4>Business Center</h4>
-                        <p>Business center signage</p>
-                    </div>
-                </div>
-
                 <div class="gallery-item" data-category="office" data-title="Office Tower" data-description="Office tower signage">
                     <img src="assets/co operative office/IMG-20251014-WA0014.jpg" alt="Office Tower">
                     <div class="gallery-overlay">
@@ -1294,37 +1197,6 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-category="office" data-title="Co-operative Office" data-description="Co-operative office sign">
-                    <img src="assets/co operative office/IMG-20251014-WA0015.jpg" alt="Co-operative Office">
-                    <div class="gallery-overlay">
-                        <h4>Co-operative Office</h4>
-                        <p>Co-operative office sign</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="office" data-title="Office Park" data-description="Office park signage">
-                    <img src="assets/co operative office/IMG-20251014-WA0016.jpg" alt="Office Park">
-                    <div class="gallery-overlay">
-                        <h4>Office Park</h4>
-                        <p>Office park signage</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="office" data-title="Business Park" data-description="Business park signage">
-                    <img src="assets/co operative office/IMG-20251014-WA0017.jpg" alt="Business Park">
-                    <div class="gallery-overlay">
-                        <h4>Business Park</h4>
-                        <p>Business park signage</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="office" data-title="Office Campus" data-description="Office campus signage">
-                    <img src="assets/co operative office/IMG-20251014-WA0018.jpg" alt="Office Campus">
-                    <div class="gallery-overlay">
-                        <h4>Office Campus</h4>
-                        <p>Office campus signage</p>
-                    </div>
-                </div>
 
                 <div class="gallery-item" data-category="office" data-title="Corporate Campus" data-description="Corporate campus signage">
                     <img src="assets/co operative office/IMG-20251014-WA0019.jpg" alt="Corporate Campus">
@@ -1347,14 +1219,6 @@
                     <div class="gallery-overlay">
                         <h4>Business Complex</h4>
                         <p>Business complex signage</p>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="office" data-title="Office Center" data-description="Office center signage">
-                    <img src="assets/co operative office/IMG-20251014-WA0022.jpg" alt="Office Center">
-                    <div class="gallery-overlay">
-                        <h4>Office Center</h4>
-                        <p>Office center signage</p>
                     </div>
                 </div>
 
@@ -1538,41 +1402,51 @@
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="assets/logo.jpg" alt="Board Bazaar">
-                        <h3>Board Bazaar</h3>
-                    </div>
-                    <p>Your trusted partner for premium advertising solutions and signboard manufacturing. Transform your business visibility with our expert services.</p>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="assets/logo.jpg" alt="Board Bazaar">
+                    <h3>Board Bazaar</h3>
                 </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <div class="footer-contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Siddhi Vinayak Apartment, A Wing, Shop No 03, Plot No B 102, Sector 23 (E), Near Seawoods Railway Station, Seawoods, Nerul, Navi Mumbai - 400706</p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+917800808870">+91 78008 08870</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+918652737065">+91 86527 37065</a></p>
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:faisal.khan868@gmail.com">faisal.khan868@gmail.com</a></p>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
+                <p>Your trusted partner for premium advertising solutions and signboard manufacturing. We transform your business visibility with expert craftsmanship, innovative designs, and unparalleled quality that sets you apart from the competition.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Board Bazaar. All rights reserved. | Designed with passion for advertising excellence</p>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <div class="footer-contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> <span>Siddhi Vinayak Apartment, A Wing, Shop No 03, Plot No B 102, Sector 23 (E), Near Seawoods Railway Station, Seawoods, Nerul, Navi Mumbai - 400706</span></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+917800808870">+91 78008 08870</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+918652737065">+91 86527 37065</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:faisal.khan868@gmail.com">faisal.khan868@gmail.com</a></p>
+                </div>
             </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="store.html">Store</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="store-signboard.html">Store Signage</a></li>
+                    <li><a href="medical-hospital.html">Hospital Signs</a></li>
+                    <li><a href="cafe-restaurant.html">Restaurant Signs</a></li>
+                    <li><a href="co-operative-office.html">Office Signage</a></li>
+                    <li><a href="building-infra.html">Building Signs</a></li>
+                    <li><a href="contact.html">Custom Projects</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2021 Board Bazaar. All rights reserved. | <span>Designed with passion for advertising excellence</span></p>
         </div>
     </footer>
 
@@ -1635,15 +1509,33 @@
             });
             
             function openLightbox(index) {
-                currentImageIndex = index;
+                // First update visible items to get current filtered items
                 updateVisibleItems();
                 
-                if (visibleItems.length > 0) {
+                // Find the actual index in the visible items array
+                const clickedItem = galleryItems[index];
+                currentImageIndex = visibleItems.indexOf(clickedItem);
+                
+                if (currentImageIndex === -1) {
+                    // If item is not visible, don't open lightbox
+                    return;
+                }
+                
+                if (visibleItems.length > 0 && currentImageIndex >= 0) {
                     const currentItem = visibleItems[currentImageIndex];
                     const img = currentItem.querySelector('img');
                     
                     lightboxImage.src = img.src;
                     lightboxImage.alt = img.alt;
+                    
+                    // Show/hide navigation buttons based on number of images
+                    if (visibleItems.length <= 1) {
+                        lightboxPrev.style.display = 'none';
+                        lightboxNext.style.display = 'none';
+                    } else {
+                        lightboxPrev.style.display = 'flex';
+                        lightboxNext.style.display = 'flex';
+                    }
                     
                     lightboxModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
@@ -1664,14 +1556,32 @@
             function showPreviousImage() {
                 if (visibleItems.length > 0) {
                     currentImageIndex = (currentImageIndex - 1 + visibleItems.length) % visibleItems.length;
-                    openLightbox(currentImageIndex);
+                    updateLightboxImage();
                 }
             }
             
             function showNextImage() {
                 if (visibleItems.length > 0) {
                     currentImageIndex = (currentImageIndex + 1) % visibleItems.length;
-                    openLightbox(currentImageIndex);
+                    updateLightboxImage();
+                }
+            }
+            
+            function updateLightboxImage() {
+                if (visibleItems.length > 0 && currentImageIndex >= 0 && currentImageIndex < visibleItems.length) {
+                    const currentItem = visibleItems[currentImageIndex];
+                    const img = currentItem.querySelector('img');
+                    
+                    // Fade out effect
+                    lightboxImage.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        lightboxImage.src = img.src;
+                        lightboxImage.alt = img.alt;
+                        
+                        // Fade in effect
+                        lightboxImage.style.opacity = '1';
+                    }, 150);
                 }
             }
             
