@@ -1533,8 +1533,8 @@ nav > ul > li {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
-    color: var(--white);
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: #fff;
     padding: 120px 0;
     text-align: center;
     position: relative;
@@ -1543,29 +1543,36 @@ nav > ul > li {
 
 .cta-section h2 {
     font-size: 56px;
-    font-weight: 700;
+    font-weight: 300;
     margin-bottom: 40px;
     line-height: 1.2;
+    font-family: aesthet-nova, serif;
+    font-style: normal;
+    letter-spacing: 1px;
 }
 
 .cta-button {
     display: inline-block;
-    background: var(--primary-orange);
-    color: var(--white);
-    padding: 15px 35px;
+    background: #fff;
+    color: var(--primary-orange);
+    padding: 18px 45px;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 50px;
     font-weight: 600;
     font-size: 18px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
+    transition: all 0.4s ease;
+    font-family: aesthet-nova, serif;
+    font-style: normal;
     letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(255,255,255,0.2);
+    border: 2px solid #fff;
 }
 
 .cta-button:hover {
-    background: var(--secondary-orange);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255,107,53,0.3);
+    background: transparent;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
 }
 
 /* Why Choose Us Section */
