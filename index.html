@@ -220,13 +220,20 @@
             }
             
             .mobile-logo-img {
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                object-fit: cover;
-                border: 2px solid rgba(255,255,255,0.3);
+                width: 80px;
+                height: 80px;
+                border-radius: 5px;
+                object-fit: contain;
+                border: none;
                 box-shadow: 0 2px 8px rgba(255,107,53,0.3);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            @media (max-width: 380px) {
+                .mobile-logo-img {
+                    width: 65px;
+                    height: 65px;
+                }
             }
             
             .mobile-logo-img:hover {
@@ -705,7 +712,7 @@
     <!-- Mobile Header -->
     <header class="mobile-header">
         <div class="mobile-header-content">
-            <img src="assets/mobile-header.jpg" alt="Board Bazaar" class="mobile-logo-img">
+            <img src="assets/logo.jpg" alt="Board Bazaar" class="mobile-logo-img">
             <h1 class="mobile-title">Board Bazaar</h1>
             <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>

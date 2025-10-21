@@ -62,11 +62,11 @@ body {
 }
 
 .mobile-logo-img {
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.3);
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 5px;
+    border: none;
     box-shadow: 0 2px 8px rgba(255,107,53,0.3);
     transition: transform 0.3s ease;
 }
@@ -3942,5 +3942,13 @@ footer {
     .faq-cta-btn {
         padding: 12px 24px;
         font-size: 14px;
+    }
+}
+
+/* Mobile Logo Responsive Styles */
+@media (max-width: 380px) {
+    .mobile-logo-img {
+        width: 65px;
+        height: 65px;
     }
 }
