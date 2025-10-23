@@ -493,93 +493,7 @@
             color: var(--text-dark);
         }
 
-        .team-section {
-            background: var(--gray-light);
-            padding: 100px 0;
-            margin-bottom: 120px;
-        }
 
-        .team-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .team-header h2 {
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-        }
-
-        .team-header p {
-            font-size: 18px;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .team-grid {
-            display: flex;
-            justify-content: center;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .team-member {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
-
-        .team-member-image {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .team-member-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .team-member:hover .team-member-image img {
-            transform: scale(1.1);
-        }
-
-        .team-member-info {
-            padding: 30px 20px;
-        }
-
-        .team-member-name {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 8px;
-        }
-
-        .team-member-role {
-            font-size: 16px;
-            color: var(--primary-orange);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .team-member-bio {
-            font-size: 14px;
-            line-height: 1.5;
-            color: var(--text-light);
-        }
 
 
 
@@ -683,31 +597,7 @@
                 line-height: 1.5;
             }
             
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .team-member {
-                padding: 25px 20px;
-                text-align: center;
-            }
-            
-            .team-member img {
-                width: 80px;
-                height: 80px;
-                margin-bottom: 15px;
-            }
-            
-            .team-member h3 {
-                font-size: 18px;
-                margin-bottom: 5px;
-            }
-            
-            .team-member p {
-                font-size: 14px;
-            }
-            
+
             .timeline::before {
                 left: 20px;
             }
@@ -1001,27 +891,169 @@
                 </div>
             </div>
 
-            <!-- Team Section -->
-            <div class="team-section">
+            <!-- Founder Section -->
+            <div class="founder-section">
                 <div class="container">
-                    <div class="team-header">
-                        <h2>Meet Our Leadership Team</h2>
-                        <p>The talented individuals who drive our vision and deliver excellence every day</p>
+                    <div class="founder-header">
+                        <h2>Meet Our Founder</h2>
+                        <p>The visionary leader who established Board Bazaar with a commitment to excellence</p>
                     </div>
-                    <div class="team-grid">
-                        <div class="team-member">
-                            <div class="team-member-image">
-                                <img src="assets/founder.png" alt="Mr. Faisal khan-Maaz">
-                            </div>
-                            <div class="team-member-info">
-                                <h3 class="team-member-name">Mr. Faisal khan</h3>
-                                <p class="team-member-role">Founder & CEO</p>
-                                <p class="team-member-bio">With over 15 years in signage industry, Mr. Faisal khan-Maaz founded Board Bazaar with a vision to revolutionize visual advertising in India.</p>
-                            </div>
+                    <div class="founder-content">
+                        <div class="founder-image-container">
+                            <img src="assets/founder.png" alt="Mr. Faisal-Maaz khan" class="founder-image">
+                        </div>
+                        <div class="founder-info">
+                            <h3 class="founder-name">Mr. Faisal khan</h3>
+                            <p class="founder-role">Founder & CEO</p>
+                            <p class="founder-bio">With over 15 years in signage industry, Mr. Faisal-Maaz khan founded Board Bazaar with a vision to revolutionize visual advertising in India.</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Founder Section CSS -->
+            <style>
+                .founder-section {
+                    background: var(--gray-light);
+                    padding: 100px 0;
+                    margin-bottom: 120px;
+                }
+
+                .founder-header {
+                    text-align: center;
+                    margin-bottom: 60px;
+                }
+
+                .founder-header h2 {
+                    font-size: 42px;
+                    font-weight: 700;
+                    color: var(--primary-blue);
+                    margin-bottom: 20px;
+                }
+
+                .founder-header p {
+                    font-size: 18px;
+                    color: var(--text-light);
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+
+                .founder-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 60px;
+                    max-width: 1000px;
+                    margin: 0 auto;
+                }
+
+                .founder-image-container {
+                    flex: 0 0 400px;
+                    height: 400px;
+                    overflow: hidden;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                }
+
+                .founder-image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.5s ease;
+                }
+
+                .founder-image-container:hover .founder-image {
+                    transform: scale(1.05);
+                }
+
+                .founder-info {
+                    flex: 1;
+                    max-width: 500px;
+                }
+
+                .founder-name {
+                    font-size: 32px;
+                    font-weight: 700;
+                    color: var(--primary-blue);
+                    margin-bottom: 10px;
+                }
+
+                .founder-role {
+                    font-size: 20px;
+                    color: var(--primary-orange);
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                }
+
+                .founder-bio {
+                    font-size: 16px;
+                    line-height: 1.6;
+                    color: var(--text-dark);
+                }
+
+                /* Responsive Design */
+                @media (max-width: 1024px) {
+                    .founder-content {
+                        flex-direction: column;
+                        gap: 40px;
+                    }
+                    
+                    .founder-image-container {
+                        flex: 0 0 350px;
+                        height: 350px;
+                    }
+                    
+                    .founder-info {
+                        text-align: center;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .founder-section {
+                        padding: 60px 0;
+                    }
+                    
+                    .founder-header h2 {
+                        font-size: 32px;
+                    }
+                    
+                    .founder-image-container {
+                        flex: 0 0 280px;
+                        height: 280px;
+                    }
+                    
+                    .founder-name {
+                        font-size: 28px;
+                    }
+                    
+                    .founder-role {
+                        font-size: 18px;
+                    }
+                    
+                    .founder-bio {
+                        font-size: 15px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .founder-image-container {
+                        flex: 0 0 240px;
+                        height: 240px;
+                    }
+                    
+                    .founder-name {
+                        font-size: 24px;
+                    }
+                    
+                    .founder-role {
+                        font-size: 16px;
+                    }
+                    
+                    .founder-bio {
+                        font-size: 14px;
+                    }
+                }
+            </style>
 
 
         </div>
