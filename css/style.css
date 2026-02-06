@@ -2594,12 +2594,6 @@ footer::before {
     height: 4px;
     background: linear-gradient(90deg, var(--primary-orange) 0%, var(--secondary-orange) 50%, var(--primary-orange) 100%);
     background-size: 200% 100%;
-    animation: gradientShift 3s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
 }
 
 .footer-content {
@@ -2864,17 +2858,17 @@ footer::before {
 
 /* Contact Section */
 .contact-section {
-    padding: 100px 0;
+    padding: 80px 0;
     background: var(--white);
 }
 
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0;
-    align-items: center;
+    gap: 40px;
+    align-items: start;
     justify-items: center;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -2884,75 +2878,20 @@ footer::before {
     border-radius: 25px;
     padding: 0;
     box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
-    overflow: hidden;
     position: relative;
     max-width: 900px;
     margin: 0 auto;
-    animation: cardEntrance 0.8s ease-out;
     border: 2px solid var(--primary-orange);
-}
-
-.contact-info-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
-    animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-    0% { left: -100%; }
-    100% { left: 100%; }
-}
-
-@keyframes cardEntrance {
-    0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
 }
 
 .card-header {
     background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
-    padding: 30px;
+    padding: 35px 40px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.card-header::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background: inherit;
-    border-radius: 50% 50% 0 0;
 }
 
 .card-decoration {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
-    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.1; }
+    display: none;
 }
 
 .card-header h2 {
@@ -2960,8 +2899,6 @@ footer::before {
     font-size: 32px;
     font-weight: 700;
     margin: 0;
-    position: relative;
-    z-index: 2;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -2972,64 +2909,10 @@ footer::before {
 .contact-row {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     padding: 20px;
     background: var(--gray-light);
     border-radius: 15px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.contact-row::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.05), transparent);
-    transition: left 0.5s ease;
-}
-
-.contact-row:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
-    background: linear-gradient(135deg, #fff8f3, #ffffff);
-}
-
-.contact-row:hover::before {
-    left: 100%;
-}
-
-.contact-row:nth-child(odd) {
-    animation: slideInLeft 0.6s ease-out;
-}
-
-.contact-row:nth-child(even) {
-    animation: slideInRight 0.6s ease-out;
-}
-
-@keyframes slideInLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 .contact-icon {
@@ -3043,12 +2926,6 @@ footer::before {
     margin-right: 25px;
     flex-shrink: 0;
     box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
-    animation: iconFloat 3s ease-in-out infinite;
-}
-
-@keyframes iconFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
 }
 
 .contact-icon i {
@@ -3480,16 +3357,16 @@ footer::before {
     }
     
     .contact-section {
-        padding: 60px 0;
+        padding: 50px 0;
     }
     
     .contact-grid {
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 30px;
     }
     
     .contact-form-section {
-        padding: 30px;
+        padding: 20px;
     }
     
     .contact-form-section h2,
@@ -3538,19 +3415,327 @@ footer::before {
     }
 }
 
-@media (max-width: 480px) {
-    .contact-form-section {
-        padding: 20px;
+/* Contact Form Popup Styles */
+.contact-popup-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-popup-btn:hover {
+    background: linear-gradient(135deg, var(--secondary-orange), #ff8c42);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.5);
+}
+
+.contact-popup-btn i {
+    font-size: 18px;
+}
+
+.contact-form-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.contact-form-popup-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.contact-form-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.contact-form-popup-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    letter-spacing: -0.3px;
+}
+
+.contact-form-popup-close {
+    background: #f5f5f5;
+    border: none;
+    color: #666;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.contact-form-popup-close:hover {
+    background: #e8e8e8;
+    color: #333;
+}
+
+.contact-form-popup-body {
+    padding: 0;
+    background: white;
+}
+
+.contact-form-card {
+    border-radius: 0 0 16px 16px;
+}
+
+.contact-form {
+    padding: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 8px;
+    letter-spacing: -0.1px;
+}
+
+.form-group label i {
+    color: #999;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    background: #fafafa;
+    color: #1a1a1a;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.05);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: -0.2px;
+}
+
+.submit-btn:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.submit-btn i {
+    font-size: 14px;
+}
+
+.form-success,
+.form-error {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    display: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-success {
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.form-success i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.form-error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.form-error i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .contact-form-popup-content {
+        border-radius: 14px;
+        max-height: 95vh;
     }
-    
+
+    .contact-form-popup-header {
+        padding: 20px 24px;
+    }
+
+    .contact-form-popup-header h2 {
+        font-size: 18px;
+    }
+
+    .contact-form-popup-close {
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
+    }
+
+    .contact-form {
+        padding: 24px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
     .form-group input,
     .form-group select,
     .form-group textarea {
-        padding: 12px 15px;
+        padding: 13px 15px;
+        font-size: 13px;
     }
-    
+
     .submit-btn {
-        padding: 15px 30px;
+        padding: 13px 20px;
+        font-size: 14px;
+    }
+
+    .form-success,
+    .form-error {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form-popup-overlay {
+        padding: 0;
+    }
+
+    .contact-form-popup-content {
+        border-radius: 0;
+        max-width: 100%;
+        max-height: 100vh;
+        height: 100vh;
+    }
+
+    .contact-form-popup-header {
+        padding: 20px 24px;
+    }
+
+    .contact-form-popup-header h2 {
+        font-size: 18px;
+    }
+
+    .contact-form-popup-close {
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+    }
+
+    .contact-form {
+        padding: 24px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        padding: 14px 24px;
+        font-size: 15px;
     }
 }
 
@@ -3695,66 +3880,16 @@ footer {
     text-decoration: none !important;
     box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4) !important;
     z-index: 10000 !important;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease;
     border: 3px solid rgba(255, 255, 255, 0.3) !important;
-    animation: whatsappFloat 3s ease-in-out infinite;
-}
-
-@keyframes whatsappFloat {
-    0%, 100% { 
-        transform: scale(1) translateY(0); 
-        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4); 
-    }
-    50% { 
-        transform: scale(1.05) translateY(-5px); 
-        box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6); 
-    }
 }
 
 .whatsapp-float:hover {
     background: #128c7e !important;
-    transform: scale(1.15) translateY(-8px) !important;
-    box-shadow: 0 15px 50px rgba(37, 211, 102, 0.7) !important;
-    border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .whatsapp-float i {
     color: white !important;
-    animation: none;
-}
-
-.whatsapp-float::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: radial-gradient(circle, rgba(37, 211, 102, 0.3), transparent 70%);
-    border-radius: 50%;
-    animation: whatsappGlow 2s ease-in-out infinite;
-}
-
-@keyframes whatsappGlow {
-    0%, 100% { 
-        opacity: 0.3; 
-        transform: scale(1); 
-    }
-    50% { 
-        opacity: 0.6; 
-        transform: scale(1.2); 
-    }
-}
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
 }
 
 /* Footer Contact Info Styles */

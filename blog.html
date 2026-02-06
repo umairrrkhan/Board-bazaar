@@ -877,6 +877,32 @@
                 document.body.style.overflow = '';
             }
         });
+
+        // Initialize contact form popup
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.ContactForm) {
+                ContactForm.createPopup({ position: 'bottom-right' });
+            }
+        });
+    </script>
+    
+    <script src="js/contact-form.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.ContactForm) {
+                ContactForm.init();
+            } else {
+                window.addEventListener('ContactFormLoaded', function() {
+                    ContactForm.init();
+                });
+            }
+
+            setTimeout(function() {
+                if (window.ContactForm) {
+                    ContactForm.createPopup();
+                }
+            }, 2000);
+        });
     </script>
 </body>
 </html>

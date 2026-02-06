@@ -21,6 +21,7 @@
     <meta property="twitter:description" content="Contact Board Bazaar for expert signage solutions in Mumbai. Call +91 78008 08870 for custom signboards.">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact-form.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Contact Page Mobile Enhancements */
@@ -256,6 +257,8 @@
             }
         }
     </style>
+    
+    <script src="js/contact-form.js"></script>
 </head>
 <body>
     <!-- Mobile Header -->
@@ -383,66 +386,70 @@
     <!-- Contact Section -->
     <section class="contact-section">
         <div class="container">
-            <div class="contact-grid">
-                <!-- Contact Information Card -->
-                <div class="contact-info-card">
-                    <div class="card-header">
-                        <h2>Get in Touch</h2>
-                        <div class="card-decoration"></div>
-                    </div>
-                    
-                    <div class="contact-content">
-                        <div class="contact-row">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Office Address</h3>
-                                <p class="highlight-text">Shree  Vinayak Apartment, A Wing, Shop No 03, Plot No B 102<br>Sector 23 (E), Near Seawoods Railway Station, Seawoods, Nerul<br>Navi Mumbai - 400706</p>
-                            </div>
+            <div class="contact-main-card">
+                <!-- Left Side: Form -->
+                <div class="contact-form-side">
+                    <div class="form-header">
+                        <div class="brand-logo">
+                            <img src="assets/logo.jpg" alt="Board Bazaar">
+                            <span>Board Bazaar</span>
                         </div>
-                        
-                        <div class="contact-row">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Call Us</h3>
-                                <p><a href="tel:+918652737065" class="copy-number" onclick="trackPhoneCall('+91 86527 37065')">+91 86527 37065</a></p>
-                                <p><a href="tel:+917800808870" class="copy-number" onclick="trackPhoneCall('+91 78008 08870')">+91 78008 08870</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-row">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Email Us</h3>
-                                <p><a href="mailto:Boardbazaar.inn@gmail.com" class="email-link">Boardbazaar.inn@gmail.com</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-row">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Business Hours</h3>
-                                <p class="highlight-text">Mon - Fri: 9:00 AM - 7:00 PM</p>
-                                <p class="highlight-text">Saturday: 10:00 AM - 6:00 PM</p>
-                                <p class="highlight-text">Sunday: Closed</p>
-                            </div>
-                        </div>
+                        <h1>We'd love to help</h1>
+                        <p>We're a full service signage agency ready to help. We'll get in touch within 24 hours.</p>
                     </div>
 
-                    <!-- Instagram Only -->
-                    <div class="social-section">
-                        <h4>Follow Us on Instagram</h4>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/boardbazaar.in?igsh=cGZiZGdmbmE3bDU3" target="_blank" aria-label="Instagram" class="social-link instagram">
-                                <i class="fab fa-instagram"></i>
-                            </a>
+                    <form id="contactForm" class="luxury-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name-contactForm">Full name</label>
+                                <input type="text" id="name-contactForm" name="name" required placeholder="Enter your full name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone-contactForm">Phone number</label>
+                            <input type="tel" id="phone-contactForm" name="phone" required placeholder="+91 (000) 000-0000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message-contactForm">Message</label>
+                            <textarea id="message-contactForm" name="message" rows="4" required placeholder="Leave us a message..."></textarea>
+                        </div>
+
+                        <button type="submit" class="luxury-submit-btn">
+                            Send message
+                        </button>
+
+                        <div id="formSuccess-contactForm" class="form-success">
+                            <i class="fas fa-check-circle"></i>
+                            Thank you! Your message has been sent successfully.
+                        </div>
+
+                        <div id="formError-contactForm" class="form-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Oops! Something went wrong. Please try again.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right Side: Review/Image -->
+                <div class="contact-review-side">
+                    <div class="review-overlay">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <blockquote class="review-text">
+                            "Board Bazaar is the real deal. We've worked with many signage providers, but their attention to detail and luxury finish is unmatched. Truly a breath of fresh air in the industry."
+                        </blockquote>
+                        <div class="review-author">
+                            <div class="author-info">
+                                <strong>Rajesh</strong>
+                                <span>CEO, Retail Group</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -528,7 +535,25 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/contact-form.js"></script>
     <script>
+        // Initialize contact form
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.ContactForm) {
+                ContactForm.init();
+            } else {
+                window.addEventListener('ContactFormLoaded', function() {
+                    ContactForm.init();
+                });
+            }
+
+            setTimeout(function() {
+                if (window.ContactForm) {
+                    ContactForm.createPopup();
+                }
+            }, 2000);
+        });
+
         // Mobile Menu Functions
         function toggleMobileMenu() {
             const sidebar = document.getElementById('mobileSidebar');
@@ -649,33 +674,6 @@
                 }
             }, 3000);
         }
-        
-        // Initialize animations for contact page elements
-        document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe elements for animation
-            const animatedElements = document.querySelectorAll('.contact-info-card, .contact-row');
-            animatedElements.forEach((element, index) => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(30px)';
-                element.style.transition = 'all 0.6s ease';
-                element.style.transitionDelay = `${index * 0.1}s`;
-                observer.observe(element);
-            });
-        });
     </script>
 
     <!-- WhatsApp Floating Button -->
