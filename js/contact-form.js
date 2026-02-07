@@ -1,4 +1,10 @@
 (function() {
+    const emailjsConfig = {
+        serviceId: 'service_43f3c5c',
+        templateId: 'template_wojl2td',
+        publicKey: '572iOGI4JBC9JGytD'
+    };
+
     const firebaseConfig = {
         apiKey: "AIzaSyDQ-GgKmuI1Poo9Eogvv-_cnqpkuOYIqc8",
         authDomain: "board-bazaar.firebaseapp.com",
@@ -9,20 +15,34 @@
         measurementId: "G-SCYYD46HMR"
     };
 
-    if (!window.firebase) {
-        const script1 = document.createElement('script');
-        script1.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js';
-        script1.onload = function() {
-            const script2 = document.createElement('script');
-            script2.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js';
-            script2.onload = function() {
-                initializeFirebase();
-            };
-            document.head.appendChild(script2);
+    if (!window.emailjs) {
+        const emailjsScript = document.createElement('script');
+        emailjsScript.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+        emailjsScript.onload = function() {
+            emailjs.init(emailjsConfig.publicKey);
+            loadFirebase();
         };
-        document.head.appendChild(script1);
+        document.head.appendChild(emailjsScript);
     } else {
-        initializeFirebase();
+        loadFirebase();
+    }
+
+    function loadFirebase() {
+        if (!window.firebase) {
+            const script1 = document.createElement('script');
+            script1.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js';
+            script1.onload = function() {
+                const script2 = document.createElement('script');
+                script2.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js';
+                script2.onload = function() {
+                    initializeFirebase();
+                };
+                document.head.appendChild(script2);
+            };
+            document.head.appendChild(script1);
+        } else {
+            initializeFirebase();
+        }
     }
 
     function initializeFirebase() {
@@ -123,6 +143,12 @@
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     status: 'new'
                 };
+                
+                await emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, {
+                    name: formData.name,
+                    phone: formData.phone,
+                    message: formData.message
+                });
                 
                 const db = firebase.firestore();
                 await db.collection('contacts').add(formData);

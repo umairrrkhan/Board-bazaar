@@ -3642,9 +3642,20 @@ footer::before {
 }
 
 @media (max-width: 768px) {
+    .contact-form-popup-overlay {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .contact-form-popup-content {
         border-radius: 14px;
-        max-height: 95vh;
+        max-width: 90vw;
+        width: 400px;
+        max-height: 90vh;
+        margin: auto;
+        position: relative;
     }
 
     .contact-form-popup-header {
@@ -3694,14 +3705,19 @@ footer::before {
 
 @media (max-width: 480px) {
     .contact-form-popup-overlay {
-        padding: 0;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .contact-form-popup-content {
-        border-radius: 0;
-        max-width: 100%;
-        max-height: 100vh;
-        height: 100vh;
+        border-radius: 16px;
+        max-width: 90vw;
+        width: 340px;
+        max-height: 85vh;
+        margin: auto;
+        position: relative;
     }
 
     .contact-form-popup-header {
